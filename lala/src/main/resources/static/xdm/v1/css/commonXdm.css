@@ -101,6 +101,12 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 #kakaoLoginBtn{
     background-color: rgba(254, 229, 0,0.5);
 }
+.form-control:read-only:not([type="checkbox"]) {
+    background-color: #f0f0f0;
+    color: #6c757d;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
 /*페이징관련*/
 .page-item .page-link {
     cursor: pointer;

@@ -296,7 +296,7 @@
 														<td><input type="checkbox"></td>
 														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +listStat.index)}"></td>
 														<td th:text="${list.codeGroup_cgSeq}"></td>
-														<td th:text="${list.cg	Name}"></td>
+														<td th:text="${list.cgName}"></td>
 														<td th:text="${list.cdSeq}"></td>
 														<td class="td_spotlight">
 															<a th:href="@{/v1/infra/codegroup/codeGroupXdmMfom(cdSeq=${list.cdSeq})}" th:text="${list.cdName}"></a>
@@ -379,7 +379,7 @@
 											</div>
 											<div>
 												<button type="button" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>
-												<a href="codeGroupXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
+												<a href="codeXdmForm" class="btn btn-info"><i class="bi bi-plus-lg"></i></a>
 											</div>
 										</div>
 									</div>

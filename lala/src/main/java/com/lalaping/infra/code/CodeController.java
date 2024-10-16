@@ -28,7 +28,7 @@ public class CodeController {
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmForm")
 	public String CodeXdmForm(Model model , CodeGroupVo codeGroupVo) {
-		model.addAttribute("group", codeGroupService.selectList(codeGroupVo));
+		model.addAttribute("codeGroups", codeGroupService.selectList(codeGroupVo));
 		return "/xdm/v1/infra/code/codeXdmForm";
 	}
 	@RequestMapping(value = "/v1/infra/commonCode/CodeXdmInst")
@@ -36,8 +36,9 @@ public class CodeController {
 		return "redierect:/xdm/v1/infra/commonCode/CodeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/commonCode/CodeXdmMFom")
-	public String CodeXdmMFom(Model model,CodeDto codeDto) {
+	public String CodeXdmMFom(Model model,CodeDto codeDto,CodeGroupVo codeGroupVo) {
 		model.addAttribute("item", codeService.selectOne(codeDto));
+		model.addAttribute("codeGroups", codeGroupService.selectList(codeGroupVo));
 		return "/xdm/v1/infra/commonCode/CodeXdmMFom";
 	}
 	@RequestMapping(value = "/v1/infra/commonCode/codeXdmUpdt")
