@@ -11,35 +11,35 @@
 			codegroup a
 			<!-- left JOIN commoncode b ON b.codeGroup_seq = a.seq -->
 		WHERE 1=1
-			<!-- 키워드조건 -->
-			<!-- <if test="searchKeyword != null and searchKeyword != ''">
+			<if test="shValue != null and !shValue.equals('')">
 				<choose>
-					<when test="keywordType == null">
-	                    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					<when test="shOption == null">
+	                    AND(
+							a.cgSeq Like CONCAT('%',#{shValue},'%')
+							OR a.cgName Like CONCAT('%',#{shValue},'%')
+						)
 	                </when>
-					<when test="keywordType == 1 and keywordType != null and keywordType != ''">
-					    AND a.seq = #{searchKeyword}
+					<when test="shOption == 1 and shOption != null and shOption != ''">
+					    AND a.cgSeq = #{shValue}
 					</when>
-					<when test="keywordType == 2 and keywordType != null and keywordType != ''">
-					    AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
+					<when test="shOption == 2 and shOption != null and shOption != ''">
+					    AND a.cgName LIKE CONCAT('%', #{shValue}, '%')
 					</when>
-					<otherwise>
-						AND a.codeGroupName LIKE CONCAT('%', #{searchKeyword}, '%')
-					    OR a.seq LIKE CONCAT('%', #{searchKeyword}, '%')
-					</otherwise>
-					
 				</choose>
 			</if>
-			<if test="sUseNy != null and !sUseNy.equals('')">
-				AND a.useNy = #{sUseNy}
+			<if test="shUseNy != null and !shUseNy.equals('')">
+				AND a.cgUseNy = #{shUseNy}
 			</if>
-			<if test="sDelNy != null and !sDelNy.equals('')">
-				AND a.delNy = #{sDelNy}
+			<if test="shDelNy != null and !shDelNy.equals('')">
+				AND a.cgDelNy = #{shDelNy}
 			</if>
-			<choose>
-				<when test="dateType == 1"> AND a.regDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-				<when test="dateType == 2"> AND a.modDate BETWEEN #{dateStart} AND #{dateEnd}</when>
-			</choose> -->
+			<if test="( shDateStart != null and !shDateStart.equals('')) and ( shDateEnd != null and !shDateEnd.equals(''))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.cgRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.cgModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+			
 	</sql>
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
@@ -48,7 +48,7 @@
 			,a.cgName
 			,a.cgDesc
 			,a.cgOrder
-			,(select count(aa.codeGroup_cgSeq) from commoncode aa  where 1=1 and aa.codeGroup_cgSeq = a.cgSeq) as cgcodeCount
+			,(select count(aa.codeGroup_cgSeq) from commoncode aa  where 1=1 and aa.codeGroup_cgSeq = a.cgSeq) as cgCodeCount
 			,a.cgUseNy
 		    ,a.cgDelNy
 			,a.cgRegDate
@@ -57,6 +57,9 @@
 		ORDER BY
 			a.cgOrder desc
 		<include refid="base.selectListLowerForMysql"/>
-		LIMIT #{limit} OFFSET #{offset}
 	</select>
+	<select id="listCount" resultType="int">
+        SELECT COUNT(*) 
+        <include refid="selectCommon"/>
+    </select>
 </mapper>		

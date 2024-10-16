@@ -13,4 +13,7 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectList(CodeGroupVo vo){
 		return codeGroupDao.selectList(vo);
 	};
+	public int listCount(CodeGroupVo vo) {
+		return codeGroupDao.listCount(vo);
+	}
 }

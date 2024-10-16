@@ -4,17 +4,17 @@ import com.lalaping.common.util.Constants;
 
 public class BaseVo {
 	//검색
-		private String searchKeyword; // 검색 키워드
-	    private Integer dateType;	//검색 날짜 종류
+		private String shValue; // 검색 키워드
+	    private Integer shOptionDate;	//검색 날짜 종류
 //	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //	    private Date dateStart;		//날짜 시작일
 //	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //	    private Date dateEnd;		//날짜 종료일
-	    private String dateStart;		//날짜 시작일
-	    private String dateEnd;		//날짜 종료일
-	    private Integer keywordType;	//검색키워드 타입
-	    private Integer sDelNy;			//검색 조건[삭제] 
-	    private Integer sUseNy;			//검색 조건[사용]
+	    private String shDateStart;		//날짜 시작일
+	    private String shDateEnd;		//날짜 종료일
+	    private Integer shOption;	//검색키워드 타입
+	    private Integer shDelNy;			//검색 조건[삭제] 
+	    private Integer shUseNy;			//검색 조건[사용]
 	    
 	    //페이지네이션
 	    private int thisPage = 1; 				//현재 페이지
@@ -71,47 +71,47 @@ public class BaseVo {
 			
 		}
 //-------------------------
-		public String getSearchKeyword() {
-			return searchKeyword;
+		public String getShValue() {
+			return shValue;
 		}
-		public void setSearchKeyword(String searchKeyword) {
-			this.searchKeyword = searchKeyword;
+		public void setShValue(String shValue) {
+			this.shValue = shValue;
 		}
-		public Integer getDateType() {
-			return dateType;
+		public Integer getShOptionDate() {
+			return shOptionDate;
 		}
-		public void setDateType(Integer dateType) {
-			this.dateType = dateType;
+		public void setShOptionDate(Integer shOptionDate) {
+			this.shOptionDate = shOptionDate;
 		}
-		public String getDateStart() {
-			return dateStart;
+		public String getShDateStart() {
+			return shDateStart;
 		}
-		public void setDateStart(String dateStart) {
-			this.dateStart = dateStart;
+		public void setShDateStart(String shDateStart) {
+			this.shDateStart = shDateStart;
 		}
-		public String getDateEnd() {
-			return dateEnd;
+		public String getShDateEnd() {
+			return shDateEnd;
 		}
-		public void setDateEnd(String dateEnd) {
-			this.dateEnd = dateEnd;
+		public void setShDateEnd(String shDateEnd) {
+			this.shDateEnd = shDateEnd;
 		}
-		public Integer getKeywordType() {
-			return keywordType;
+		public Integer getShOption() {
+			return shOption;
 		}
-		public void setKeywordType(Integer keywordType) {
-			this.keywordType = keywordType;
+		public void setShOption(Integer shOption) {
+			this.shOption = shOption;
 		}
-		public Integer getsDelNy() {
-			return sDelNy;
+		public Integer getShDelNy() {
+			return shDelNy;
 		}
-		public void setsDelNy(Integer sDelNy) {
-			this.sDelNy = sDelNy;
+		public void setShDelNy(Integer shDelNy) {
+			this.shDelNy = shDelNy;
 		}
-		public Integer getsUseNy() {
-			return sUseNy;
+		public Integer getShUseNy() {
+			return shUseNy;
 		}
-		public void setsUseNy(Integer sUseNy) {
-			this.sUseNy = sUseNy;
+		public void setShUseNy(Integer shUseNy) {
+			this.shUseNy = shUseNy;
 		}
 		public int getThisPage() {
 			return thisPage;
@@ -173,5 +173,6 @@ public class BaseVo {
 		public void setSortOrderString(String sortOrderString) {
 			this.sortOrderString = sortOrderString;
 		}
+		
 	    
 }
