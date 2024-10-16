@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lalaping.infra.member.MemberDao">
+
+	<!-- staffMember 영역 -->
+	<resultMap type="com.lalaping.infra.member.StaffMemberDto" id="staffResultMapObj"></resultMap>
+	<sql id="staffSelectCommon">
+		FROM staffMember a
+		WHERE 1=1
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.sfId LIKE CONCAT('%', #{shValue}, '%')
+							OR a.sfName LIKE CONCAT('%', #{shValue}, '%')
+						)
+					</when>
+					<when test="shOption == 1 and shOption != null and shOption != ''">
+						AND a.sfId = #{shValue}
+					</when>
+					<when test="shOption == 2 and shOption != null and shOption != ''">
+						AND a.sfName LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+				</choose>
+			</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">
+				AND a.sfDelNy = #{shDelNy}
+			</if>
+			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.sfRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.sfModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+	</sql>
+	<select id="staffSelectList" resultMap="staffResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.sfSeq,
+			a.sfId,
+			a.sfName,
+			a.sfTel,
+			a.sfBirthDay,
+			a.sfDelNy,
+			a.sfRegDate,
+			a.sfModDate,
+			a.sfEmail,
+			a.sfGender
+		<include refid="staffSelectCommon"/>
+		ORDER BY a.sfSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="staffListCount" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="staffSelectCommon"/>
+	</select>
+
+	<!-- userMember 영역 -->
+	<resultMap type="com.lalaping.infra.member.UserMemberDto" id="userResultMapObj"></resultMap>
+	<sql id="userSelectCommon">
+		FROM userMember a
+		WHERE 1=1
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.umId LIKE CONCAT('%', #{shValue}, '%')
+							OR a.umName LIKE CONCAT('%', #{shValue}, '%')
+						)
+					</when>
+					<when test="shOption == 1 and shOption != null and shOption != ''">
+						AND a.umId = #{shValue}
+					</when>
+					<when test="shOption == 2 and shOption != null and shOption != ''">
+						AND a.umName LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+				</choose>
+			</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">
+				AND a.umDelNy = #{shDelNy}
+			</if>
+			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.umRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.umModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+	</sql>
+	<select id="userSelectList" resultMap="userResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.umSeq,
+			a.umId,
+			a.umName,
+			a.umTel,
+			a.umBrithDay,
+			a.umDelNy,
+			a.umRegDate,
+			a.umModDate,
+			a.umEmail,
+			a.umGender
+		<include refid="userSelectCommon"/>
+		ORDER BY a.umSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="userListCount" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="userSelectCommon"/>
+	</select>
+
+</mapper>

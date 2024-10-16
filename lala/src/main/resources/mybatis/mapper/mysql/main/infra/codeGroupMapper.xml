@@ -62,4 +62,61 @@
         SELECT COUNT(*) 
         <include refid="selectCommon"/>
     </select>
+    <insert id="insert">
+    	INSERT INTO codegroup(
+		cgName
+	    ,cgOrder
+	    ,cgDesc
+	    ,cgUseNy
+	    ,cgDelNy
+	    ,cgRegDate
+	    ,cgModDate
+
+	)values(
+		#{cgName}
+		#{cgOrder}
+		,#{cgDesc}
+		,#{cgUseNy}
+		,0
+		,now()
+		,now()
+	)
+    </insert>
+    <select id="selectOne" resultMap="resultMapObj">
+    	SELECT
+			a.cgSeq
+			,a.cgName
+			,a.cgDesc
+			,a.cgOrder
+			,a.cgUseNy
+		    ,a.cgDelNy
+			,a.cgRegDate
+			,a.cgModDate
+		FROM codeGroup a 
+		WHERE 1=1
+		AND a.cgSeq = #{cgSeq}
+    </select>
+    <update id="update">
+    	UPDATE codeGroup 
+		set
+			cgName = #{cdName}
+			,cgUseNy = #{cdUseNy}
+			,cgOrder = #{cdOrder}
+			,cgDesc = #{cdDesc}
+			,cgModDate = now()
+		WHERE 1=1
+			AND cgSeq = #{cgSeq}
+    </update>
+    <update id="uelete">
+		update codeGroup
+		set
+			cgDelNy = 1
+		where 1=1
+			and cgSeq = #{cgSeq}
+	</update>
+	<delete id="delete">
+		DELETE FROM codeGroup
+		where 1=1
+			and cgSeq = #{cgSeq}
+	</delete>
 </mapper>		

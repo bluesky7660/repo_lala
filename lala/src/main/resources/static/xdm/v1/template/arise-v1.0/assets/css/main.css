@@ -16624,7 +16624,7 @@ select:-webkit-autofill:focus {
 }
 .page-link:hover, .page-link:focus {
   background-color: rgba(0, 0, 0, 0.0005);
-  border: 1px solid 1px solid #e1e1e1;
+  border: 1px solid #e1e1e1;
   color: #13181e;
 }
 

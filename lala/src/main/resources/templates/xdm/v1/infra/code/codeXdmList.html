@@ -51,76 +51,6 @@
 		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
 		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
-			
-
-
-			/* .btn .bi{
-				font-size: 1rem;
-				vertical-align: baseline;
-			}
-			.table td{
-          		text-align: center;
-	
-			}
-			.table th{
-				
-				white-space: nowrap;
-				text-align: center;
-				padding-left: 20px;
-			}
-			.table tr>*{
-				padding:1rem;
-				vertical-align: middle;
-			}
-			.table th:not(.sorting_asc){
-				padding: .5rem;
-				padding-left: 20px;
-			}
-			.table th span{
-				font-size: 0.85rem;
-			}
-			th>div{
-				padding: .5rem;
-				padding-right: 20px;
-			}
-			.scrolltable{
-				overflow-x: auto;
-			}
-			.page-item .page-link{
-				border: 0;
-				padding:.6rem 1rem;
-			}
-			.page-item.disabled .page-link{
-				border: 0;
-				opacity: 0;
-			}
-			.page-item.active .page-link{
-				border: 0;
-			}
-			.btn{
-				width: 40px;
-			}
-			.page-item:not(:first-child,:last-child){
-				margin: 0 5px;
-			}
-			.page-item a{
-				border-radius: 10px;
-				transition: 0.3s ease-in-out;
-				opacity: 1;
-			}
-			.page-item.active a:hover{
-				background-color: #3688fa;
-				opacity: 1;
-				color:#fff;
-			}
-			.page-item.active a{
-				color:#fff;
-			}
-			.page-item:not(.active) a:hover{
-				background-color: #3688fa;
-				opacity: 0.5;
-				color:#fff;
-			} */
 		</style>
 	</head>
 
@@ -258,10 +188,10 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											Code Group
+											Code
 										</h2>
 										<div>
-											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/codegroup/codeGroupXdmList">
+											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
 												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
@@ -304,7 +234,9 @@
 														<select class="form-select" id="selectKeywordType" name="shOption">
 															<option value="" selected>검색구분</option>
 															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드그룹이름</option>
+															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
+															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
+															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -347,10 +279,11 @@
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 코드</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드그룹 이름</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드이름</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">순서</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">갯수</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
@@ -362,18 +295,19 @@
 													<tr th:each="list : ${list}" th:if="${!#lists.isEmpty(list)}">
 														<td><input type="checkbox"></td>
 														<td th:text="${vo.totalRows - (((vo.thisPage -1) * vo.rowNumToShow) +listStat.index)}"></td>
-														<td th:text="${list.cgSeq}"></td>
+														<td th:text="${list.codeGroup_cgSeq}"></td>
+														<td th:text="${list.cgName}"></td>
+														<td th:text="${list.cdSeq}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/v1/infra/codegroup/codeGroupXdmMfom(cgSeq=${list.cgSeq})}" th:text="${list.cgName}"></a>
+															<a th:href="@{/v1/infra/codegroup/codeGroupXdmMfom(cdSeq=${list.cdSeq})}" th:text="${list.cdName}"></a>
 														</td>
-														<td th:if="${list.cgUseNy eq 0}">N</td>
-														<td th:unless="${list.cgUseNy eq 0}">Y</td>
-														<td th:if="${list.cgDelNy eq 0}">N</td>
-														<td th:unless="${list.cgDelNy eq 0}">Y</td>
-														<td th:text="${list.cgOrder}"></td>
-														<td th:text="${list.cgCodeCount}"></td>
-														<td th:text="${#dates.format(list.cgRegDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-														<td th:text="${#dates.format(list.cgModDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:if="${list.cdUseNy eq 0}">N</td>
+														<td th:unless="${list.cdUseNy eq 0}">Y</td>
+														<td th:if="${list.cdDelNy eq 0}">N</td>
+														<td th:unless="${list.cdDelNy eq 0}">Y</td>
+														<td th:text="${list.cdOrder}"></td>
+														<td th:text="${#dates.format(list.cdRegDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(list.cdModDate,'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>
 											</table>	
