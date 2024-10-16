@@ -81,5 +81,4 @@ public class StaffMemberDto {
 	public void setSfGender(String sfGender) {
 		this.sfGender = sfGender;
 	}
-	
 }

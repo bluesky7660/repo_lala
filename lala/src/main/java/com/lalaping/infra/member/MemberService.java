@@ -10,18 +10,20 @@ public class MemberService {
 
 	@Autowired
 	MemberDao memberDao;
-	
-	public List<StaffMemberDto> selectList(StaffMemberVo vo){
-		return memberDao.selectList(vo);
-	};
-	public int listCount(StaffMemberVo vo) {
-		return memberDao.listCount(vo);
+
+//	StaffMember
+	public List<StaffMemberDto> selectList(StaffMemberVo staffMemberVo) {
+		return memberDao.selectList(staffMemberVo);
 	}
-	
-	public List<UserMemberDto> selectList(UserMemberVo vo){
-		return memberDao.selectList(vo);
-	};
-	public int listCount(UserMemberVo vo) {
-		return memberDao.listCount(vo);
+	public int listCount(StaffMemberVo staffMemberVo) {
+		return memberDao.listCount(staffMemberVo);
+	}
+
+//	UserMember
+	public List<UserMemberDto> selectList(UserMemberVo userMemberVo) {
+		return memberDao.selectList(userMemberVo);
+	}
+	public int listCount(UserMemberVo userMemberVo) {
+		return memberDao.listCount(userMemberVo);
 	}
 }

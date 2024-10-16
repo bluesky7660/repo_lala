@@ -13,23 +13,8 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmList")
-	public String userMemberXdmList(@ModelAttribute("vo") UserMemberVo usermemberVo, Model model) {
-		System.out.println("시작날:"+usermemberVo.getShDateStart());
-		System.out.println("마감날:"+usermemberVo.getShDateEnd());
-		usermemberVo.setShDateStart(usermemberVo.getShDateStart() == null || usermemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(usermemberVo.getShDateStart()));
-		usermemberVo.setShDateEnd(usermemberVo.getShDateEnd() == null || usermemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(usermemberVo.getShDateEnd()));
-		usermemberVo.setParamsPaging(memberService.listCount(usermemberVo));
-		System.out.println("nqonoifqs");
-		model.addAttribute("list", memberService.selectList(usermemberVo));
-//		for(MemberDto item : memberService.selectList(memberVo)) {
-//			System.out.println("리스트seq: " + item.get );
-//		}
-		
-		return "/xdm/v1/infra/member/userMemberXdmList";
-	}
-	@RequestMapping(value = "/v1/infra/member/memberXdmList")
-	public String memberXdmList(@ModelAttribute("vo") StaffMemberVo staffmemberVo, Model model) {
+	@RequestMapping(value = "/v1/infra/member/staffmemberXdmList")
+	public String staffmemberXdmList(@ModelAttribute("vo") StaffMemberVo staffmemberVo, Model model) {
 		System.out.println("시작날:"+staffmemberVo.getShDateStart());
 		System.out.println("마감날:"+staffmemberVo.getShDateEnd());
 		staffmemberVo.setShDateStart(staffmemberVo.getShDateStart() == null || staffmemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(staffmemberVo.getShDateStart()));
@@ -40,39 +25,81 @@ public class MemberController {
 //		for(MemberDto item : memberService.selectList(memberVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
-		
-		return "/xdm/v1/infra/member/memberXdmList";
+		return "/xdm/v1/infra/member/staffmemberXdmList";
 	}
 	
-	@RequestMapping(value = "/v1/infra/member/memberXdmForm")
-	public String memberXdmForm() {
-		return "/xdm/v1/infra/member/memberXdmForm";
-	}
-	 
-	@RequestMapping(value = "/v1/infra/member/memberXdmInst")
-	public String memberXdmInst(StaffMemberDto staffmemberDto, UserMemberDto usermemberDto) {
-
-		return "redirect:/v1/infra/member/memberXdmList";
+	@RequestMapping(value = "/v1/infra/member/usermemberXdmList")
+	public String usermemberXdmList(@ModelAttribute("vo") UserMemberVo usermemberVo, Model model) {
+		System.out.println("시작날:"+usermemberVo.getShDateStart());
+		System.out.println("마감날:"+usermemberVo.getShDateEnd());
+		usermemberVo.setShDateStart(usermemberVo.getShDateStart() == null || usermemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(usermemberVo.getShDateStart()));
+		usermemberVo.setShDateEnd(usermemberVo.getShDateEnd() == null || usermemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(usermemberVo.getShDateEnd()));
+		usermemberVo.setParamsPaging(memberService.listCount(usermemberVo));
+		System.out.println("nqonoifqs");
+		model.addAttribute("list", memberService.selectList(usermemberVo));
+//		for(MemberDto item : memberService.selectList(memberVo)) {
+//			System.out.println("리스트seq: " + item.get );
+//		}
+		return "/xdm/v1/infra/member/usermemberXdmList";
 	}
 	
-	@RequestMapping(value = "/v1/infra/member/memberXdmMfom")
-	public String memberXdmMfom(Model model,StaffMemberDto staffmemberDto, UserMemberDto usermemberDto) {
-
-		return "xdm/v1/infra/member/memberXdmMfom";
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmForm")
+	public String staffmemberXdmForm() {
+	    return "/xdm/v1/infra/member/staffMemberXdmForm";
 	}
-	@RequestMapping(value = "/v1/infra/member/memberXdmUpdt")
-	public String memberXdmUpdt(StaffMemberDto staffmemberDto, UserMemberDto usermemberDto) {
 
-		return "redirect:/v1/infra/member/memberXdmList";
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmForm")
+	public String usermemberXdmForm() {
+	    return "/xdm/v1/infra/member/userMemberXdmForm";
 	}
-	@RequestMapping(value = "/v1/infra/member/memberXdmUelt")
-	public String memberXdmUelt(StaffMemberDto staffmemberDto, UserMemberDto usermemberDto) {
 
-		return "redirect:/v1/infra/member/memberXdmList";
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmInst")
+	public String staffmemberXdmInst(StaffMemberDto staffMemberDto) {
+	    return "redirect:/v1/infra/member/staffmemberXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/member/memberXdmDelt")
-	public String memberXdmDelt(StaffMemberDto staffmemberDto, UserMemberDto usermemberDto) {
 
-		return "redirect:/v1/infra/member/memberXdmList";
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmInst")
+	public String usermemberXdmInst(UserMemberDto userMemberDto) {
+	    return "redirect:/v1/infra/member/usermemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmMfom")
+	public String staffmemberXdmMfom(Model model, StaffMemberDto staffMemberDto) {
+	    return "/xdm/v1/infra/member/staffmemberXdmMfom";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmMfom")
+	public String usermemberXdmMfom(Model model, UserMemberDto userMemberDto) {
+	    return "/xdm/v1/infra/member/usermemberXdmMfom";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmUpdt")
+	public String staffmemberXdmUpdt(StaffMemberDto staffMemberDto) {
+	    return "redirect:/v1/infra/member/staffmemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmUpdt")
+	public String usermemberXdmUpdt(UserMemberDto userMemberDto) {
+	    return "redirect:/v1/infra/member/usermemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmUelt")
+	public String staffmemberXdmUelt(StaffMemberDto staffMemberDto) {
+	    return "redirect:/v1/infra/member/staffmemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmUelt")
+	public String usermemberXdmUelt(UserMemberDto userMemberDto) {
+	    return "redirect:/v1/infra/member/usermemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmDelt")
+	public String staffmemberXdmDelt(StaffMemberDto staffMemberDto) {
+	    return "redirect:/v1/infra/member/staffmemberXdmList";
+	}
+
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmDelt")
+	public String usermemberXdmDelt(UserMemberDto userMemberDto) {
+	    return "redirect:/v1/infra/member/usermemberXdmList";
 	}
 }

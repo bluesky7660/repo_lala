@@ -77,4 +77,48 @@
 		    ,now()
 		    ,#{codeGroup_cgSeq}
 	</insert>
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			b.cdSeq
+		    ,b.cdName
+		    ,b.cdOrder
+		    ,b.cdDesc
+		    ,b.cdUseNy
+		    ,b.cdDelNy
+		    ,b.cdRegDate
+		    ,b.cdModeDate
+		    ,b.codeGroup_cgSeq
+		    ,a.cgSeq
+		    ,a.cgName
+	    FROM commonCode b
+	    LEFT JOIN codeGroup a
+	    ON b.codeGroup_cgSeq = a.cgSeq
+	    WHERE 1=1
+	    AND b.cdSeq = #{cdSeq}
+	</select>
+	<update id="update">
+		UPDATE commonCode 
+		set
+			cdName = #{cdName}
+			,cdUseNy = #{cdUseNy}
+			,cdOrder = #{cdOrder}
+			,cdDesc = #{cdDesc}
+			,cdModDate = now()
+			,codegroup_cgSeq = #{codegroup_cgSeq}
+		WHERE 1=1
+			AND cdSeq = #{cdSeq}
+	</update>
+	<update id="uelete">
+		update commonCode
+		set
+			cdDelNy = 1
+		where 1=1
+			and cdSeq = #{cdSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM commonCode
+		where 1=1
+			and cdSeq = #{cdSeq}
+	</delete>
 </mapper>
