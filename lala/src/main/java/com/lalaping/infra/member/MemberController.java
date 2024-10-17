@@ -13,34 +13,34 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value = "/v1/infra/member/staffmemberXdmList")
-	public String staffmemberXdmList(@ModelAttribute("vo") StaffMemberVo staffmemberVo, Model model) {
+	@RequestMapping(value = "/v1/infra/member/staffMemberXdmList")
+	public String staffMemberXdmList(@ModelAttribute("vo") StaffMemberVo staffmemberVo, Model model) {
 		System.out.println("시작날:"+staffmemberVo.getShDateStart());
 		System.out.println("마감날:"+staffmemberVo.getShDateEnd());
 		staffmemberVo.setShDateStart(staffmemberVo.getShDateStart() == null || staffmemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(staffmemberVo.getShDateStart()));
 		staffmemberVo.setShDateEnd(staffmemberVo.getShDateEnd() == null || staffmemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(staffmemberVo.getShDateEnd()));
-		staffmemberVo.setParamsPaging(memberService.listCount(staffmemberVo));
+		staffmemberVo.setParamsPaging(memberService.staffListCount(staffmemberVo));
 		System.out.println("nqonoifqs");
-		model.addAttribute("list", memberService.selectList(staffmemberVo));
+		model.addAttribute("list", memberService.staffSelectList(staffmemberVo));
 //		for(MemberDto item : memberService.selectList(memberVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
-		return "/xdm/v1/infra/member/staffmemberXdmList";
+		return "/xdm/v1/member/stf/staffMemberXdmList";
 	}
 	
-	@RequestMapping(value = "/v1/infra/member/usermemberXdmList")
-	public String usermemberXdmList(@ModelAttribute("vo") UserMemberVo usermemberVo, Model model) {
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmList")
+	public String userMemberXdmList(@ModelAttribute("vo") UserMemberVo usermemberVo, Model model) {
 		System.out.println("시작날:"+usermemberVo.getShDateStart());
 		System.out.println("마감날:"+usermemberVo.getShDateEnd());
 		usermemberVo.setShDateStart(usermemberVo.getShDateStart() == null || usermemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(usermemberVo.getShDateStart()));
 		usermemberVo.setShDateEnd(usermemberVo.getShDateEnd() == null || usermemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(usermemberVo.getShDateEnd()));
-		usermemberVo.setParamsPaging(memberService.listCount(usermemberVo));
+		usermemberVo.setParamsPaging(memberService.userListCount(usermemberVo));
 		System.out.println("nqonoifqs");
-		model.addAttribute("list", memberService.selectList(usermemberVo));
+		model.addAttribute("list", memberService.userSelectList(usermemberVo));
 //		for(MemberDto item : memberService.selectList(memberVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
-		return "/xdm/v1/infra/member/usermemberXdmList";
+		return "/xdm/v1/member/usr/userMemberXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/infra/member/staffMemberXdmForm")

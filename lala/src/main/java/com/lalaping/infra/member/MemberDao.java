@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 //	StaffMember
 public interface MemberDao {
-	public List<StaffMemberDto> selectList(StaffMemberVo staffMemberVo);
-	public int listCount(StaffMemberVo staffMemberVo);
+	public List<StaffMemberDto> staffSelectList(StaffMemberVo staffMemberVo);
+	public int staffListCount(StaffMemberVo staffMemberVo);
 
 //	UserMember
-	public List<UserMemberDto> selectList(UserMemberVo userMemberVo);
-	public int listCount(UserMemberVo userMemberVo);
+	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
+	public int userListCount(UserMemberVo userMemberVo);
 }

@@ -94,7 +94,7 @@
 			a.umId,
 			a.umName,
 			a.umTel,
-			a.umBrithDay,
+			a.umBirthday,
 			a.umDelNy,
 			a.umRegDate,
 			a.umModDate,

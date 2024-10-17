@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lalaping.qna.QnaDao">
+
+	<!-- qna질문 영역 -->
+	<resultMap type="com.lalaping.qna.QnaRequestDto" id="RequestResultMapObj"></resultMap>
+	<sql id="ReqSelectCommon">
+		FROM
+			qnaRequests a
+		where 1=1
+	</sql>
+	<select id="ReqSelectList" resultMap="RequestResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.qrSeq
+			,a.qrTitle
+			,a.qrContent
+			,a.qrRegDate
+			,a.qrModDate
+			,a.qrType
+		<include refid="ReqSelectCommon"/>
+		ORDER BY a.qrSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="ListCountR" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="ReqSelectCommon"/>
+	</select>
+	
+	<!-- qna답변 영역 -->
+	<resultMap type="com.lalaping.qna.QnaAnswerDto" id="AnswerResultMapObj"></resultMap>
+	<sql id="AnsSelectCommon">
+		FROM
+			qnaAnswers a
+		where 1=1
+	</sql>
+	<select id="AnsSelectList" resultMap="AnswerResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.qaSeq
+			,a.qaTitle
+			,a.qaContent
+			,a.qaRegDate
+			,a.qaModDate
+			,a.qnaRequests_qrSeq
+		<include refid="AnsSelectCommon"/>
+		ORDER BY a.qrSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="listCountA" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="AnsSelectCommon"/>
+	</select>
+
+</mapper>

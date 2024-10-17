@@ -36,13 +36,13 @@ public class CodeGroupController {
 	 
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmInst")
 	public String codeGroupXdmInst(CodeGroupDto codeGroupDto) {
-
+		codeGroupService.insert(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmMfom")
 	public String codeGroupXdmMfom(Model model,CodeGroupDto codeGroupDto) {
-
+		model.addAttribute("item", codeGroupService.selectOne(codeGroupDto));
 		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
 	}
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmUpdt")

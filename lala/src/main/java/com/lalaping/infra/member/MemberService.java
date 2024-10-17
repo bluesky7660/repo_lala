@@ -12,18 +12,18 @@ public class MemberService {
 	MemberDao memberDao;
 
 //	StaffMember
-	public List<StaffMemberDto> selectList(StaffMemberVo staffMemberVo) {
-		return memberDao.selectList(staffMemberVo);
+	public List<StaffMemberDto> staffSelectList(StaffMemberVo staffMemberVo) {
+		return memberDao.staffSelectList(staffMemberVo);
 	}
-	public int listCount(StaffMemberVo staffMemberVo) {
-		return memberDao.listCount(staffMemberVo);
+	public int staffListCount(StaffMemberVo staffMemberVo) {
+		return memberDao.staffListCount(staffMemberVo);
 	}
 
 //	UserMember
-	public List<UserMemberDto> selectList(UserMemberVo userMemberVo) {
-		return memberDao.selectList(userMemberVo);
+	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo) {
+		return memberDao.userSelectList(userMemberVo);
 	}
-	public int listCount(UserMemberVo userMemberVo) {
-		return memberDao.listCount(userMemberVo);
+	public int userListCount(UserMemberVo userMemberVo) {
+		return memberDao.userListCount(userMemberVo);
 	}
 }
