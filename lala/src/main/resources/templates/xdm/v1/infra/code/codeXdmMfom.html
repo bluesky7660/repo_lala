@@ -42,6 +42,7 @@
 		<!--<div style="background-color: red;"></div>-->
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+
 		<style>
 			.form-label{
 				margin-left: 10px;
@@ -54,6 +55,7 @@
 				border:1px;
 			} */
 		</style>
+		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 	</head>
 
 	<body>
@@ -217,9 +219,9 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputIndustryType1" class="form-label">코드그룹</label>
-														<select class="form-select validate-this" id="inputIndustryType1" name="codeGroup_seq" required>
+														<select class="form-select validate-this" id="inputIndustryType1" name="codeGroup_cgSeq" required>
 															<option value="" disabled>선택하세요</option>
-															<option th:each="group : ${codeGroups}" th:value="${group.seq}" th:text="${group.codeGroupName}" th:selected="${group.seq == item.codeGroup_seq}"></option>
+															<option th:each="group : ${codeGroups}" th:value="${group.cgSeq}" th:text="${group.cgName}" th:selected="${group.cgSeq == item.codeGroup_cgSeq}"></option>
 														</select>
 														<div class="invalid-feedback">
 															코드그룹을 선택해주세요.
@@ -229,7 +231,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputName" class="form-label">코드</label>
-														<input type="text" class="form-control" id="inputName" name="seq" th:value="${item?.seq}" placeholder="자동생성" readonly="readonly">
+														<input type="text" class="form-control" id="inputName" name="cdSeq" th:value="${item.cdSeq}" placeholder="자동생성" readonly="readonly">
 													</div>
 												</div>
 											</div>
@@ -237,25 +239,19 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputNumber" class="form-label">코드이름</label>
-														<input type="text" class="form-control valid-korean-alpha-num validate-this" id="inputNumber" name="codeName" th:value="${item?.codeName}" placeholder="한글, 영대소문자, 숫자" required>
+														<input type="text" class="form-control valid-korean-alpha-num validate-this" id="inputNumber" name="cdName" th:value="${item.cdName}" placeholder="한글, 영대소문자, 숫자" required>
 														<div class="invalid-feedback">
 															코드이름을 적어주세요.
 														</div>
 													</div>
 												</div>
-												<!-- <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCompanyName" class="form-label">코드이름 (영문)</label>
-														<input type="text" class="form-control" id="inputCompanyName" placeholder="영대소문자, 숫자">
-													</div>
-												</div> -->
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
 														<label for="inputIndustryType2" class="form-label">사용여부</label>
-														<select class="form-select validate-this" id="inputIndustryType2" name="useNy" required>
+														<select class="form-select validate-this" id="inputIndustryType2" name="cdUseNy" required>
 															<option value="" selected disabled>선택하세요</option>
-															<option value="1" th:selected="${item?.useNy == 1}">사용</option>
-															<option value="0" th:selected="${item?.useNy == 0}">사용안함</option>
+															<option value="1" th:selected="${item.cdUseNy == 1}">사용</option>
+															<option value="0" th:selected="${item.cdUseNy == 0}">사용안함</option>
 														</select>
 														<div class="invalid-feedback">
 															사용여부을 선택해주세요.
@@ -265,7 +261,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputProvince" class="form-label">순서</label>
-														<input type="text" class="form-control valid-numeric validate-this" id="inputProvince" name="codeOrder" th:value="${item?.codeOrder}" placeholder="숫자만" required>
+														<input type="text" class="form-control valid-numeric validate-this" id="inputProvince" name="cdOrder" th:value="${item.cdOrder}" placeholder="숫자만" required>
 														<div class="invalid-feedback">
 															순서를 적어주세요.
 														</div>
@@ -276,112 +272,10 @@
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="inputMessage" class="form-label">설명</label>
-														<textarea class="form-control exclude-validation" id="inputMessage" name="codeDesc" th:text="${item?.codeDesc}" placeholder="" rows="3"></textarea>
+														<textarea class="form-control exclude-validation" id="inputMessage" name="cdDesc" th:text="${item.cdDesc}" placeholder="" rows="3"></textarea>
 													</div>
 												</div>
 											</div>
-											<!-- <div class="row">
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual1" class="form-label">다국어1</label>
-														<input type="text" class="form-control" id="inputmultilingual1">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual2" class="form-label">다국어2</label>
-														<input type="text" class="form-control" id="inputmultilingual2">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual3" class="form-label">다국어3</label>
-														<input type="text" class="form-control" id="inputmultilingual3">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual4" class="form-label">다국어4</label>
-														<input type="text" class="form-control" id="inputmultilingual4">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual5" class="form-label">다국어5</label>
-														<input type="text" class="form-control" id="inputmultilingual5">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual6" class="form-label">다국어6</label>
-														<input type="text" class="form-control" id="inputmultilingual6">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual7" class="form-label">다국어7</label>
-														<input type="text" class="form-control" id="inputmultilingual7">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputmultilingual8" class="form-label">다국어8</label>
-														<input type="text" class="form-control" id="inputmultilingual8">
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary1" class="form-label">예비 (VARCHAR TYPE)1</label>
-														<input type="text" class="form-control" id="inputpreliminary1">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary2" class="form-label">예비 (VARCHAR TYPE)2</label>
-														<input type="text" class="form-control" id="inputpreliminary2">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary3" class="form-label">예비 (VARCHAR TYPE)3</label>
-														<input type="text" class="form-control" id="inputpreliminary3">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary4" class="form-label">예비 (VARCHAR TYPE)4</label>
-														<input type="text" class="form-control" id="inputpreliminary4">
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary5" class="form-label">예비 (INT TYPE)1</label>
-														<input type="text" class="form-control" id="inputpreliminary5">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary6" class="form-label">예비 (INT TYPE)2</label>
-														<input type="text" class="form-control" id="inputpreliminary6">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary7" class="form-label">예비 (INT TYPE)3</label>
-														<input type="text" class="form-control" id="inputpreliminary7">
-													</div>
-												</div>
-												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputpreliminary8" class="form-label">예비 (INT TYPE)4</label>
-														<input type="text" class="form-control" id="inputpreliminary8">
-													</div>
-												</div>
-											</div> -->
 											<!-- Row end -->
 											<!-- Form actions footer start -->
 											<div class="btn-toolbar mt-5 justify-content-between">
@@ -430,7 +324,7 @@
 								<div class="modal-body">
 									<span>데이터를 삭제후 <strong>복구할수 없습니다</strong>.</span><br>
 									<span>그래도 삭제하시겠습니까?</span>
-									<input type="hidden" name="seq" th:value="${item?.seq}">
+									<input type="hidden" name="cdSeq" th:value="${item.cdSeq}">
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
@@ -451,7 +345,7 @@
 								</div>
 								<div class="modal-body">
 									<span>데이터를 삭제하시겠습니까?</span>
-									<input type="hidden" name="seq" th:value="${item?.seq}">
+									<input type="hidden" name="cdSeq" th:value="${item.cdSeq}">
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>

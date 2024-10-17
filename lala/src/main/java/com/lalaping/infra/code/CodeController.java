@@ -31,27 +31,28 @@ public class CodeController {
 		model.addAttribute("codeGroups", codeGroupService.selectList(codeGroupVo));
 		return "/xdm/v1/infra/code/codeXdmForm";
 	}
-	@RequestMapping(value = "/v1/infra/commonCode/CodeXdmInst")
+	@RequestMapping(value = "/v1/infra/code/codeXdmInst")
 	public String CodeXdmInst(CodeDto codeDto) {
-		return "redierect:/xdm/v1/infra/commonCode/CodeXdmList";
+		return "redirect:/v1/infra/code/codeXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/commonCode/CodeXdmMFom")
+	@RequestMapping(value = "/v1/infra/code/codeXdmMfom")
 	public String CodeXdmMFom(Model model,CodeDto codeDto,CodeGroupVo codeGroupVo) {
 		model.addAttribute("item", codeService.selectOne(codeDto));
 		model.addAttribute("codeGroups", codeGroupService.selectList(codeGroupVo));
-		return "/xdm/v1/infra/commonCode/CodeXdmMFom";
+		return "/xdm/v1/infra/code/codeXdmMfom";
 	}
-	@RequestMapping(value = "/v1/infra/commonCode/codeXdmUpdt")
+	@RequestMapping(value = "/v1/infra/code/codeXdmUpdt")
 	public String codeXdmUpdt(CodeDto codeDto) {
-		return "redierect:/xdm/v1/infra/commonCode/CodeXdmList";
+		codeService.update(codeDto);
+		return "redirect:/v1/infra/code/codeXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/commonCode/codeXdmUete")
+	@RequestMapping(value = "/v1/infra/code/codeXdmUete")
 	public String codeXdmUete(CodeDto codeDto) {
-		return "redierect:/xdm/v1/infra/commonCode/CodeXdmList";
+		return "redirect:/v1/infra/code/codeXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/commonCode/codeXdmDete")
+	@RequestMapping(value = "/v1/infra/code/codeXdmDete")
 	public String codeXdmDete(CodeDto codeDto) {
-		return "redierect:/xdm/v1/infra/commonCode/CodeXdmList";
+		return "redirect:/v1/infra/code/codeXdmList";
 	}
 
 }

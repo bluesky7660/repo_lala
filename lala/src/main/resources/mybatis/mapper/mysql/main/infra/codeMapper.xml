@@ -86,7 +86,7 @@
 		    ,b.cdUseNy
 		    ,b.cdDelNy
 		    ,b.cdRegDate
-		    ,b.cdModeDate
+		    ,b.cdModDate
 		    ,b.codeGroup_cgSeq
 		    ,a.cgSeq
 		    ,a.cgName
@@ -104,7 +104,7 @@
 			,cdOrder = #{cdOrder}
 			,cdDesc = #{cdDesc}
 			,cdModDate = now()
-			,codegroup_cgSeq = #{codegroup_cgSeq}
+			,codeGroup_cgSeq = #{codeGroup_cgSeq}
 		WHERE 1=1
 			AND cdSeq = #{cdSeq}
 	</update>

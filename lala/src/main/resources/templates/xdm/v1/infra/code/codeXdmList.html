@@ -299,7 +299,7 @@
 														<td th:text="${list.cgName}"></td>
 														<td th:text="${list.cdSeq}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/v1/infra/codegroup/codeGroupXdmMfom(cdSeq=${list.cdSeq})}" th:text="${list.cdName}"></a>
+															<a th:href="@{/v1/infra/code/codeXdmMfom(cdSeq=${list.cdSeq})}" th:text="${list.cdName}"></a>
 														</td>
 														<td th:if="${list.cdUseNy eq 0}">N</td>
 														<td th:unless="${list.cdUseNy eq 0}">Y</td>
