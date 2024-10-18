@@ -10,96 +10,121 @@ import com.lalaping.common.util.UtilDateTime;
 
 @Controller
 public class MemberController {
+
 	@Autowired
-	MemberService memberService;
-	
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmList")
-	public String staffMemberXdmList(@ModelAttribute("vo") StaffMemberVo staffmemberVo, Model model) {
-		System.out.println("시작날:"+staffmemberVo.getShDateStart());
-		System.out.println("마감날:"+staffmemberVo.getShDateEnd());
-		staffmemberVo.setShDateStart(staffmemberVo.getShDateStart() == null || staffmemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(staffmemberVo.getShDateStart()));
-		staffmemberVo.setShDateEnd(staffmemberVo.getShDateEnd() == null || staffmemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(staffmemberVo.getShDateEnd()));
-		staffmemberVo.setParamsPaging(memberService.staffListCount(staffmemberVo));
-		System.out.println("nqonoifqs");
-		model.addAttribute("list", memberService.staffSelectList(staffmemberVo));
-//		for(MemberDto item : memberService.selectList(memberVo)) {
-//			System.out.println("리스트seq: " + item.get );
-//		}
+	private MemberService memberService;
+
+	// StaffMember 영역
+	@RequestMapping(value = "/v1/member/staffMemberXdmList")
+	public String staffMemberXdmList(@ModelAttribute("vo") StaffMemberVo staffMemberVo, Model model) {
+		System.out.println("시작날: " + staffMemberVo.getShDateStart());
+		System.out.println("마감날: " + staffMemberVo.getShDateEnd());
+
+		staffMemberVo.setShDateStart(
+				staffMemberVo.getShDateStart() == null || staffMemberVo.getShDateStart().isEmpty() ? null
+						: UtilDateTime.add00TimeString(staffMemberVo.getShDateStart()));
+		staffMemberVo.setShDateEnd(staffMemberVo.getShDateEnd() == null || staffMemberVo.getShDateEnd().isEmpty() ? null
+				: UtilDateTime.add59TimeString(staffMemberVo.getShDateEnd()));
+
+		model.addAttribute("staffItem", memberService.selectStaffMemberList(staffMemberVo));
 		return "/xdm/v1/member/stf/staffMemberXdmList";
 	}
+
+	@RequestMapping(value = "/v1/member/staffMemberXdmForm")
+	public String staffMemberXdmForm() {
+		return "/xdm/v1/member/stf/staffMemberXdmForm";
+	}
+	@RequestMapping(value = "/v1/member/staffMemberXdmMfom")
+	public String staffMemberXdmMfom() {
+		return "/xdm/v1/member/stf/staffMemberXdmMfom";
+	}
+
+	// CRUD
+	@RequestMapping(value = "/v1/member/staffMemberXdmInst")
+	public String staffMemberXdmInst(StaffMemberDto staffMemberDto) {
+		System.out.println("StaffMemberDto.getsfName(): " + staffMemberDto.getSfSeq());
+		int inst = memberService.insertStaffMember(staffMemberDto);
+		System.out.println("memberService.insertStaffMember(staffMemberDto): " + inst);
+		return "redirect:/v1/member/staffMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/member/staffMemberXdmUpdate")
+	public String staffMemberXdmUpdate(StaffMemberDto staffMemberDto) {
+		System.out.println("StaffMemberDto.getsfSeq(): " + staffMemberDto.getSfSeq());
+		int updt = memberService.updateStaffMember(staffMemberDto);
+		System.out.println("memberService.updateStaffMember(staffMemberDto): " + updt);
+		return "redirect:/v1/member/staffMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/member/staffMemberXdmDelete")
+	public String staffMemberXdmDelete(StaffMemberDto staffMemberDto) {
+		System.out.println("StaffMemberDto.getsfSeq(): " + staffMemberDto.getSfSeq());
+		int delt = memberService.deleteStaffMember(staffMemberDto);
+		System.out.println("memberService.deleteStaffMember(staffMemberDto): " + delt);
+		return "redirect:/v1/member/staffMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/member/staffMemberXdmUelete")
+	public String staffMemberXdmUelete(StaffMemberDto staffMemberDto) {
+		System.out.println("StaffMemberDto.getsfSeq(): " + staffMemberDto.getSfSeq());
+		int uelt = memberService.ueleteStaffMember(staffMemberDto);
+		System.out.println("memberService.ueleteStaffMember(staffMemberDto): " + uelt);
+		return "redirect:/v1/member/staffMemberXdmList";
+	}
 	
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmList")
-	public String userMemberXdmList(@ModelAttribute("vo") UserMemberVo usermemberVo, Model model) {
-		System.out.println("시작날:"+usermemberVo.getShDateStart());
-		System.out.println("마감날:"+usermemberVo.getShDateEnd());
-		usermemberVo.setShDateStart(usermemberVo.getShDateStart() == null || usermemberVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(usermemberVo.getShDateStart()));
-		usermemberVo.setShDateEnd(usermemberVo.getShDateEnd() == null || usermemberVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(usermemberVo.getShDateEnd()));
-		usermemberVo.setParamsPaging(memberService.userListCount(usermemberVo));
-		System.out.println("nqonoifqs");
-		model.addAttribute("list", memberService.userSelectList(usermemberVo));
-//		for(MemberDto item : memberService.selectList(memberVo)) {
-//			System.out.println("리스트seq: " + item.get );
-//		}
-		return "/xdm/v1/member/usr/userMemberXdmList";
-	}
+	//-------------------------------------------------------------------
 	
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmForm")
-	public String staffmemberXdmForm() {
-	    return "/xdm/v1/infra/member/staffMemberXdmForm";
+	// UserMember 영역
+	@RequestMapping(value = "/v1/member/userMemberXdmList")
+	public String userMemberXdmList(@ModelAttribute("vo") UserMemberVo userMemberVo, Model model) {
+	    System.out.println("시작날: " + userMemberVo.getShDateStart());
+	    System.out.println("마감날: " + userMemberVo.getShDateEnd());
+
+	    userMemberVo.setShDateStart(
+	        userMemberVo.getShDateStart() == null || userMemberVo.getShDateStart().isEmpty() ? null
+	            : UtilDateTime.add00TimeString(userMemberVo.getShDateStart()));
+	    userMemberVo.setShDateEnd(userMemberVo.getShDateEnd() == null || userMemberVo.getShDateEnd().isEmpty() ? null
+	            : UtilDateTime.add59TimeString(userMemberVo.getShDateEnd()));
+
+	    model.addAttribute("userItem", memberService.selectUserMemberList(userMemberVo));
+	    return "/xdm/v1/member/usr/userMemberXdmList";
 	}
 
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmForm")
-	public String usermemberXdmForm() {
-	    return "/xdm/v1/infra/member/userMemberXdmForm";
+	@RequestMapping(value = "/v1/member/userMemberXdmForm")
+	public String userMemberXdmForm(Model model) {
+//		model.addAttribute("userItem", memberService.selectUserMemberList(userMemberVo));
+	    return "/xdm/v1/member/usr/userMemberXdmForm";
+	}
+	@RequestMapping(value = "/v1/member/userMemberXdmMfom")
+	public String userMemberXdmMfom() {
+	    return "/xdm/v1/member/usr/userMemberXdmMfom";
 	}
 
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmInst")
-	public String staffmemberXdmInst(StaffMemberDto staffMemberDto) {
-	    return "redirect:/v1/infra/member/staffmemberXdmList";
-	}
-
+	// CRUD
 	@RequestMapping(value = "/v1/infra/member/userMemberXdmInst")
-	public String usermemberXdmInst(UserMemberDto userMemberDto) {
-	    return "redirect:/v1/infra/member/usermemberXdmList";
+	public String userMemberXdmInst(UserMemberDto userMemberDto) {
+	    System.out.println("UserMemberDto.getUmName(): " + userMemberDto.getUmName());
+	    int inst = memberService.insertUserMember(userMemberDto);
+	    System.out.println("memberService.insertUserMember(userMemberDto): " + inst);
+	    return "redirect:/v1/member/userMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmUpdate")
+	public String userMemberXdmUpdate(UserMemberDto userMemberDto) {
+	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
+	    int updt = memberService.updateUserMember(userMemberDto);
+	    System.out.println("memberService.updateUserMember(userMemberDto): " + updt);
+	    return "redirect:/v1/member/userMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmDelete")
+	public String userMemberXdmDelete(UserMemberDto userMemberDto) {
+	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
+	    int delt = memberService.deleteUserMember(userMemberDto);
+	    System.out.println("memberService.deleteUserMember(userMemberDto): " + delt);
+	    return "redirect:/v1/member/userMemberXdmList";
+	}
+	@RequestMapping(value = "/v1/infra/member/userMemberXdmUelete")
+	public String userMemberXdmUelete(UserMemberDto userMemberDto) {
+	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
+	    int uelt = memberService.ueleteUserMember(userMemberDto);
+	    System.out.println("memberService.ueleteUserMember(userMemberDto): " + uelt);
+	    return "redirect:/v1/member/userMemberXdmList";
 	}
 
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmMfom")
-	public String staffmemberXdmMfom(Model model, StaffMemberDto staffMemberDto) {
-	    return "/xdm/v1/infra/member/staffmemberXdmMfom";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmMfom")
-	public String usermemberXdmMfom(Model model, UserMemberDto userMemberDto) {
-	    return "/xdm/v1/infra/member/usermemberXdmMfom";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmUpdt")
-	public String staffmemberXdmUpdt(StaffMemberDto staffMemberDto) {
-	    return "redirect:/v1/infra/member/staffmemberXdmList";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmUpdt")
-	public String usermemberXdmUpdt(UserMemberDto userMemberDto) {
-	    return "redirect:/v1/infra/member/usermemberXdmList";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmUelt")
-	public String staffmemberXdmUelt(StaffMemberDto staffMemberDto) {
-	    return "redirect:/v1/infra/member/staffmemberXdmList";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmUelt")
-	public String usermemberXdmUelt(UserMemberDto userMemberDto) {
-	    return "redirect:/v1/infra/member/usermemberXdmList";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/staffMemberXdmDelt")
-	public String staffmemberXdmDelt(StaffMemberDto staffMemberDto) {
-	    return "redirect:/v1/infra/member/staffmemberXdmList";
-	}
-
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmDelt")
-	public String usermemberXdmDelt(UserMemberDto userMemberDto) {
-	    return "redirect:/v1/infra/member/usermemberXdmList";
-	}
 }

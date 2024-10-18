@@ -1,8 +1,11 @@
 package com.lalaping.infra.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class CodeDto {
 	private String cdSeq;
@@ -18,6 +21,9 @@ public class CodeDto {
 	private String codeGroup_cgSeq;
 	private String cgSeq;
 	private String cgName;
+	
+	//for cache
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 //	---------------------
 	public String getCdSeq() {
 		return cdSeq;

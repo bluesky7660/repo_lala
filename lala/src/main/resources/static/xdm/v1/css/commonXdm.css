@@ -65,10 +65,6 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 	overflow-x: auto;
 }
 
-.table-hover>tbody>tr:not(.nodata):hover>*{
-    --bs-table-color-state: var(--bs-table-hover-color);
-    --bs-table-bg-state: var(--bs-table-hover-bg);
-}
 
 /*index*/
 .pageCategory{

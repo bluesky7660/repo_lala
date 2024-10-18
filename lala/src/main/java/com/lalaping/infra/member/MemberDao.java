@@ -5,13 +5,23 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
-//	StaffMember
 public interface MemberDao {
+	
+	// StaffMember
 	public List<StaffMemberDto> staffSelectList(StaffMemberVo staffMemberVo);
 	public int staffListCount(StaffMemberVo staffMemberVo);
 
-//	UserMember
+	public int insertStaffMember(StaffMemberDto staffMemberDto);
+	public int updateStaffMember(StaffMemberDto staffMemberDto);
+	public int ueleteStaffMember(StaffMemberDto staffMemberDto);
+	public int deleteStaffMember(StaffMemberDto staffMemberDto);
+	
+	// UserMember
 	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
-	public int userListCount(UserMemberVo userMemberVo);
+	public int userlistCount(UserMemberVo userMemberVo);
+
+	public int insertUserMember(UserMemberDto userMemberDto);
+	public int updateUserMember(UserMemberDto userMemberDto);
+	public int ueleteUserMember(UserMemberDto userMemberDto);
+	public int deleteUserMember(UserMemberDto userMemberDto);
 }

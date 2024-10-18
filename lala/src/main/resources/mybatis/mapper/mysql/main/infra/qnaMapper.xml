@@ -23,7 +23,7 @@
 		ORDER BY a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
-	<select id="ListCountR" resultType="int">
+	<select id="listCountR" resultType="int">
 		SELECT COUNT(*) 
 		<include refid="ReqSelectCommon"/>
 	</select>

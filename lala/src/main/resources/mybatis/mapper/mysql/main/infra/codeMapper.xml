@@ -121,4 +121,15 @@
 		where 1=1
 			and cdSeq = #{cdSeq}
 	</delete>
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			cdSeq
+			, cdName
+			, codeGroup_cgSeq
+		FROM
+			commoncode
+		WHERE 1=1
+			AND cdDelNy = 0
+		    AND cdUseNy = 1
+   	</select>
 </mapper>

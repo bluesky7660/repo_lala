@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public interface CodeDao {
 	public List<CodeDto> selectList(CodeVo vo);
@@ -18,6 +19,6 @@ public interface CodeDao {
 	
 	public int delete(CodeDto codeDto);
 	
-	
+	public List<CodeDto> selectListCachedCodeArrayList();
 
 }

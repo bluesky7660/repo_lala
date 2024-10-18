@@ -8,7 +8,7 @@ public class UserMemberDto {
 	private String umPasswd;
 	private String umName;
 	private String umTel;
-	private Date umBirthday;
+	private Date umBirthDay;
 	private Boolean umDelNy;
 	private Date umRegDate;
 	private Date umModDate;
@@ -45,11 +45,11 @@ public class UserMemberDto {
 	public void setUmTel(String umTel) {
 		this.umTel = umTel;
 	}
-	public Date getUmBirthday() {
-		return umBirthday;
+	public Date getUmBirthDay() {
+		return umBirthDay;
 	}
-	public void setUmBirthday(Date umBirthday) {
-		this.umBirthday = umBirthday;
+	public void setUmBirthDay(Date umBirthDay) {
+		this.umBirthDay = umBirthDay;
 	}
 	public Boolean getUmDelNy() {
 		return umDelNy;
