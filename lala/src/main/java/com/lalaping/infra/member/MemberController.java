@@ -27,6 +27,7 @@ public class MemberController {
 				: UtilDateTime.add59TimeString(staffMemberVo.getShDateEnd()));
 
 		model.addAttribute("staffItem", memberService.selectStaffMemberList(staffMemberVo));
+		model.addAttribute("listLink", "staffMemberXdmForm");
 		return "/xdm/v1/member/stf/staffMemberXdmList";
 	}
 
@@ -84,6 +85,7 @@ public class MemberController {
 	            : UtilDateTime.add59TimeString(userMemberVo.getShDateEnd()));
 
 	    model.addAttribute("userItem", memberService.selectUserMemberList(userMemberVo));
+	    model.addAttribute("listLink", "userMemberXdmForm");
 	    return "/xdm/v1/member/usr/userMemberXdmList";
 	}
 

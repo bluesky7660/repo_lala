@@ -19,6 +19,7 @@ public class QnaController {
 		qnaAnswerVo.setShDateStart(qnaAnswerVo.getShDateStart() == null || qnaAnswerVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaAnswerVo.getShDateStart()));
 		qnaAnswerVo.setShDateEnd(qnaAnswerVo.getShDateEnd() == null || qnaAnswerVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaAnswerVo.getShDateEnd()));
 		qnaAnswerVo.setParamsPaging(qnaService.listCountA(qnaAnswerVo));
+		model.addAttribute("listLink", "qnaAnswersXdmForm");
 		return "xdm/v1/qna/qnaAnswersXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmForm")
@@ -40,6 +41,7 @@ public class QnaController {
 		qnaRequestVo.setShDateStart(qnaRequestVo.getShDateStart() == null || qnaRequestVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaRequestVo.getShDateStart()));
 		qnaRequestVo.setShDateEnd(qnaRequestVo.getShDateEnd() == null || qnaRequestVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaRequestVo.getShDateEnd()));
 		qnaRequestVo.setParamsPaging(qnaService.listCountR(qnaRequestVo));
+		model.addAttribute("listLink", "qnaRequestsXdmForm");
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmForm")
