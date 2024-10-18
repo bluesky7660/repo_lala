@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AfterReportDao {
 	
-	public List<AfterReportDto> afterReportSelectList(AfterReportVo afterReportvo);
-	public int afterReportlistCount(AfterReportVo afterReportvo);
+	public List<AfterReportDto> selectList(AfterReportVo afterReportvo);
+	public int listCount(AfterReportVo afterReportvo);
 
-	public int afterReportInsert(AfterReportDto afterReportDto);
-	public int afterReportUpdate(AfterReportDto afterReportDto);
-	public int afterReportUelete(AfterReportDto afterReportDto);
-	public int afterReportDelete(AfterReportDto afterReportDto);
+	public int insert(AfterReportDto afterReportDto);
+	public int update(AfterReportDto afterReportDto);
+	public int uelete(AfterReportDto afterReportDto);
+	public int delete(AfterReportDto afterReportDto);
 }

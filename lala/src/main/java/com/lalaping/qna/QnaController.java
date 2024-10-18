@@ -14,17 +14,17 @@ public class QnaController {
 	QnaService qnaService;
 	
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmList")
-	public String qnaAnswersXdmList(Model model,@ModelAttribute("vo") QnaVo qnaVo) {
-		qnaVo.setShDateStart(qnaVo.getShDateStart() == null || qnaVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaVo.getShDateStart()));
-		qnaVo.setShDateEnd(qnaVo.getShDateEnd() == null || qnaVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaVo.getShDateEnd()));
-		qnaVo.setParamsPaging(qnaService.listCountA(qnaVo));
+	public String qnaAnswersXdmList(Model model,@ModelAttribute("vo") QnaAnswerVo qnaAnswerVo) {
+		qnaAnswerVo.setShDateStart(qnaAnswerVo.getShDateStart() == null || qnaAnswerVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaAnswerVo.getShDateStart()));
+		qnaAnswerVo.setShDateEnd(qnaAnswerVo.getShDateEnd() == null || qnaAnswerVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaAnswerVo.getShDateEnd()));
+		qnaAnswerVo.setParamsPaging(qnaService.listCountA(qnaAnswerVo));
 		return "xdm/v1/qna/qnaAnswersXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmList")
-	public String qnaRequestsXdmList(Model model,@ModelAttribute("vo") QnaVo qnaVo) {
-		qnaVo.setShDateStart(qnaVo.getShDateStart() == null || qnaVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaVo.getShDateStart()));
-		qnaVo.setShDateEnd(qnaVo.getShDateEnd() == null || qnaVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaVo.getShDateEnd()));
-		qnaVo.setParamsPaging(qnaService.listCountR(qnaVo));
+	public String qnaRequestsXdmList(Model model,@ModelAttribute("vo") QnaRequestVo qnaRequestVo) {
+		qnaRequestVo.setShDateStart(qnaRequestVo.getShDateStart() == null || qnaRequestVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(qnaRequestVo.getShDateStart()));
+		qnaRequestVo.setShDateEnd(qnaRequestVo.getShDateEnd() == null || qnaRequestVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaRequestVo.getShDateEnd()));
+		qnaRequestVo.setParamsPaging(qnaService.listCountR(qnaRequestVo));
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}
 }

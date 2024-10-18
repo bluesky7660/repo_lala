@@ -11,24 +11,24 @@ public class AfterReportService {
 	@Autowired
 	AfterReportDao afterReportDao;
 	
-	public List<AfterReportDto> afterReportSelectList(AfterReportVo afterReportvo){
-		return afterReportDao.afterReportSelectList(afterReportvo);
+	public List<AfterReportDto> selectList(AfterReportVo afterReportvo){
+		return afterReportDao.selectList(afterReportvo);
 	};
-	public int afterReportlistCount(AfterReportVo afterReportvo) {
-		return afterReportDao.afterReportlistCount(afterReportvo);
+	public int listCount(AfterReportVo afterReportvo) {
+		return afterReportDao.listCount(afterReportvo);
 	}
 	
 	// CRUD
-    public int insertAfterReport(AfterReportDto afterReportDto) {
-        return afterReportDao.afterReportInsert(afterReportDto);
+    public int insert(AfterReportDto afterReportDto) {
+        return afterReportDao.insert(afterReportDto);
     }
-    public int updateAfterReport(AfterReportDto afterReportDto) {
-        return afterReportDao.afterReportUpdate(afterReportDto);
+    public int update(AfterReportDto afterReportDto) {
+        return afterReportDao.update(afterReportDto);
     }
-    public int deleteAfterReport(AfterReportDto afterReportDto) {
-        return afterReportDao.afterReportUelete(afterReportDto);
+    public int delete(AfterReportDto afterReportDto) {
+        return afterReportDao.uelete(afterReportDto);
     }
-    public int ueleteAfterReport(AfterReportDto afterReportDto) {
-        return afterReportDao.afterReportDelete(afterReportDto);
+    public int uelete(AfterReportDto afterReportDto) {
+        return afterReportDao.delete(afterReportDto);
     }
 }	

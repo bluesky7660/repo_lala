@@ -28,6 +28,7 @@
 		<include refid="ReqSelectCommon"/>
 	</select>
 	
+	
 	<!-- qna답변 영역 -->
 	<resultMap type="com.lalaping.qna.QnaAnswerDto" id="AnswerResultMapObj"></resultMap>
 	<sql id="AnsSelectCommon">

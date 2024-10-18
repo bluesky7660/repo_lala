@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lalaping.afterReport.AfterReportDao">
+
+    <resultMap type="com.lalaping.afterReport.AfterReportDto" id="resultMapObj"></resultMap>
+    
+    <sql id="selectCommon">
+        FROM afterReport a
+        WHERE 1=1
+        <if test="shValue != null and !shValue.equals('')">
+            <choose>
+                <when test="shOption == null">
+                    AND(
+                        a.arTitle LIKE CONCAT('%', #{shValue}, '%')
+                        OR a.arContent LIKE CONCAT('%', #{shValue}, '%')
+                    )
+                </when>
+                <when test="shOption == 1 and shOption != null and shOption != ''">
+                    AND a.arTitle = #{shValue}
+                </when>
+                <when test="shOption == 2 and shOption != null and shOption != ''">
+                    AND a.arContent LIKE CONCAT('%', #{shValue}, '%')
+                </when>
+            </choose>
+        </if>
+        <if test="shDelNy != null and !shDelNy.equals('')">
+            AND a.arDelNy = #{shDelNy}
+        </if>
+        <if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
+            AND a.arRegDate BETWEEN #{shDateStart} AND #{shDateEnd}
+        </if>
+    </sql>
+
+    <select id="selectList" resultMap="resultMapObj">
+        <include refid="base.selectListUpperForMysql"/>
+        SELECT
+            a.arSeq,
+            a.arTitle,
+            a.arContent,
+            a.arDelNy,
+            a.arRegDate,
+            a.arModDate
+        <include refid="selectCommon"/>
+        ORDER BY
+            a.arRegDate DESC
+        <include refid="base.selectListLowerForMysql"/>
+    </select>
+
+    <select id="listCount" resultType="int">
+        SELECT COUNT(*) 
+        <include refid="selectCommon"/>
+    </select>
+
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.arSeq,
+            a.arTitle,
+            a.arContent,
+            a.arDelNy,
+            a.arRegDate,
+            a.arModDate
+        FROM afterReport a 
+        WHERE a.arSeq = #{arSeq}
+    </select>
+    
+    <insert id="insert">
+        INSERT INTO afterReport (
+            arTitle,
+            arContent,
+            arDelNy,
+            arRegDate,
+            arModDate
+        ) VALUES (
+            #{arTitle},
+            #{arContent},
+            0,  -- 기본값 설정
+            NOW(),
+            NOW()
+        )
+    </insert>
+    
+    <update id="update">
+        UPDATE afterReport 
+        SET
+            arTitle = #{arTitle},
+            arContent = #{arContent},
+            arModDate = NOW()
+        WHERE arSeq = #{arSeq}
+    </update>
+
+    <update id="uelete">
+        UPDATE afterReport
+        SET
+            arDelNy = 1
+        WHERE arSeq = #{arSeq}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM afterReport
+        WHERE arSeq = #{arSeq}
+    </delete>
+    
+</mapper>
