@@ -22,6 +22,9 @@ public class QnaService {
 	public QnaRequestDto selectOneRequest(QnaRequestDto qnaRequestDto) {
 		return qnaDao.selectOneRequest(qnaRequestDto);
 	}
+	public int insertRequest(QnaRequestDto qnaRequestDto){
+		return qnaDao.insertRequest(qnaRequestDto);
+	}
 	public int updateRequest(QnaRequestDto qnaRequestDto){
 		return qnaDao.updateRequest(qnaRequestDto);
 	}
@@ -41,6 +44,9 @@ public class QnaService {
 	}
 	public QnaAnswerDto selectOneAnswer(QnaAnswerDto qnaAnswerDto) {
 		return qnaDao.selectOneAnswer(qnaAnswerDto);
+	}
+	public int insertAnswer(QnaAnswerDto qnaAnswerDto){
+		return qnaDao.insertAnswer(qnaAnswerDto);
 	}
 	public int updateAnswer(QnaAnswerDto qnaAnswerDto){
 		return qnaDao.updateAnswer(qnaAnswerDto);

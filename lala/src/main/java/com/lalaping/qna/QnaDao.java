@@ -12,6 +12,7 @@ public interface QnaDao {
 	public List<QnaRequestDto> selectListRequest(QnaRequestVo vo);
 	public int listCountR(QnaRequestVo vo);
 	public QnaRequestDto selectOneRequest(QnaRequestDto qnaRequestDto);
+	public int insertRequest(QnaRequestDto qnaRequestDto);
 	public int updateRequest(QnaRequestDto qnaRequestDto);
 	public int ueleteRequest(QnaRequestDto qnaRequestDto);
 	public int deleteRequest(QnaRequestDto qnaRequestDto);
@@ -19,6 +20,7 @@ public interface QnaDao {
 	public List<QnaAnswerDto> selectListAnswer(QnaAnswerVo vo);
 	public int listCountA(QnaAnswerVo vo);
 	public QnaAnswerDto selectOneAnswer(QnaAnswerDto qnaAnswerDto);
+	public int insertAnswer(QnaAnswerDto qnaAnswerDto);
 	public int updateAnswer(QnaAnswerDto qnaAnswerDto);
 	public int ueleteAnswer(QnaAnswerDto qnaAnswerDto);
 	public int deleteAnswer(QnaAnswerDto qnaAnswerDto);

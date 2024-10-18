@@ -22,48 +22,48 @@ public class AfterReportController {
 		afterReportVo.setParamsPaging(afterReportService.listCount(afterReportVo));
 		System.out.println("nqonoifqs");
 		model.addAttribute("list", afterReportService.selectList(afterReportVo));
-//		for(AfterReportDto item : afterReportService.selectList(afterReportVo)) {
+//		for(Aft	erReportDto item : afterReportService.selectList(afterReportVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
 		return "xdm/v1/afterReport/afterReportXdmList";
 	}
 	
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmForm")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmForm")
 	public String afterReportXdmForm() {
-		return "/xdm/v1/infra/afterReport/afterReportXdmForm";
+		return "/xdm/v1/afterReport/afterReportXdmForm";
 	}
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmMfom")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmMfom")
 	public String afterReportXdmMfom() {
-		return "/xdm/v1/infra/afterReport/afterReportXdmMfom";
+		return "/xdm/v1/afterReport/afterReportXdmMfom";
 	}
 
 	// CRUD
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmInst")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmInst")
 	public String afterReportXdmInst(AfterReportDto afterReportDto) {
 		System.out.println("AfterReportDto.getsfName(): " + afterReportDto.getArSeq());
 		int inst = afterReportService.insert(afterReportDto);
 		System.out.println("afterReportService.insertAfterReport(afterReportDto): " + inst);
-		return "redirect:/xdm/v1/infra/afterReport/afterReportXdmList";
+		return "redirect:/v1/afterReport/afterReportXdmList";
 	}
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmUpdate")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmUpdate")
 	public String afterReportXdmUpdate(AfterReportDto afterReportDto) {
 		System.out.println("AfterReportDto.getsfSeq(): " + afterReportDto.getArSeq());
 		int updt = afterReportService.update(afterReportDto);
 		System.out.println("afterReportService.updateAfterReport(afterReportDto): " + updt);
-		return "redirect:/xdm/v1/infra/afterReport/afterReportXdmList";
+		return "redirect:/v1/afterReport/afterReportXdmList";
 	}
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmDelete")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmDelete")
 	public String afterReportXdmDelete(AfterReportDto afterReportDto) {
 		System.out.println("AfterReportDto.getsfSeq(): " + afterReportDto.getArSeq());
 		int delt = afterReportService.delete(afterReportDto);
 		System.out.println("afterReportService.deleteAfterReport(afterReportDto): " + delt);
-		return "redirect:/xdm/v1/infra/afterReport/afterReportXdmList";
+		return "redirect:/v1/afterReport/afterReportXdmList";
 	}
-	@RequestMapping(value = "/xdm/v1/infra/afterReport/afterReportXdmUelete")
+	@RequestMapping(value = "/v1/afterReport/afterReportXdmUelete")
 	public String afterReportXdmUelete(AfterReportDto afterReportDto) {
 		System.out.println("AfterReportDto.getsfSeq(): " + afterReportDto.getArSeq());
 		int uelt = afterReportService.uelete(afterReportDto);
 		System.out.println("afterReportService.ueleteAfterReport(afterReportDto): " + uelt);
-		return "redirect:/xdm/v1/infra/afterReport/afterReportXdmList";
+		return "redirect:/v1/afterReport/afterReportXdmList";
 	}
 }

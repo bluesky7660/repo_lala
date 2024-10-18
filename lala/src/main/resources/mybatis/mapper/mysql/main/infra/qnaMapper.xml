@@ -27,7 +27,25 @@
 		SELECT COUNT(*) 
 		<include refid="ReqSelectCommon"/>
 	</select>
-	
+	<insert id="insertRequest">
+        INSERT INTO qnaRequests (
+	        qrTitle
+			,qrContent
+			,qrType
+			,userMember_umSeq
+			,qrRegDate
+			
+        ) VALUES (
+	        #{qrTitle}
+	        ,#{qrContent}
+	        ,#{qrType}
+	        ,#{userMember_umSeq}
+	        ,now()
+        )
+        <selectKey resultType="int" keyProperty="qrSeq" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
 	
 	<!-- qna답변 영역 -->
 	<resultMap type="com.lalaping.qna.QnaAnswerDto" id="AnswerResultMapObj"></resultMap>
@@ -53,5 +71,21 @@
 		SELECT COUNT(*) 
 		<include refid="AnsSelectCommon"/>
 	</select>
-
+	<insert id="insertAnswer">
+        INSERT INTO qnaAnswers (
+			,qrContent
+			,staffMember_sfSeq
+			,qaModDate
+			
+        ) VALUES (
+	        #{qrTitle}
+	        ,#{qrContent}
+	        ,#{qrType}
+	        ,#{userMember_umSeq}
+	        ,now()
+        )
+        <selectKey resultType="int" keyProperty="qrSeq" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
 </mapper>
