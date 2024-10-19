@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lalaping.complaint.ComplaintDao">
+
+	<!-- reception 영역 -->
+	<resultMap type="com.lalaping.complaint.ReceptionDto" id="receptionResultMapObj"></resultMap>
+	<sql id="receptionSelectCommon">
+		FROM reception a
+		WHERE 1=1
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.rcTitle LIKE CONCAT('%', #{shValue}, '%')
+						)
+					</when>
+					<when test="shOption == 1 and shOption != null and shOption != ''">
+						AND a.rcTitle = #{shValue}
+					</when>
+					<when test="shOption == 2 and shOption != null and shOption != ''">
+						AND a.rcType LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+					<when test="shOption == 3 and shOption != null and shOption != ''">
+						AND a.rcStatus LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+				</choose>
+			</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">
+				AND a.rcDelNy = #{shDelNy}
+			</if>
+			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.rcRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<!-- <when test="shOptionDate == 2"> AND a.sfModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+				</choose>
+			</if>
+	</sql>
+	
+	<select id="receptionSelectList" resultMap="receptionResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.rcSeq,
+			a.rcTitle,
+			a.rcContent,
+			a.rcStatus,
+			a.rcType,
+			a.rcDelNy,
+			a.rcRegDate,
+			a.userMember_umSeq
+		<include refid="receptionSelectCommon"/>
+		ORDER BY a.rcSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	
+	<insert id="rcInsert">
+		INSERT INTO reception(
+			rcTitle,
+			rcContent,
+			rcStatus,
+			rcType,
+		    rcDelNy,
+		    rcRegDate,
+		    userMember_umSeq
+		)VALUES(
+			#{rcTitle},
+			#{rcContent},
+			#{rcStatus},
+			#{rcType},
+			0,
+			now(),
+			#{userMember_umSeq}
+		)
+	</insert>
+	
+	<select id="rcSelectOne" resultMap="receptionResultMapObj">
+		SELECT
+			a.rcSeq,
+			a.rcTitle,
+			a.rcContent,
+			a.rcStatus,
+			a.rcType,
+			a.rcRegDate,
+			a.userMember_umSeq
+			FROM reception a 
+		WHERE 1=1
+		AND a.rcSeq = #{rcSeq}
+	</select>
+	
+	<update id="rcUpdate">
+    	UPDATE reception 
+		set
+			rcTitle = #{rcTitle},
+			rcContent = #{rcContent},
+			rcStatus = #{rcStatus},
+			rcType = #{rcType},
+		    rcRegDate = now(),
+		    userMember_umSeq = #{userMember_umSeq}
+		WHERE 1=1
+			AND rcSeq = #{rcSeq}
+	</update>
+	
+	 <update id="rcUelete">
+		update reception
+		set
+			rcDelNy = 1
+		where 1=1
+			and rcSeq = #{rcSeq}
+	</update>
+	
+	<delete id="rcDelete">
+		DELETE FROM reception
+		where 1=1
+			and rcSeq = #{rcSeq}
+	</delete>
+	<select id="receptionListCount" resultType="int">
+        SELECT COUNT(*)
+        <include refid="receptionSelectCommon" />
+    </select>
+    
+	<!--answer 영역 -->
+	
+	<resultMap type="com.lalaping.complaint.AnswerDto" id="answerResultMapObj"></resultMap>
+	<sql id="answerSelectCommon">
+		FROM answer b
+		LEFT JOIN reception a
+		ON a.rcSeq = b.reception_rcSeq
+		LEFT JOIN staffMember c
+		ON c.sfSeq = b.staffMember_sfSeq
+		WHERE 1=1
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							b.awContent LIKE CONCAT('%', #{shValue}, '%')
+						)
+					</when>
+					<when test="shOption == 1 and shOption != null and shOption != ''">
+						AND b.awContent = #{shValue}
+					</when>
+				</choose>
+			</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">
+				AND b.awDelNy = #{shDelNy}
+			</if>
+			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
+				<choose>
+					<when test="shOptionDate == 1"> AND b.awRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND b.awModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+	</sql>
+	
+	<select id="answerSelectList" resultMap="answerResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			b.awSeq,
+			b.awContent,
+			b.awDelNy,
+			b.awRegDate,
+			b.staffMember_sfSeq,
+			b.reception_rcSeq,
+			a.rcType,
+			a.rcTitle,
+			c.sfName
+		<include refid="answerSelectCommon"/>
+		ORDER BY b.awSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	
+	<insert id="awInsert">
+		INSERT INTO answer(
+			awContent
+		    ,awDelNy
+		    ,awRegDate
+		    ,staffMember_sfSeq
+		    ,reception_rcSeq
+		)VALUES(
+			#{awContent},
+			0,
+			now(),
+			#{staffMember_sfSeq},
+			#{reception_rcSeq}
+		)
+	</insert>
+	
+	<select id="awSelectOne" resultMap="answerResultMapObj">
+		SELECT
+			b.awSeq,
+			b.awContent,
+			b.awRegDate,
+			b.staffMember_sfSeq,
+			b.reception_rcSeq,
+			a.rcType,
+			a.rcTitle,
+			c.sfName
+		FROM answer b
+		LEFT JOIN reception a
+		ON a.rcSeq = b.reception_rcSeq
+		LEFT JOIN staffMember c
+		ON c.sfSeq = b.staffMember_sfSeq
+		WHERE 1=1
+		AND b.awSeq = #{awSeq}
+	</select>
+	
+	<update id="awUpdate">
+    	UPDATE answer 
+		set
+			awContent = #{awContent},
+			awStatus = #{awStatus},
+		    awRegDate = now(),
+		    staffMember_sfSeq = #{staffMember_sfSeq},
+			reception_rcSeq = #{reception_rcSeq}
+		WHERE 1=1
+			AND awSeq = #{awSeq}
+	</update>
+	
+	 <update id="awUelete">
+		update answer
+		set
+			awDelNy = 1
+		where 1=1
+			and awSeq = #{awSeq}
+	</update>
+	
+	<delete id="awDelete">
+		DELETE FROM answer
+		where 1=1
+			and awSeq = #{awSeq}
+	</delete>
+	
+	<select id="answerListCount" resultType="int">
+        SELECT COUNT(*)
+        <include refid="answerSelectCommon" />
+    </select>
+	
+	
+	
+	
+	
+</mapper>

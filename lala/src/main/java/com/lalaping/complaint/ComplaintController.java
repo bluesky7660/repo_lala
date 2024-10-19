@@ -2,6 +2,7 @@ package com.lalaping.complaint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,17 +11,80 @@ import com.lalaping.common.util.UtilDateTime;
 @Controller
 public class ComplaintController {
 	@Autowired
+	ComplaintService complaintService;
+//	민원 reception
+	
+	@RequestMapping(value = "/v1/complaint/receptionXdmList")
+	public String receptionXdmList(@ModelAttribute("vo") ReceptionVo vo ,Model model) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		vo.setParamsPaging(complaintService.receptionListCount(vo));
+		model.addAttribute("list", complaintService.receptionSelectList(vo));
+		model.addAttribute("formLink", "receptionXdmForm");
+		return "xdm/v1/complaint/receptionXdmList";
+	}
+	@RequestMapping(value = "/v1/complaint/receptionXdmForm")
+	public String receptionXdmForm(Model model) {
+		model.addAttribute("listLink", "receptionXdmList");
+		return "/xdm/v1/complaint/receptionXdmForm";
+	}
+	@RequestMapping(value = "/v1/complaint/recepitonInst")
+	public String recepitonInst(ReceptionDto receptionDto) {
+		complaintService.rcInsert(receptionDto);
+		return "redirect:/v1/complaint/receptionXdmList";
+	}
+	
+	@RequestMapping(value = "/v1/complaint/receptionXdmMFom")
+	public String receptionXdmMFom(Model model,ReceptionDto receptionDto) {
+		model.addAttribute("item", complaintService.rcSelectOne(receptionDto));
+		model.addAttribute("listLink", "receptionXdmList");
+		return "/xdm/v1/complaint/receptionXdmMFom";
+	}
+	
+	@RequestMapping(value = "/v1/complaint/receptionXdmUpdt")
+	public String receptionXdmInst(ReceptionDto receptionDto,AnswerDto answerDto) {
+		complaintService.rcUpdate(receptionDto);
+		complaintService.awInsert(answerDto);
+		return "redirect:/v1/complaint/receptionXdmList";
+	}
+	
+	@RequestMapping(value = "/v1/complaint/receptionXdmUete")
+	public String receptionXdmUete(ReceptionDto receptionDto) {
+		complaintService.rcUelete(receptionDto);
+		return "redirect:/v1/complaint/receptionXdmList";
+	}
+	
+	@RequestMapping(value = "/v1/complaint/receptionXdmDete")
+	public String receptionXdmDete(ReceptionDto receptionDto) {
+		complaintService.rcDelete(receptionDto);
+		return "redirect:/v1/complaint/receptionXdmList";
+	}
+	
+//	답변 answer
 	
 	@RequestMapping(value = "/v1/complaint/answerXdmList")
-	public String answerXdmList() {
-//		complaintVo.setShDateStart(complaintVo.getShDateStart() == null || complaintVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(complaintVo.getShDateStart()));
-//		complaintVo.setShDateEnd(complaintVo.getShDateEnd() == null || complaintVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(complaintVo.getShDateEnd()));
-//		complaintVo.setParamsPaging(qnaService.listCountA(complaintVo));
-		return "xdm/v1/complaint/answerXdmList";
+	public String answerXdmList(@ModelAttribute("vo") AnswerVo vo ,Model model) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		vo.setParamsPaging(complaintService.answerListCount(vo));
+		model.addAttribute("list", complaintService.answerSelectList(vo));
+		return "/xdm/v1/complaint/answerXdmList";
 	}
-	@RequestMapping(value = "/v1/complaint/recepotionXdmList")
-	public String recepotionXdmList() {
+	@RequestMapping(value = "/v1/complaint/answerXdmMFom")
+	public String answerXdmMFom(Model model,AnswerDto answerDto) {
+		model.addAttribute("item", complaintService.awSelectOne(answerDto));
+		model.addAttribute("listLink", "answerXdmList");
+		return "/xdm/v1/complaint/answerXdmMFom";
+	}
+	@RequestMapping(value = "/v1/complaint/answerXdmUete")
+	public String answerXdmUete(AnswerDto answerDto) {
+		complaintService.awUelete(answerDto);
+		return "redirect:/v1/complaint/answerXdmList";
+	}
+	@RequestMapping(value = "/v1/complaint/answerXdmDete")
+	public String answerXdmDete(AnswerDto answerDto) {
+		complaintService.awDelete(answerDto);
+		return "redirect:/v1/complaint/answerXdmList";
+	}
 
-		return "xdm/v1/complaint/recepotionXdmList";
-	}
 }

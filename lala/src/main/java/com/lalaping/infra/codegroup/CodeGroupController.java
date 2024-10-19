@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.common.util.UtilDateTime;
+import com.lalaping.infra.code.CodeService;
 
 @Controller
 public class CodeGroupController {
@@ -30,7 +31,8 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmForm")
-	public String codeGroupXdmForm() {
+	public String codeGroupXdmForm(Model model) {
+		model.addAttribute("listLink", "codeGroupXdmList");
 		return "/xdm/v1/infra/codegroup/codeGroupXdmForm";
 	}
 	 
@@ -43,21 +45,22 @@ public class CodeGroupController {
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmMfom")
 	public String codeGroupXdmMfom(Model model,CodeGroupDto codeGroupDto) {
 		model.addAttribute("item", codeGroupService.selectOne(codeGroupDto));
+		model.addAttribute("listLink", "codeGroupXdmList");
 		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
 	}
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmUpdt")
 	public String codeGroupXdmUpdt(CodeGroupDto codeGroupDto) {
-
+		codeGroupService.update(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmUelt")
 	public String codeGroupXdmUelt(CodeGroupDto codeGroupDto) {
-
+		codeGroupService.uelete(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/codegroup/codeGroupXdmDelt")
 	public String codeGroupXdmDelt(CodeGroupDto codeGroupDto) {
-
+		codeGroupService.delete(codeGroupDto);
 		return "redirect:/v1/infra/codegroup/codeGroupXdmList";
 	}
 }

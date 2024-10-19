@@ -23,8 +23,8 @@ public class QnaController {
 		return "xdm/v1/qna/qnaAnswersXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmForm")
-	public String qnaAnswersXdmList() {
-		
+	public String qnaAnswersXdmForm(Model model) {
+		model.addAttribute("listLink", "qnaAnswersXdmList");
 		return "xdm/v1/qna/qnaAnswersXdmForm";
 	}
 //	@RequestMapping(value = "/v1/qna/qnaAnswersXdmForm")
@@ -45,8 +45,8 @@ public class QnaController {
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmForm")
-	public String qnaRequestsXdmList() {
-		
+	public String qnaRequestsXdmForm(Model model) {
+		model.addAttribute("listLink", "qnaRequestsXdmList");
 		return "xdm/v1/qna/qnaRequestsXdmForm";
 	}
 }

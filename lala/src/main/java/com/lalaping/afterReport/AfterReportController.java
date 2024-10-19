@@ -30,11 +30,13 @@ public class AfterReportController {
 	}
 	
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmForm")
-	public String afterReportXdmForm() {
+	public String afterReportXdmForm(Model model) {
+		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmForm";
 	}
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmMfom")
-	public String afterReportXdmMfom() {
+	public String afterReportXdmMfom(Model model) {
+		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmMfom";
 	}
 

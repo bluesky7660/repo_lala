@@ -32,11 +32,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/v1/member/staffMemberXdmForm")
-	public String staffMemberXdmForm() {
+	public String staffMemberXdmForm(Model model) {
+		model.addAttribute("listLink", "staffMemberXdmList");
 		return "/xdm/v1/member/stf/staffMemberXdmForm";
 	}
 	@RequestMapping(value = "/v1/member/staffMemberXdmMfom")
-	public String staffMemberXdmMfom() {
+	public String staffMemberXdmMfom(Model model) {
+		model.addAttribute("listLink", "staffMemberXdmList");
 		return "/xdm/v1/member/stf/staffMemberXdmMfom";
 	}
 
@@ -92,10 +94,12 @@ public class MemberController {
 	@RequestMapping(value = "/v1/member/userMemberXdmForm")
 	public String userMemberXdmForm(Model model) {
 //		model.addAttribute("userItem", memberService.selectUserMemberList(userMemberVo));
+		model.addAttribute("listLink", "userMemberXdmList");
 	    return "/xdm/v1/member/usr/userMemberXdmForm";
 	}
 	@RequestMapping(value = "/v1/member/userMemberXdmMfom")
-	public String userMemberXdmMfom() {
+	public String userMemberXdmMfom(Model model) {
+		model.addAttribute("listLink", "userMemberXdmList");
 	    return "/xdm/v1/member/usr/userMemberXdmMfom";
 	}
 
