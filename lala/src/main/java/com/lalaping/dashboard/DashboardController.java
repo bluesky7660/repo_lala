@@ -12,10 +12,10 @@ public class DashboardController {
 		return "xdm/v1/index";
 	}
 	
-//	@RequestMapping(value = "/v1/report/afterReportXdmList")
-//	public String afterReportXdmList() {
-//
-//		return "xdm/v1/report/afterReportXdmList";
-//	}
+	@RequestMapping(value = "/v1/report")
+	public String report() {
+
+		return "xdm/v1/report";
+	}
 	
 }

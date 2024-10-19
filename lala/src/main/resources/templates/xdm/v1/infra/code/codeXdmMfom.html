@@ -280,16 +280,7 @@
 											</div>
 											<!-- Row end -->
 											<!-- Form actions footer start -->
-											<div class="btn-toolbar mt-5 justify-content-between">
-												<div>
-													<a class="btn btn-outline-dark" type="button" href="codeXdmList"><i class="bi bi-list-ul"></i></a>
-													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
-													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
-												</div>
-												<div>
-													<button type="button" id="btnSubmit" class="btn btn-info" ><i class="bi bi-database"></i></button>
-												</div>
-											</div>
+											<div th:replace="~{xdm/v1/infra/include/link :: mform-link}"></div>
 											<!-- Form actions footer end -->
 										</form>
 										

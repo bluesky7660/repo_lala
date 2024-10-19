@@ -25,6 +25,7 @@ public class AfterReportController {
 //		for(Aft	erReportDto item : afterReportService.selectList(afterReportVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
+		model.addAttribute("formLink", "afterReportXdmForm");
 		return "xdm/v1/afterReport/afterReportXdmList";
 	}
 	

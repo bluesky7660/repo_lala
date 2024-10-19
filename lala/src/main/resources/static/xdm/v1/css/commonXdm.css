@@ -64,8 +64,60 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 .scrolltable{
 	overflow-x: auto;
 }
+.graph_area{
+    align-items: stretch;
+}
 
+.graphs_box .card-body>div{
+    width: fit-content;
+    margin: 0 auto 30px;
+}
+.graphs_box .card-body>div>div>svg{
+    width: 400px;
+}
 
+.graphs_box .card-body,.graphs_box .card{
+    width: 100%;
+    height: calc(100% - 24px);
+}
+.graphs_box .card-body{
+    /* padding: 1rem 0; */
+    min-height: 300px;
+    width: 100%;
+}
+.complaint_list_view .card-header{
+    display: flex;
+    justify-content: space-between;
+}
+.complaint_list_view .card-header a{
+    font-size: 16px;
+    font-weight: bold;
+}
+.complaint_list_view .card-header a:hover{
+   text-decoration: underline;
+}
+.list_types{
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+.list_types>div{
+    flex-shrink: 1;
+}
+.list_types .stats-tile{
+    margin-bottom: 12px;
+    padding: 1rem;
+}
+.list_types .stats-tile p{
+    font-weight: bold;
+    margin-top: 10px;
+}
+.list_types >div{
+    padding:0;
+}
+.qna_list .stats-tile{
+    border: 1px solid #efefef ;
+    background-color: #efefef;
+}
 /*index*/
 .pageCategory{
     display: flex;

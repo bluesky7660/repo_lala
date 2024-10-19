@@ -141,302 +141,33 @@
 						<!-- Row start -->
 						<div class="row graph_area">
 							
-							<div class="graphs_box col-lg-5 col-sm-5 col-12">
+							<div class="col-lg-4 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">처리 현황</div>
+										<div class="card-title">민원 처리 현황</div>
 									</div>
 									<div class="card-body">
-										<div class="row">
-											<div id="complaint_graph"></div>
-											<ul class="task-list-container">
-												<li class="task-list-item">
-													<div class="task-icon shade-blue">
-														<i class="bi bi-clipboard-plus"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">접수중</h5>
-														<p class="amount-spend">12</p>
-													</div>
-												</li>
-												<li class="task-list-item">
-													<div class="task-icon shade-yellow">
-														<i class="bi bi-clipboard-data"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">처리중</h5>
-														<p class="amount-spend">10</p>
-													</div>
-												</li>
-												<li class="task-list-item">
-													<div class="task-icon shade-green">
-														<i class="bi bi-clipboard-check"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">처리완료</h5>
-														<p class="amount-spend">15</p>
-													</div>
-												</li>
-											</ul>	
-										</div>
-										<div class="row">
-											<div id="qna_graph"></div>
-											<ul class="task-list-container">
-												<li class="task-list-item">
-													<div class="task-icon shade-blue">
-														<i class="bi bi-clipboard-plus"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">접수중</h5>
-														<p class="amount-spend">12</p>
-													</div>
-												</li>
-												<li class="task-list-item">
-													<div class="task-icon shade-green">
-														<i class="bi bi-clipboard-check"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">처리완료</h5>
-														<p class="amount-spend">15</p>
-													</div>
-												</li>
-											</ul>
-										</div>
+										<div id="complaint_graph"></div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-7 col-sm-7 col-12 complaint_list_view">
-								<div class="list_types row">
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-red">
-												<i class="bi bi-pie-chart"></i>
-											</div> -->
-											<div class="complaint_type">
-												<h3 class="text-red">25건</h3>
-												<p>행정, 서류</p>
-											</div>
-										</div>
+							<div class="col-lg-4 col-sm-6 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">민원종류</div>
 									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-blue">
-												<i class="bi bi-emoji-smile"></i>
-											</div> -->
-											<div class="complaint_type">
-												<h3 class="text-blue">24건</h3>
-												<p>세무</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-yellow">
-												<i class="bi bi-box-seam"></i>
-											</div> -->
-											<div class="complaint_type">
-												<h3 class="text-yellow">15건</h3>
-												<p>교통</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-green">
-												<i class="bi bi-handbag"></i>
-											</div> -->
-											<div class="complaint_type">
-												<h3 class="text-green">18건</h3>
-												<p>불편사항</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-green">
-												<i class="bi bi-handbag"></i>
-											</div> -->
-											<div class="complaint_type">
-												<h3 class="text-red">18건</h3>
-												<p>기타</p>
-											</div>
-										</div>
+									<div class="card-body">
+										<div id="tpye_graph"></div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="card">
-										<div class="card-header">
-											<div class="card-title">접수된 민원</div>
-											<a href="/v1/complaint/recepotionXdmList" class="text-blue">민원 더보기+</a>
-										</div>
-										<div class="card-body">
-	
-											<div class="table-responsive">
-												<table class="table v-middle">
-													
-													<thead>
-														<tr>
-															<th>접수자</th>
-															<th>민원 제목</th>
-															<th>민원 내용</th>
-															<th>접수날짜</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-	
-										</div>
+							</div>
+							<div class="col-lg-4 col-sm-6 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">QnA 치리 현황</div>
 									</div>
-								</div>
-								
-								<div class="row qna_list">
-									<div class="card">
-										<div class="card-header">
-											<div class="card-title">접수된 QnA</div>
-											<a href="/v1/qna/qnaAnswersXdmList" class="text-blue">QnA 더보기+</a>
-										</div>
-										<div class="card-body">
-											<div class="list_types row">
-												<div class="col-xxl col-sm-6 col-12">
-													<div class="stats-tile">
-														<div class="qna_type">
-															<h3 class="text-red">25건</h3>
-															<p>행정, 서류</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-xxl col-sm-6 col-12">
-													<div class="stats-tile">
-														<div class="qna_type">
-															<h3 class="text-blue">24건</h3>
-															<p>세무</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-xxl col-sm-6 col-12">
-													<div class="stats-tile">
-														<div class="qna_type">
-															<h3 class="text-yellow">15건</h3>
-															<p>교통</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-xxl col-sm-6 col-12">
-													<div class="stats-tile">
-														<div class="qna_type">
-															<h3 class="text-green">18건</h3>
-															<p>불편사항</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-xxl col-sm-6 col-12">
-													<div class="stats-tile">
-														<div class="qna_type">
-															<h3 class="text-red">18건</h3>
-															<p>기타</p>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="table-responsive">
-												<table class="table v-middle">
-													
-													<thead>
-														<tr>
-															<th>접수자</th>
-															<th>QnA 제목</th>
-															<th>QnA 내용</th>
-															<th>접수날짜</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-	
-										</div>
+									<div class="card-body">
+										<div id="qna_graph"></div>
 									</div>
 								</div>
 							</div>
@@ -629,36 +360,7 @@
 															<span class="badge shade-blue min-90">Processing</span>
 														</td>
 													</tr>
-													<tr>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/user3.png" class="media-avatar" alt="Bootstrap Gallery">
-																<div class="media-box-body">
-																	<div class="text-truncate">Ellie Collins</div>
-																</div>
-															</div>
-														</td>
-														<td>
-															<div class="media-box">
-																<img src="/xdm/v1/template/arise-v1.0/assets/images/food/img3.jpg" class="media-avatar" alt="Admin Themes">
-																<div class="media-box-body">
-																	<div class="text-truncate">Ginger Snacks</div>
-																</div>
-															</div>
-														</td>
-														<td>Arise827</td>
-														<td>12/12/2021</td>
-														<td>$18.00</td>
-														<td>
-															<span class="text-green td-status"><i class="bi bi-check-circle"></i> Paid</span>
-														</td>
-														<td>
-															<span class="badge shade-green min-90">Delivered</span>
-														</td>
-													</tr>
-													
 												</tbody>
-												
 											</table>
 										</div>
 
@@ -669,6 +371,165 @@
 						<!-- Row end -->
 
 						<!-- Row start -->
+						<div class="row">
+							<div class="col-sm-6 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Tasks</div>
+									</div>
+									<div class="card-body">
+										<div id="taskGraph"></div>
+										<ul class="task-list-container">
+											<li class="task-list-item">
+												<div class="task-icon shade-blue">
+													<i class="bi bi-clipboard-plus"></i>
+												</div>
+												<div class="task-info">
+													<h5 class="task-title">New</h5>
+													<p class="amount-spend">12</p>
+												</div>
+											</li>
+											<li class="task-list-item">
+												<div class="task-icon shade-green">
+													<i class="bi bi-clipboard-check"></i>
+												</div>
+												<div class="task-info">
+													<h5 class="task-title">Done</h5>
+													<p class="amount-spend">15</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Notifications</div>
+									</div>
+									<div class="card-body">
+										<div class="scroll370">
+											<ul class="user-messages">
+												<li>
+													<div class="customer shade-blue">MK</div>
+													<div class="delivery-details">
+														<span class="badge shade-blue">Sales</span>
+														<h5>Marie Kieffer</h5>
+														<p>Thanks for choosing Apple product, further if you have any questions please contact sales
+															team.</p>
+													</div>
+												</li>
+												<li>
+													<div class="customer shade-blue">ES</div>
+													<div class="delivery-details">
+														<span class="badge shade-blue">Marketing</span>
+														<h5>Ewelina Sikora</h5>
+														<p>Boost your sales by 50% with the easiest and proven marketing tool for customer enggement
+															&amp; motivation.</p>
+													</div>
+												</li>
+												<li>
+													<div class="customer shade-blue">TN</div>
+													<div class="delivery-details">
+														<span class="badge shade-blue">Business</span>
+														<h5>Teboho Ncube</h5>
+														<p>Use an exclusive promo code HKYMM50 and get 50% off on your first order in the new year.
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="customer shade-blue">CJ</div>
+													<div class="delivery-details">
+														<span class="badge shade-blue">Admin</span>
+														<h5>Carla Jackson</h5>
+														<p>Befor inviting the administrator, you must create a role that can be assigned to them.
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="customer shade-red">JK</div>
+													<div class="delivery-details">
+														<span class="badge shade-red">Security</span>
+														<h5>Julie Kemp</h5>
+														<p>Your security subscription has expired. Please renew the subscription.</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-sm-6 col-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Activity</div>
+									</div>
+									<div class="card-body">
+
+										<div class="scroll370">
+											<div class="activity-container">
+												<div class="activity-block">
+													<div class="activity-user">
+														<img src="/xdm/v1/template/arise-v1.0/assets/images/user.png" alt="Activity User">
+													</div>
+													<div class="activity-details">
+														<h4>Lilly Desmet</h4>
+														<h5>3 hours ago</h5>
+														<p>Sent invoice ref. #23457</p>
+														<span class="badge shade-green">Sent</span>
+													</div>
+												</div>
+												<div class="activity-block">
+													<div class="activity-user">
+														<img src="/xdm/v1/template/arise-v1.0/assets/images/user3.png" alt="Activity User">
+													</div>
+													<div class="activity-details">
+														<h4>Jennifer Wilson</h4>
+														<h5>7 hours ago</h5>
+														<p>Paid invoice ref. #23459</p>
+														<span class="badge shade-red">Payments</span>
+													</div>
+												</div>
+												<div class="activity-block">
+													<div class="activity-user">
+														<img src="/xdm/v1/template/arise-v1.0/assets/images/user4.png" alt="Activity User">
+													</div>
+													<div class="activity-details">
+														<h4>Elliott Hermans</h4>
+														<h5>1 day ago</h5>
+														<p>Paid invoice ref. #23473</p>
+														<span class="badge shade-green">Paid</span>
+													</div>
+												</div>
+												<div class="activity-block">
+													<div class="activity-user">
+														<img src="/xdm/v1/template/arise-v1.0/assets/images/user5.png" alt="Activity User">
+													</div>
+													<div class="activity-details">
+														<h4>Sophie Michiels</h4>
+														<h5>3 day ago</h5>
+														<p>Paid invoice ref. #26788</p>
+														<span class="badge shade-green">Sent</span>
+													</div>
+												</div>
+												<div class="activity-block">
+													<div class="activity-user">
+														<img src="/xdm/v1/template/arise-v1.0/assets/images/user2.png" alt="Activity User">
+													</div>
+													<div class="activity-details">
+														<h4>Ilyana Maes</h4>
+														<h5>One week ago</h5>
+														<p>Paid invoice ref. #34546</p>
+														<span class="badge shade-red">Invoice</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div> -->
+						</div>
 						<!-- Row end -->
 
 					</div>

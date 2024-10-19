@@ -25,7 +25,7 @@ public class CodeGroupController {
 //		for(CodeGroupDto item : codeGroupService.selectList(codeGroupVo)) {
 //			System.out.println("리스트seq: " + item.get );
 //		}
-		model.addAttribute("listLink", "codeGroupXdmForm");
+		model.addAttribute("formLink", "codeGroupXdmForm");
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 	
