@@ -15,6 +15,9 @@ public class MemberService {
     public List<StaffMemberDto> selectStaffMemberList(StaffMemberVo staffMemberVo) {
     	return memberDao.staffSelectList(staffMemberVo);
     }
+    public List<StaffMemberDto> staffTypeList(StaffMemberVo staffMemberVo) {
+    	return memberDao.staffTypeList(staffMemberVo);
+    }
     public int listCountStaffMember(StaffMemberVo staffMemberVo) {
         return memberDao.staffListCount(staffMemberVo);
     }

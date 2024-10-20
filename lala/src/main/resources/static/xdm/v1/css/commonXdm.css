@@ -118,6 +118,15 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
     border: 1px solid #efefef ;
     background-color: #efefef;
 }
+.top_row{
+    gap: 12px;
+}
+.top_row>div{
+    padding: 0;
+}
+.top_row .stats-tile{
+    padding: 18px;
+}
 /*index*/
 .pageCategory{
     display: flex;

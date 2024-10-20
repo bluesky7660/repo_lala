@@ -308,10 +308,10 @@
 													</td>
 													<td th:text="${list.umId}"></td>
 													<td th:text = "${list.umPasswd}"></td>
-													<td th:text = "${list.umGender}"></td>
+													<td th:text = "${@codeService.selectOneCachedCode(list.umGender)}"></td>
 													<td th:text = "${list.umEmail}"></td>
 													<td th:text = "${list.umTel}"></td>
-													<td th:text = "${list.umBirthDay}"></td>	
+													<td th:text = "${#dates.format(list.umBirthDay,'yyyy-MM-dd')}"></td>	
 													<td th:if ="${list.umDelNy eq 0}">N</td>
 													<td th:unless = "${list.umDelNy eq 0}">Y</td>
 													<td th:text="${#dates.format(list.umRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>

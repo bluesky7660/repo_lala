@@ -2,12 +2,15 @@ package com.lalaping.infra.member;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UserMemberDto {
-	private Integer umSeq;
+	private String umSeq;
 	private String umId;
 	private String umPasswd;
 	private String umName;
 	private String umTel;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date umBirthDay;
 	private Boolean umDelNy;
 	private Date umRegDate;
@@ -15,10 +18,10 @@ public class UserMemberDto {
 	private String umEmail;
 	private String umGender;
 // ----------------------------
-	public Integer getUmSeq() {
+	public String getUmSeq() {
 		return umSeq;
 	}
-	public void setUmSeq(Integer umSeq) {
+	public void setUmSeq(String umSeq) {
 		this.umSeq = umSeq;
 	}
 	public String getUmId() {

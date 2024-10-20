@@ -27,6 +27,7 @@ window.addEventListener('load', function() {
     var idRegExp = /^[a-zA-Z0-9]{5,15}$/;
     var passwordRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     var krAlphaNumRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+    var krNameRegExp = /^[가-힣]{2,4}$/;
     var alphaNumRegExp = /^[a-zA-Z0-9]+$/;
     var numericRegExp = /^[0-9]+$/;
     var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -503,6 +504,18 @@ window.addEventListener('load', function() {
                 } else {
         // 	    	by pass
                     //alert("정규식 통과");
+                    return true;
+                }
+            }else if (element.classList.contains('valid-user-name')) {
+                console.log("한글만");
+                
+                if(!krNameRegExp.test(objValue)){
+                    var text = "최소 2자 이상, 최대 4자의 한글만 입력해주세요";
+                    feedback.textContent = text;
+                    element.focus();
+                    return false;
+                } else {
+        // 	    	by pass
                     return true;
                 }
             }

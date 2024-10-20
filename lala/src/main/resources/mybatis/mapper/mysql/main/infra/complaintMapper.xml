@@ -182,6 +182,9 @@
 			#{staffMember_sfSeq},
 			#{reception_rcSeq}
 		)
+		<selectKey resultType="int" keyProperty="awSeq" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
 	</insert>
 	
 	<select id="awSelectOne" resultMap="answerResultMapObj">

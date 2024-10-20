@@ -44,6 +44,7 @@
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
 		
 		<!-- by developer -->
+		<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css">
 		<link rel="stylesheet" href="/xdm/v1/css/commonXdm.css">
 		<style>
 			.form-label{
@@ -169,7 +170,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">이름</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputUmName" name="umName" th:value="${item.umName}" placeholder="한글" required>
+														<input type="text" class="valid-user-name form-control validate-this" id="inputUmName" name="umName" th:value="${item.umName}" placeholder="한글" required>
 														<div class="invalid-feedback">
 															이름을 적어주세요.
 														</div>
@@ -178,7 +179,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">전화번호</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputUmTel" name="umTel" th:value="${item.umTel}" placeholder="예)010-0000-0000" required>
+														<input type="text" class="valid-phone-num form-control validate-this" id="inputUmTel" name="umTel" th:value="${item.umTel}" placeholder="예)010-0000-0000" required>
 														<div class="invalid-feedback">
 															전화번호을 적어주세요.
 														</div>
@@ -187,7 +188,8 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">생일</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputUmBirthDay" name="umBirthDay" th:value="${item.umBirthDay}" placeholder="예)1999-01-01" required>
+														<!-- <input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputUmBirthDay" name="umBirthDay" th:value="${item.umBirthDay}" placeholder="예)1999-01-01" required> -->
+														<input type="date" class="valid-birth-num form-control validate-this" id="inputUmBirthDay" name="umBirthDay" placeholder="예)1999-01-01" required>
 														<div class="invalid-feedback"> 
 															생일을 적어주세요.
 														</div>
@@ -196,29 +198,16 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">이메일</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputUmEmail" name="umEmail" th:value="${item.umEmail}" placeholder="예)qwer1234@naver.com" required>
+														<input type="text" class="valid-email form-control validate-this" id="inputUmEmail" name="umEmail" th:value="${item.umEmail}" placeholder="예)qwer1234@naver.com" required>
 														<div class="invalid-feedback">
 															이메일을 적어주세요.
 														</div>
 													</div>
 												</div>
 												
-												<!-- <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputEngName" class="form-label">코드이름 (영문)</label>
-														<input type="text" class="form-control" id="inputEngName" placeholder="영대소문자, 숫자">
-													</div>
-												</div> -->
+												
 												
 											</div>
-											<!-- <div class="row">
-												<div class="col-xl-6 col-md-8 col-12">
-													<div class="mb-3">
-														<label for="inputCodeDesc" class="form-label">설명</label>
-														<textarea class="form-control exclude-validation" id="inputCgDesc" name="cgDesc" placeholder="" rows="3"></textarea>
-													</div>
-												</div>
-											</div> -->
 											
 											<!-- Row end -->
 											<!-- Form actions footer start -->
@@ -280,6 +269,7 @@
 			
 		</script>
 		<!-- by developer -->
+		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 		<script src="/xdm/v1/js/commonXdm.js"></script>
 	</body>
 

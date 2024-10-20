@@ -1,5 +1,8 @@
 package com.lalaping.complaint;
 
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,11 +10,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.common.util.UtilDateTime;
+import com.lalaping.infra.code.CodeDto;
+import com.lalaping.infra.code.CodeService;
+import com.lalaping.infra.member.MemberService;
+import com.lalaping.infra.member.StaffMemberDto;
+import com.lalaping.infra.member.StaffMemberVo;
 
 @Controller
 public class ComplaintController {
 	@Autowired
 	ComplaintService complaintService;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	CodeService codeService;
 //	민원 reception
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmList")
@@ -29,8 +41,18 @@ public class ComplaintController {
 		return "/xdm/v1/complaint/receptionXdmForm";
 	}
 	@RequestMapping(value = "/v1/complaint/recepitonInst")
-	public String recepitonInst(ReceptionDto receptionDto) {
+	public String recepitonInst(ReceptionDto receptionDto, AnswerDto answerDto, StaffMemberVo staffMemberVo) {
 		complaintService.rcInsert(receptionDto);
+		//담당자배정
+		List<StaffMemberDto> type = memberService.staffTypeList(staffMemberVo);
+		
+		Random random = new Random();
+	    StaffMemberDto randomStaff = type.get(random.nextInt(type.size()));
+	    
+	    answerDto.setStaffMember_sfSeq(randomStaff.getSfSeq());
+	    
+		complaintService.awInsert(answerDto);
+//		complaintService.rcInsert(receptionDto);
 		return "redirect:/v1/complaint/receptionXdmList";
 	}
 	

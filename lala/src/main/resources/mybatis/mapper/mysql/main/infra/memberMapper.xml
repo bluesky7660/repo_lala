@@ -39,6 +39,7 @@
         </if>
     </sql>
     <select id="staffSelectList" resultMap="staffResultMapObj">
+    	<include refid="base.selectListUpperForMysql"/>
         SELECT
         a.sfSeq,
         a.sfId,
@@ -49,9 +50,17 @@
         a.sfRegDate,
         a.sfModDate,
         a.sfEmail,
-        a.sfGender
+        a.sfGender,
+        a.sfDept
         <include refid="staffSelectCommon" />
         ORDER BY a.sfSeq DESC
+        <include refid="base.selectListLowerForMysql"/>
+    </select>
+    <select id="staffTypeList" resultMap="staffResultMapObj">
+        SELECT
+	        a.sfSeq
+        FROM staffMember a
+        WHERE 1=1
     </select>
     <select id="staffListCount" resultType="int">
         SELECT COUNT(*)
@@ -68,7 +77,8 @@
 	        sfRegDate,
 	        sfModDate,
 	        sfEmail,
-	        sfGender
+	        sfGender,
+	        sfDept
         ) VALUES (
 	        #{sfId},
 	        #{sfPasswd},
@@ -79,7 +89,8 @@
 	        now(),
 	        now(),
 	        #{sfEmail},
-	        #{sfGender}
+	        #{sfGender},
+	        #{sfDept}
         )
         <selectKey resultType="int" keyProperty="sfSeq" order="AFTER">
             SELECT last_insert_id()
@@ -93,7 +104,8 @@
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
 	        sfEmail = #{sfEmail},
-	        sfGender = #{sfGender}
+	        sfGender = #{sfGender},
+	        sfDept = #{sfDept}
         WHERE sfSeq = #{sfSeq}
     </update>
     <delete id="deleteStaffMember">
@@ -143,9 +155,11 @@
         </if>
     </sql>
     <select id="userSelectList" resultMap="userResultMapObj">
+        <include refid="base.selectListUpperForMysql"/>
         SELECT
 	        a.umSeq,
 	        a.umId,
+	        a.umPasswd,
 	        a.umName,
 	        a.umTel,
 	        a.umBirthDay,
@@ -156,6 +170,7 @@
 	        a.umGender
         <include refid="userSelectCommon" />
         ORDER BY a.umSeq DESC
+        <include refid="base.selectListLowerForMysql"/>
     </select>
     <select id="userListCount" resultType="int">
         SELECT COUNT(*)

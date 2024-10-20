@@ -2,23 +2,27 @@ package com.lalaping.infra.member;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class StaffMemberDto {
-	private Integer sfSeq;
+	private String sfSeq;
 	private String sfId;
 	private String sfPasswd;
 	private String sfName;
 	private String sfTel;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date sfBirthDay;
 	private Boolean sfDelNy;
 	private Date sfRegDate;
 	private Date sfModDate;
 	private String sfEmail;
 	private String sfGender;
+	private int sfDept;
 //-------------------------------
-	public Integer getSfSeq() {
+	public String getSfSeq() {
 		return sfSeq;
 	}
-	public void setSfSeq(Integer sfSeq) {
+	public void setSfSeq(String sfSeq) {
 		this.sfSeq = sfSeq;
 	}
 	public String getSfId() {
@@ -81,4 +85,11 @@ public class StaffMemberDto {
 	public void setSfGender(String sfGender) {
 		this.sfGender = sfGender;
 	}
+	public int getSfDept() {
+		return sfDept;
+	}
+	public void setSfDept(int sfDept) {
+		this.sfDept = sfDept;
+	}
+	
 }
