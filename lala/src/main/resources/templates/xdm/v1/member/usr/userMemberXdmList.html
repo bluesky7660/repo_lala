@@ -277,16 +277,17 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 코드</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 이름</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 아이디</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 비밀번호</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 성별</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 이메일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 전화번호</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저 생년월일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">이름</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">아이디</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">비밀번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">전화번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -312,8 +313,8 @@
 													<td th:text = "${list.umEmail}"></td>
 													<td th:text = "${list.umTel}"></td>
 													<td th:text = "${#dates.format(list.umBirthDay,'yyyy-MM-dd')}"></td>	
-													<td th:if ="${list.umDelNy eq 0}">N</td>
-													<td th:unless = "${list.umDelNy eq 0}">Y</td>
+													<td th:if="${list.umDelNy eq false }">N</td>
+													<td th:unless="${list.umDelNy eq false }">Y</td>
 													<td th:text="${#dates.format(list.umRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													<td th:text="${#dates.format(list.umModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>

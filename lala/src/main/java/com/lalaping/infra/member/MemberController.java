@@ -25,7 +25,7 @@ public class MemberController {
 						: UtilDateTime.add00TimeString(staffMemberVo.getShDateStart()));
 		staffMemberVo.setShDateEnd(staffMemberVo.getShDateEnd() == null || staffMemberVo.getShDateEnd().isEmpty() ? null
 				: UtilDateTime.add59TimeString(staffMemberVo.getShDateEnd()));
-
+		staffMemberVo.setParamsPaging(memberService.listCountStaffMember(staffMemberVo));
 //		System.out.println("패스워드:"+memberService.selectStaffMemberList(staffMemberVo).get(0).getSfPasswd());
 		model.addAttribute("list", memberService.selectStaffMemberList(staffMemberVo));
 		model.addAttribute("formLink", "staffMemberXdmForm");
@@ -86,7 +86,8 @@ public class MemberController {
 	            : UtilDateTime.add00TimeString(userMemberVo.getShDateStart()));
 	    userMemberVo.setShDateEnd(userMemberVo.getShDateEnd() == null || userMemberVo.getShDateEnd().isEmpty() ? null
 	            : UtilDateTime.add59TimeString(userMemberVo.getShDateEnd()));
-	    System.out.println("패스워드:"+memberService.selectUserMemberList(userMemberVo).get(0).getUmPasswd());
+	    userMemberVo.setParamsPaging(memberService.listCountUserMember(userMemberVo));
+	    System.out.println("패스워드:"+memberService.selectUserMemberList(userMemberVo).get(0).getUmDelNy());
 	    model.addAttribute("list", memberService.selectUserMemberList(userMemberVo));
 	    model.addAttribute("formLink", "userMemberXdmForm");
 	    return "/xdm/v1/member/usr/userMemberXdmList";

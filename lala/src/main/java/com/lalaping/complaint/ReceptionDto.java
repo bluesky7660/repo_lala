@@ -16,6 +16,8 @@ public class ReceptionDto {
 	private String awContent;
 	private Integer awDelNy;
     private Date awRegDate;
+    private Integer awDept;
+    private String umName;
 	
 //	----------------------------------
 	
@@ -97,17 +99,16 @@ public class ReceptionDto {
 	public void setAwRegDate(Date awRegDate) {
 		this.awRegDate = awRegDate;
 	}
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-
+	public Integer getAwDept() {
+		return awDept;
+	}
+	public void setAwDept(Integer awDept) {
+		this.awDept = awDept;
+	}
+	public String getUmName() {
+		return umName;
+	}
+	public void setUmName(String umName) {
+		this.umName = umName;
+	}
 }

@@ -277,10 +277,10 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의내용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저맴버외래키</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">작성자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 													</tr>
 												</thead>
@@ -303,6 +303,7 @@
 														</td>
 														<td th:text="${list.qrTitle}"></td>
 														<td th:text = "${list.qrContent}"></td>
+														<td th:text = "${list.umName}"></td>
 														<td th:text="${#dates.format(list.qrRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>

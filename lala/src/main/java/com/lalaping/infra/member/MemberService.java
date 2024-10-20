@@ -41,7 +41,7 @@ public class MemberService {
         return memberDao.userSelectList(userMemberVo);
     }
     public int listCountUserMember(UserMemberVo userMemberVo) {
-        return memberDao.userlistCount(userMemberVo);
+        return memberDao.userListCount(userMemberVo);
     }
     
     // UserMember CRUD

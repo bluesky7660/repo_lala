@@ -64,6 +64,17 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 .scrolltable{
 	overflow-x: auto;
 }
+.scrolltable th:nth-child(1),.scrolltable th:nth-child(2){
+    width: 20px;
+    padding-left:0;
+    padding-right:0 !important;
+}
+.scrolltable td{
+    white-space: nowrap;
+}
+/* .scrolltable .align-middle{
+    padding:0;
+} */
 .graph_area{
     align-items: stretch;
 }
@@ -120,13 +131,20 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 }
 .top_row{
     gap: 12px;
+    padding: 12px;
 }
 .top_row>div{
     padding: 0;
 }
 .top_row .stats-tile{
-    padding: 18px;
+    font-weight: bold;
+    /* padding: 18px; */
 }
+.top_row .stats-tile p::after{
+    content:" 팀장"
+}
+
+
 /*index*/
 .pageCategory{
     display: flex;

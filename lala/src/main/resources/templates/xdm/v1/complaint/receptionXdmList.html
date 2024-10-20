@@ -188,7 +188,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											민원답변
+											민원접수
 										</h2>
 										<div>
 											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
@@ -277,11 +277,11 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원내용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">처리상태</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">유저맴버외래키</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">접수자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 													</tr>
 												</thead>
@@ -305,6 +305,7 @@
 														<td th:text="${list.rcTitle}"></td>
 														<td th:text = "${list.rcContent}"></td>
 														<td th:text = "${list.rcStatus}"></td>
+														<!-- <td th:text = "${list.usermember_umSeq}"></td> -->
 														<td th:text = "${list.usermember_umSeq}"></td>
 														<td th:text="${#dates.format(list.rcRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>

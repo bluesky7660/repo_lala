@@ -8,6 +8,7 @@ public class QnaRequestDto {
 	private String qrContent;
 	private Date qrRegDate;
 	private Integer qrType;
+	private String umName;
 //--------------------------------
 	public String getQrSeq() {
 		return qrSeq;
@@ -38,6 +39,12 @@ public class QnaRequestDto {
 	}
 	public void setQrType(Integer qrType) {
 		this.qrType = qrType;
+	}
+	public String getUmName() {
+		return umName;
+	}
+	public void setUmName(String umName) {
+		this.umName = umName;
 	}
 	
 }

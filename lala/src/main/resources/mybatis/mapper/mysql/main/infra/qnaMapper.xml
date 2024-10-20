@@ -8,6 +8,7 @@
 	<sql id="ReqSelectCommon">
 		FROM
 			qnaRequests a
+			join userMember b on b.umSeq = a.userMember_umSeq
 		where 1=1
 	</sql>
 	<select id="ReqSelectList" resultMap="RequestResultMapObj">
@@ -19,6 +20,7 @@
 			,a.qrRegDate
 			,a.qrModDate
 			,a.qrType
+			,b.umName
 		<include refid="ReqSelectCommon"/>
 		ORDER BY a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
@@ -42,7 +44,7 @@
 	        ,#{userMember_umSeq}
 	        ,now()
         )
-        <selectKey resultType="int" keyProperty="qrSeq" order="AFTER">
+        <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
             SELECT last_insert_id()
         </selectKey>
     </insert>
@@ -52,6 +54,7 @@
 	<sql id="AnsSelectCommon">
 		FROM
 			qnaAnswers a
+			join staffMember b on b.sfSeq = a.staffMember_sfSeq
 		where 1=1
 	</sql>
 	<select id="AnsSelectList" resultMap="AnswerResultMapObj">
@@ -63,6 +66,7 @@
 			,a.qaRegDate
 			,a.qaModDate
 			,a.qnaRequests_qrSeq
+			,b.sfName
 		<include refid="AnsSelectCommon"/>
 		ORDER BY a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
@@ -84,7 +88,7 @@
 	        ,#{userMember_umSeq}
 	        ,now()
         )
-        <selectKey resultType="int" keyProperty="qrSeq" order="AFTER">
+        <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
             SELECT last_insert_id()
         </selectKey>
     </insert>

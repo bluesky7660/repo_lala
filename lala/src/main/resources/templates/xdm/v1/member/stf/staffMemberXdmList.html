@@ -287,6 +287,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">직원 생년월일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -312,8 +313,8 @@
 													<td th:text = "${list.sfEmail}"></td>
 													<td th:text = "${list.sfTel}"></td>
 													<td th:text = "${list.sfBirthDay}"></td>	
-													<td th:if ="${list.sfDelNy eq 0}">N</td>
-													<td th:unless = "${list.sfDelNy eq 0}">Y</td>
+													<td th:if="${list.sfDelNy eq false }">N</td>
+													<td th:unless ="${list.sfDelNy eq false }">Y</td>
 													<td th:text="${#dates.format(list.sfRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													<td th:text="${#dates.format(list.sfModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>

@@ -19,7 +19,7 @@ public interface MemberDao {
 	
 	// UserMember
 	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
-	public int userlistCount(UserMemberVo userMemberVo);
+	public int userListCount(UserMemberVo userMemberVo);
 
 	public int insertUserMember(UserMemberDto userMemberDto);
 	public int updateUserMember(UserMemberDto userMemberDto);

@@ -7,6 +7,7 @@
 	<resultMap type="com.lalaping.complaint.ReceptionDto" id="receptionResultMapObj"></resultMap>
 	<sql id="receptionSelectCommon">
 		FROM reception a
+			join userMember b on b.umSeq = a.userMember_umSeq
 		WHERE 1=1
 			<if test="shValue != null and !shValue.equals('')">
 				<choose>
@@ -47,7 +48,8 @@
 			a.rcType,
 			a.rcDelNy,
 			a.rcRegDate,
-			a.userMember_umSeq
+			a.userMember_umSeq,
+			b.umName
 		<include refid="receptionSelectCommon"/>
 		ORDER BY a.rcSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
@@ -71,6 +73,9 @@
 			now(),
 			#{userMember_umSeq}
 		)
+		<selectKey resultType="String" keyProperty="rcSeq" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
 	</insert>
 	
 	<select id="rcSelectOne" resultMap="receptionResultMapObj">
@@ -156,6 +161,7 @@
 		SELECT
 			b.awSeq,
 			b.awContent,
+			b.awDept,
 			b.awDelNy,
 			b.awRegDate,
 			b.staffMember_sfSeq,
@@ -171,18 +177,22 @@
 	<insert id="awInsert">
 		INSERT INTO answer(
 			awContent
+			,awDept 
 		    ,awDelNy
 		    ,awRegDate
+		    ,awModDate
 		    ,staffMember_sfSeq
 		    ,reception_rcSeq
 		)VALUES(
 			#{awContent},
+			#{awDept},
 			0,
+			now(),
 			now(),
 			#{staffMember_sfSeq},
 			#{reception_rcSeq}
 		)
-		<selectKey resultType="int" keyProperty="awSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="awSeq" order="AFTER">
             SELECT last_insert_id()
         </selectKey>
 	</insert>
@@ -196,12 +206,13 @@
 			b.reception_rcSeq,
 			a.rcType,
 			a.rcTitle,
+			a.rcContent,
 			c.sfName
 		FROM answer b
-		LEFT JOIN reception a
-		ON a.rcSeq = b.reception_rcSeq
-		LEFT JOIN staffMember c
-		ON c.sfSeq = b.staffMember_sfSeq
+			LEFT JOIN reception a
+			ON a.rcSeq = b.reception_rcSeq
+			LEFT JOIN staffMember c
+			ON c.sfSeq = b.staffMember_sfSeq
 		WHERE 1=1
 		AND b.awSeq = #{awSeq}
 	</select>

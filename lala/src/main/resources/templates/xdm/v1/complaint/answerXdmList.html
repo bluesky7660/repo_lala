@@ -188,7 +188,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											민원접수
+											민원답변
 										</h2>
 										<div>
 											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/infra/code/codeXdmList">
@@ -277,12 +277,13 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변내용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원외래키</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -298,14 +299,14 @@
 														value="" id="flexCheckDefault">
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+													<td th:text="${list.recepotion_rcSeq}"></td>
 													<td th:text="${list.awSeq}"></td>
 													<td><a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(awSeq=${list.awSeq})}" th:text="${list.awTitle}">
 														</a>
 													</td>
 													<td th:text="${list.awContent}"></td>
-													<td th:if ="${list.awDelNy eq 0}">N</td>
-													<td th:unless = "${list.awDelNy eq 0}">Y</td>
-													<td th:text = "${list.recepotion_rcSeq}"></td>
+													<td th:if="${list.awDelNy eq 0}">N</td>
+													<td th:unless="${list.awDelNy eq 0}">Y</td>
 													<td th:text="${#dates.format(list.awRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>
 											</tbody>

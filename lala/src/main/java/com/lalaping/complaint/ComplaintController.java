@@ -51,8 +51,8 @@ public class ComplaintController {
 	    
 	    answerDto.setStaffMember_sfSeq(randomStaff.getSfSeq());
 	    
+	    answerDto.setReception_rcSeq(receptionDto.getRcSeq());
 		complaintService.awInsert(answerDto);
-//		complaintService.rcInsert(receptionDto);
 		return "redirect:/v1/complaint/receptionXdmList";
 	}
 	
