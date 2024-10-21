@@ -277,13 +277,14 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변 번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변내용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
+														<!-- <th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th> -->
 													</tr>
 												</thead>
 												<tbody>
@@ -299,12 +300,14 @@
 														value="" id="flexCheckDefault">
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
-													<td th:text="${list.recepotion_rcSeq}"></td>
 													<td th:text="${list.awSeq}"></td>
+													<td th:text="${list.reception_rcSeq}"></td>
+													
 													<td class="td_spotlight">
-														<a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(awSeq=${list.awSeq})}" th:text="${list.awTitle}"></a>
+														<a th:href="@{/v1/complaint/receptionXdmMFom(rcSeq=${list.reception_rcSeq})}" th:text="${list.rcTitle}"></a>
 													</td>
 													<td th:text="${list.awContent}"></td>
+													<td th:text="${list.sfName}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>
 													<td th:text="${#dates.format(list.awRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>

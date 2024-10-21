@@ -12,6 +12,7 @@ public class AnswerDto {
 	private Integer rcType;
 	private String rcTitle;
 	private String sfName;
+	private String awDept;
 	
 //	-------------------------------------
 	
@@ -70,9 +71,10 @@ public class AnswerDto {
 	public void setSfName(String sfName) {
 		this.sfName = sfName;
 	}
-	
-	
-
-	
-
+	public String getAwDept() {
+		return awDept;
+	}
+	public void setAwDept(String awDept) {
+		this.awDept = awDept;
+	}
 }

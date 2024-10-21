@@ -1,26 +1,28 @@
 package com.lalaping.afterReport;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AfterReportDto {
 	
-	private Integer arSeq;
+	private String arSeq;
     private String arTitle;
     private String arContent;
-    private Boolean arDelNy;
+    private Integer arDelNy;
     private Date arRegDate;
     private Date arModDate;
-    private Integer staffMemberSfSeq;
+    private String staffMember_sfSeq;
+    private String sfName;
 	//----------------------------
-	public Integer getArSeq() {
+    public String getArSeq() {
 		return arSeq;
 	}
-	public void setArSeq(Integer arSeq) {
+	public void setArSeq(String arSeq) {
 		this.arSeq = arSeq;
 	}
 	public String getArTitle() {
 		return arTitle;
 	}
+	
 	public void setArTitle(String arTitle) {
 		this.arTitle = arTitle;
 	}
@@ -30,10 +32,10 @@ public class AfterReportDto {
 	public void setArContent(String arContent) {
 		this.arContent = arContent;
 	}
-	public Boolean getArDelNy() {
+	public Integer getArDelNy() {
 		return arDelNy;
 	}
-	public void setArDelNy(Boolean arDelNy) {
+	public void setArDelNy(Integer arDelNy) {
 		this.arDelNy = arDelNy;
 	}
 	public Date getArRegDate() {
@@ -48,11 +50,16 @@ public class AfterReportDto {
 	public void setArModDate(Date arModDate) {
 		this.arModDate = arModDate;
 	}
-	public Integer getStaffMemberSfSeq() {
-		return staffMemberSfSeq;
+	public String getStaffMember_sfSeq() {
+		return staffMember_sfSeq;
 	}
-	public void setStaffMemberSfSeq(Integer staffMemberSfSeq) {
-		this.staffMemberSfSeq = staffMemberSfSeq;
+	public void setStaffMember_sfSeq(String staffMember_sfSeq) {
+		this.staffMember_sfSeq = staffMember_sfSeq;
 	}
-    
+	public String getSfName() {
+		return sfName;
+	}
+	public void setSfName(String sfName) {
+		this.sfName = sfName;
+	}
 }

@@ -74,7 +74,7 @@
 		WHERE 1=1
 		AND a.sfSeq = #{sfSeq}
 	</select>
-    <select id="staffTypeList" resultMap="staffResultMapObj">
+    <select id="staffSeqList" resultMap="staffResultMapObj">
         SELECT
 	        a.sfSeq
         FROM staffMember a

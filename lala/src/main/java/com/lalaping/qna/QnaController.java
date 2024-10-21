@@ -89,7 +89,7 @@ public class QnaController {
 	public String qnaRequestsInst(QnaRequestDto qnaRequestDto, QnaAnswerDto qnaAnswerDto, StaffMemberVo staffMemberVo) {
 		qnaService.insertRequest(qnaRequestDto);
 		//담당자배정
-		List<StaffMemberDto> type = memberService.staffTypeList(staffMemberVo);
+		List<StaffMemberDto> type = memberService.staffSeqList();
 		
 		Random random = new Random();
 	    StaffMemberDto randomStaff = type.get(random.nextInt(type.size()));

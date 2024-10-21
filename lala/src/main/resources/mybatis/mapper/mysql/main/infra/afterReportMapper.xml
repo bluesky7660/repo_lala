@@ -7,6 +7,7 @@
     
     <sql id="selectCommon">
         FROM afterReport a
+        LEFT join staffMember b on b.sfSeq = a.staffMember_sfSeq
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -40,7 +41,9 @@
             a.arContent,
             a.arDelNy,
             a.arRegDate,
-            a.arModDate
+            a.arModDate,
+            a.staffMember_sfSeq,
+            b.sfName
         <include refid="selectCommon"/>
         ORDER BY
             a.arRegDate DESC
@@ -59,8 +62,11 @@
             a.arContent,
             a.arDelNy,
             a.arRegDate,
-            a.arModDate
+            a.arModDate,
+            a.staffMember_sfSeq,
+            b.sfName
         FROM afterReport a 
+        LEFT join staffMember b on b.sfSeq = a.staffMember_sfSeq
         WHERE a.arSeq = #{arSeq}
     </select>
     
@@ -70,13 +76,15 @@
             arContent,
             arDelNy,
             arRegDate,
-            arModDate
+            arModDate,
+            staffMember_sfSeq
         ) VALUES (
             #{arTitle},
             #{arContent},
-            0,  -- 기본값 설정
+            0, 
             NOW(),
-            NOW()
+            NOW(),
+            #{staffMember_sfSeq}
         )
     </insert>
     

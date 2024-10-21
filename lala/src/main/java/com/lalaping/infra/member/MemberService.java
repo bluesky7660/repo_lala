@@ -15,6 +15,9 @@ public class MemberService {
     public List<StaffMemberDto> selectStaffMemberList(StaffMemberVo staffMemberVo) {
     	return memberDao.staffSelectList(staffMemberVo);
     }
+    public List<StaffMemberDto> staffSeqList() {
+    	return memberDao.staffSeqList();
+    }
     public StaffMemberDto staffSelectOne(StaffMemberDto staffMemberDto) {
     	return memberDao.staffSelectOne(staffMemberDto);
     }

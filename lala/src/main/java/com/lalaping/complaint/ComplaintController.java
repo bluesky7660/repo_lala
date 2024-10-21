@@ -31,6 +31,7 @@ public class ComplaintController {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.receptionListCount(vo));
+		System.out.println("리스트:"+complaintService.receptionSelectList(vo).get(0).getUserMember_umSeq());
 		model.addAttribute("list", complaintService.receptionSelectList(vo));
 		model.addAttribute("formLink", "receptionXdmForm");
 		return "xdm/v1/complaint/receptionXdmList";
@@ -44,7 +45,7 @@ public class ComplaintController {
 	public String recepitonInst(ReceptionDto receptionDto, AnswerDto answerDto, StaffMemberVo staffMemberVo) {
 		complaintService.rcInsert(receptionDto);
 		//담당자배정
-		List<StaffMemberDto> type = memberService.staffTypeList(staffMemberVo);
+		List<StaffMemberDto> type = memberService.staffSeqList();
 		
 		Random random = new Random();
 	    StaffMemberDto randomStaff = type.get(random.nextInt(type.size()));
@@ -65,9 +66,11 @@ public class ComplaintController {
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmUpdt")
 	public String receptionXdmInst(ReceptionDto receptionDto,AnswerDto answerDto) {
+		System.out.println("receptionXdmUpdt");
 		complaintService.rcUpdate(receptionDto);
+		System.out.println("awInsert");
 		complaintService.awInsert(answerDto);
-		return "redirect:/v1/complaint/receptionXdmList";
+		return "redirect:/v1/complaint/answerXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmUete")
@@ -89,6 +92,7 @@ public class ComplaintController {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.answerListCount(vo));
+		System.out.println("리스트:"+complaintService.answerSelectList(vo).get(0).getReception_rcSeq());
 		model.addAttribute("list", complaintService.answerSelectList(vo));
 		return "/xdm/v1/complaint/answerXdmList";
 	}

@@ -29,6 +29,9 @@
                                 <li>
                                     <a href="/v1/report">Report</a>
                                 </li>
+                                <li>
+                                    <a href="/v1/loginXdm">로그인</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -121,13 +124,13 @@
         <div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
 
         <!-- Breadcrumb start -->
-        <ol class="breadcrumb d-md-flex d-none">
+        <!-- <ol class="breadcrumb d-md-flex d-none">
             <li class="breadcrumb-item">
                 <i class="bi bi-house"></i>
                 <a href="../../infra/index/indexXdmView">Home</a>
             </li>
             <li class="breadcrumb-item breadcrumb-active" aria-current="page">Sales</li>
-        </ol>
+        </ol> -->
         <!-- Breadcrumb end -->
 
         <!-- Header actions ccontainer start -->
@@ -184,7 +187,7 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="javascript:void(0);" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+                    <a href="" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
                         <span class="user-name d-none d-md-block" th:text="${session.sessNameXdm}"></span>
                         <!-- <h6 class="mt-2 text-black" ></h6> -->
                         <span class="avatar">

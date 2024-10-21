@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AfterReportDao {
 	
-	public List<AfterReportDto> selectList(AfterReportVo afterReportvo);
+	public List<AfterReportDto> selectList(AfterReportVo afterReportVo);
+	public AfterReportDto selectOne(AfterReportDto afterReportDto);
 	public int listCount(AfterReportVo afterReportvo);
 
 	public int insert(AfterReportDto afterReportDto);

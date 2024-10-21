@@ -277,11 +277,10 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">보고서 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">보고서 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">보고서제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">보고서내용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">스태프외래키</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">작성자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
@@ -302,14 +301,14 @@
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.arSeq}"></td>
 													<td class="td_spotlight">
-														<a th:href="@{/xdm/v1/infra/afterReport/afterReportXdmMfom(arSeq=${list.arSeq})}" th:text="${list.arTitle}"></a>
+														<a th:href="@{/v1/afterReport/afterReportXdmMfom(arSeq=${list.arSeq})}" th:text="${list.arTitle}"></a>
 													</td>
 													<td th:text="${list.arContent}"></td>
+													<td th:text="${list.sfName}"></td>	
 													<td th:if ="${list.arDelNy eq 0}">N</td>
 													<td th:unless = "${list.arDelNy eq 0}">Y</td>
-													<td th:text="${list.staffMember_sfSeq}"></td>	
-													<td th:text="${#dates.format(list.cgRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-													<td th:text="${#dates.format(list.cgModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td th:text="${#dates.format(list.arRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td th:text="${#dates.format(list.arModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>
 											</tbody>
 

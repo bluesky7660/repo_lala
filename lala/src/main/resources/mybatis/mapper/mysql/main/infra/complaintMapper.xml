@@ -86,8 +86,10 @@
 			a.rcStatus,
 			a.rcType,
 			a.rcRegDate,
-			a.userMember_umSeq
+			a.userMember_umSeq,
+			b.umName
 			FROM reception a 
+			LEFT JOIN userMember b on b.umSeq = a.userMember_umSeq
 		WHERE 1=1
 		AND a.rcSeq = #{rcSeq}
 	</select>
@@ -95,12 +97,12 @@
 	<update id="rcUpdate">
     	UPDATE reception 
 		set
-			rcTitle = #{rcTitle},
-			rcContent = #{rcContent},
-			rcStatus = #{rcStatus},
-			rcType = #{rcType},
-		    rcRegDate = now(),
-		    userMember_umSeq = #{userMember_umSeq}
+			<!-- rcTitle = #{rcTitle},
+			rcContent = #{rcContent}, -->
+			rcStatus = #{rcStatus}
+			<!-- rcType = #{rcType},
+		    rcRegDate = now(), 
+		    userMember_umSeq = #{userMember_umSeq} -->
 		WHERE 1=1
 			AND rcSeq = #{rcSeq}
 	</update>

@@ -11,9 +11,12 @@ public class AfterReportService {
 	@Autowired
 	AfterReportDao afterReportDao;
 	
-	public List<AfterReportDto> selectList(AfterReportVo afterReportvo){
-		return afterReportDao.selectList(afterReportvo);
-	};
+	public List<AfterReportDto> selectList(AfterReportVo afterReportVo){
+		return afterReportDao.selectList(afterReportVo);
+	}
+	public AfterReportDto selectOne(AfterReportDto afterReportDto) {
+		return afterReportDao.selectOne(afterReportDto); // DAO 호출
+	}
 	public int listCount(AfterReportVo afterReportvo) {
 		return afterReportDao.listCount(afterReportvo);
 	}

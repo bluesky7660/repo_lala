@@ -278,6 +278,7 @@
 														</th>
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원내용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">처리상태</span></th>
@@ -299,14 +300,14 @@
 														</td>
 														<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 														<td th:text="${list.rcSeq}"></td>
+														<td th:text="${list.rcType}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/xdm/v1/infra/recepotion/recepotionXdmMfom(rcSeq=${list.rcSeq})}" th:text="${list.rcType}"></a>
+															<a th:href="@{/v1/complaint/receptionXdmMFom(rcSeq=${list.rcSeq})}" th:text="${list.rcTitle}"></a>
 														</td>
-														<td th:text="${list.rcTitle}"></td>
 														<td th:text = "${list.rcContent}"></td>
-														<td th:text = "${list.rcStatus}"></td>
+														<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 														<!-- <td th:text = "${list.usermember_umSeq}"></td> -->
-														<td th:text = "${list.usermember_umSeq}"></td>
+														<td th:text = "${list.umName}"></td>
 														<td th:text="${#dates.format(list.rcRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													</tr>
 												</tbody>

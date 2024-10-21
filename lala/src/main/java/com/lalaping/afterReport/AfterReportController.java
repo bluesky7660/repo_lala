@@ -20,7 +20,6 @@ public class AfterReportController {
 		afterReportVo.setShDateStart(afterReportVo.getShDateStart() == null || afterReportVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(afterReportVo.getShDateStart()));
 		afterReportVo.setShDateEnd(afterReportVo.getShDateEnd() == null || afterReportVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(afterReportVo.getShDateEnd()));
 		afterReportVo.setParamsPaging(afterReportService.listCount(afterReportVo));
-		System.out.println("nqonoifqs");
 		model.addAttribute("list", afterReportService.selectList(afterReportVo));
 //		for(Aft	erReportDto item : afterReportService.selectList(afterReportVo)) {
 //			System.out.println("리스트seq: " + item.get );
@@ -35,8 +34,9 @@ public class AfterReportController {
 		return "/xdm/v1/afterReport/afterReportXdmForm";
 	}
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmMfom")
-	public String afterReportXdmMfom(Model model) {
+	public String afterReportXdmMfom(AfterReportDto afterReportDto, Model model) {
 		model.addAttribute("listLink", "afterReportXdmList");
+		model.addAttribute("item", afterReportService.selectOne(afterReportDto));
 		return "/xdm/v1/afterReport/afterReportXdmMfom";
 	}
 

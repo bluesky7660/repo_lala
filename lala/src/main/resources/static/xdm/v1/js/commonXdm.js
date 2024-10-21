@@ -369,7 +369,7 @@ window.addEventListener('load', function() {
                 ,cache: false
                 ,type: "post"
                 /* ,dataType:"json" */
-                ,url: "/v1/infra/member/logoutXdmProc"
+                ,url: "/v1/infra/login/logoutXdmProc"
                 /* ,data : $("#formLogin").serialize() */
                 // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
                 ,success: function(response) {
