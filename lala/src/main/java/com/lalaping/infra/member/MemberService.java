@@ -15,8 +15,8 @@ public class MemberService {
     public List<StaffMemberDto> selectStaffMemberList(StaffMemberVo staffMemberVo) {
     	return memberDao.staffSelectList(staffMemberVo);
     }
-    public List<StaffMemberDto> staffTypeList(StaffMemberVo staffMemberVo) {
-    	return memberDao.staffTypeList(staffMemberVo);
+    public StaffMemberDto staffSelectOne(StaffMemberDto staffMemberDto) {
+    	return memberDao.staffSelectOne(staffMemberDto);
     }
     public int listCountStaffMember(StaffMemberVo staffMemberVo) {
         return memberDao.staffListCount(staffMemberVo);
@@ -39,6 +39,9 @@ public class MemberService {
     // UserMember 
     public List<UserMemberDto> selectUserMemberList(UserMemberVo userMemberVo) {
         return memberDao.userSelectList(userMemberVo);
+    }
+    public UserMemberDto userSelectOne(UserMemberDto userMemberDto) {
+    	return memberDao.userSelectOne(userMemberDto);
     }
     public int listCountUserMember(UserMemberVo userMemberVo) {
         return memberDao.userListCount(userMemberVo);

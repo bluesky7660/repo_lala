@@ -9,7 +9,7 @@ public interface MemberDao {
 	
 	// StaffMember
 	public List<StaffMemberDto> staffSelectList(StaffMemberVo staffMemberVo);
-	public List<StaffMemberDto> staffTypeList(StaffMemberVo staffMemberVo);
+	public StaffMemberDto staffSelectOne(StaffMemberDto staffMemberDto);
 	public int staffListCount(StaffMemberVo staffMemberVo);
 
 	public int insertStaffMember(StaffMemberDto staffMemberDto);
@@ -19,6 +19,7 @@ public interface MemberDao {
 	
 	// UserMember
 	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
+	public UserMemberDto userSelectOne(UserMemberDto userMemberDto);
 	public int userListCount(UserMemberVo userMemberVo);
 
 	public int insertUserMember(UserMemberDto userMemberDto);

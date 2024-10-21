@@ -301,8 +301,8 @@
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.arSeq}"></td>
-													<td><a th:href="@{/xdm/v1/infra/afterReport/afterReportXdmMfom(arSeq=${list.arSeq})}" th:text="${list.arTitle}">
-														</a>
+													<td class="td_spotlight">
+														<a th:href="@{/xdm/v1/infra/afterReport/afterReportXdmMfom(arSeq=${list.arSeq})}" th:text="${list.arTitle}"></a>
 													</td>
 													<td th:text="${list.arContent}"></td>
 													<td th:if ="${list.arDelNy eq 0}">N</td>

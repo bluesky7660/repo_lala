@@ -298,8 +298,8 @@
 														</td>
 														<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 														<td th:text="${list.qrSeq}"></td>
-														<td><a th:href="@{/xdm/v1/infra/qnaRequests/qnaRequestsXdmMfom(qrSeq=${list.qrSeq})}" th:text="${list.qrType}">
-															</a>
+														<td class="td_spotlight">
+															<a th:href="@{/xdm/v1/infra/qnaRequests/qnaRequestsXdmMfom(qrSeq=${list.qrSeq})}" th:text="${list.qrType}"></a>
 														</td>
 														<td th:text="${list.qrTitle}"></td>
 														<td th:text = "${list.qrContent}"></td>

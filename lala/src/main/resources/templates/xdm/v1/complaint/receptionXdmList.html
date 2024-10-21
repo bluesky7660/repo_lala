@@ -299,8 +299,8 @@
 														</td>
 														<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 														<td th:text="${list.rcSeq}"></td>
-														<td><a th:href="@{/xdm/v1/infra/recepotion/recepotionXdmMfom(rcSeq=${list.rcSeq})}" th:text="${list.rcType}">
-															</a>
+														<td class="td_spotlight">
+															<a th:href="@{/xdm/v1/infra/recepotion/recepotionXdmMfom(rcSeq=${list.rcSeq})}" th:text="${list.rcType}"></a>
 														</td>
 														<td th:text="${list.rcTitle}"></td>
 														<td th:text = "${list.rcContent}"></td>

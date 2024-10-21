@@ -72,9 +72,6 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 .scrolltable td{
     white-space: nowrap;
 }
-/* .scrolltable .align-middle{
-    padding:0;
-} */
 .graph_area{
     align-items: stretch;
 }
@@ -142,6 +139,13 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 }
 .top_row .stats-tile p::after{
     content:" 팀장"
+}
+table .td_spotlight,table .td_spotlight a{
+	color: rgb(0, 110, 255);
+    font-weight: bold;
+}
+table .td_spotlight a:hover{
+	text-decoration: underline;
 }
 
 

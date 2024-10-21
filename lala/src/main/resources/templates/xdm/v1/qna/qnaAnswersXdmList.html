@@ -299,8 +299,8 @@
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.qaSeq}"></td>
-													<td><a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(qaSeq=${list.qaSeq})}" th:text="${list.qaTitle}">
-														</a>
+													<td class="td_spotlight">
+														<a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(qaSeq=${list.qaSeq})}" th:text="${list.qaTitle}"></a>
 													</td>
 													<td th:text="${list.qaContent}"></td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>

@@ -43,6 +43,7 @@
         SELECT
         a.sfSeq,
         a.sfId,
+        a.sfPasswd,
         a.sfName,
         a.sfTel,
         a.sfBirthDay,
@@ -55,6 +56,24 @@
         ORDER BY a.sfSeq DESC
         <include refid="base.selectListLowerForMysql"/>
     </select>
+    <select id="staffSelectOne" resultMap="staffResultMapObj">
+		SELECT
+		a.sfSeq,
+        a.sfId,
+        a.sfPasswd,
+        a.sfName,
+        a.sfTel,
+        a.sfBirthDay,
+        a.sfDelNy,
+        a.sfRegDate,
+        a.sfModDate,
+        a.sfEmail,
+        a.sfGender
+		FROM
+		staffMember a
+		WHERE 1=1
+		AND a.sfSeq = #{sfSeq}
+	</select>
     <select id="staffTypeList" resultMap="staffResultMapObj">
         SELECT
 	        a.sfSeq
@@ -98,6 +117,7 @@
         SET
 	        sfId = #{sfId},
 	        sfName = #{sfName},
+	        sfPasswd = #{sfPasswd},
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
 	        sfEmail = #{sfEmail},
@@ -168,6 +188,24 @@
         ORDER BY a.umSeq DESC
         <include refid="base.selectListLowerForMysql"/>
     </select>
+    <select id="userSelectOne" resultMap="userResultMapObj">
+		SELECT
+		a.umSeq,
+        a.umId,
+        a.umPasswd,
+        a.umName,
+        a.umTel,
+        a.umBirthDay,
+        a.umDelNy,
+        a.umRegDate,
+        a.umModDate,
+        a.umEmail,
+        a.umGender
+		FROM
+		userMember a
+		WHERE 1=1
+		AND a.umSeq = #{umSeq}
+	</select>
     <select id="userListCount" resultType="int">
         SELECT COUNT(*)
         <include refid="userSelectCommon" />
@@ -204,6 +242,7 @@
         UPDATE userMember
         SET
 	        umId = #{umId},
+	        umPasswd = #{umPasswd},
 	        umName = #{umName},
 	        umTel = #{umTel},
 	        umBirthDay = #{umBirthDay},
