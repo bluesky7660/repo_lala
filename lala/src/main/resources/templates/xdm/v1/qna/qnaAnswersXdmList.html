@@ -278,9 +278,9 @@
 														</th>
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의답변 번호</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의답변제목</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의답변내용</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의번호</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의제목</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">담당자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 													</tr>
@@ -299,10 +299,11 @@
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.qaSeq}"></td>
+													<td th:text="${list.qnaRequests_qrSeq}"></td>
+													<td th:text="${list.qrTitle}"></td>
 													<td class="td_spotlight">
 														<a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(qaSeq=${list.qaSeq})}" th:text="${list.qaTitle}"></a>
 													</td>
-													<td th:text="${list.qaContent}"></td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>
 													<td th:unless = "${list.qaDelNy eq 0}">Y</td>
 													<td th:text = "${list.sfName}"></td>

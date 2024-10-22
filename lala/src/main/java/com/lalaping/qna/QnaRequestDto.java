@@ -6,6 +6,7 @@ public class QnaRequestDto {
 	private String qrSeq;
 	private String qrTitle;
 	private String qrContent;
+	private Integer qrDelNy;
 	private Date qrRegDate;
 	private Integer qrType;
 	private String umName;
@@ -52,6 +53,12 @@ public class QnaRequestDto {
 	}
 	public void setUserMember_umSeq(String userMember_umSeq) {
 		this.userMember_umSeq = userMember_umSeq;
+	}
+	public Integer getQrDelNy() {
+		return qrDelNy;
+	}
+	public void setQrDelNy(Integer qrDelNy) {
+		this.qrDelNy = qrDelNy;
 	}
 	
 }

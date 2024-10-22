@@ -5,11 +5,14 @@ import java.util.Date;
 public class QnaAnswerDto {
 	private String qaSeq;
 	private String qaContent;
+	private Integer qaDelNy;
 	private Date qaRegDate;
 	private Date qaModDate;
 	private String staffMember_sfSeq;
 	private String qnaRequests_qrSeq;
 	private String sfName;
+	private String qrTitle;
+	private Integer qrType;
 //---------------------------------------
 	public String getQaSeq() {
 		return qaSeq;
@@ -22,6 +25,12 @@ public class QnaAnswerDto {
 	}
 	public void setQaContent(String qaContent) {
 		this.qaContent = qaContent;
+	}
+	public Integer getQaDelNy() {
+		return qaDelNy;
+	}
+	public void setQaDelNy(Integer qaDelNy) {
+		this.qaDelNy = qaDelNy;
 	}
 	public Date getQaRegDate() {
 		return qaRegDate;
@@ -52,6 +61,18 @@ public class QnaAnswerDto {
 	}
 	public void setSfName(String sfName) {
 		this.sfName = sfName;
+	}
+	public String getQrTitle() {
+		return qrTitle;
+	}
+	public void setQrTitle(String qrTitle) {
+		this.qrTitle = qrTitle;
+	}
+	public Integer getQrType() {
+		return qrType;
+	}
+	public void setQrType(Integer qrType) {
+		this.qrType = qrType;
 	}
 	
 }

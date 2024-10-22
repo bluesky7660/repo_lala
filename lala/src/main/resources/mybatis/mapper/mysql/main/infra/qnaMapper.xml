@@ -10,15 +10,16 @@
 			qnaRequests a
 			join userMember b on b.umSeq = a.userMember_umSeq
 		where 1=1
+			AND a.qrDelNy = 0
 	</sql>
-	<select id="ReqSelectList" resultMap="RequestResultMapObj">
+	<select id="selectListRequest" resultMap="RequestResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			a.qrSeq
 			,a.qrTitle
 			,a.qrContent
+			,a.qrDelNy
 			,a.qrRegDate
-			,a.qrModDate
 			,a.qrType
 			,b.umName
 		<include refid="ReqSelectCommon"/>
@@ -29,12 +30,27 @@
 		SELECT COUNT(*) 
 		<include refid="ReqSelectCommon"/>
 	</select>
+	<select id="selectOneRequest" resultMap="RequestResultMapObj">
+		SELECT
+			a.qrSeq,
+			a.qrTitle,
+			a.qrContent,
+			a.qrType,
+			a.userMember_umSeq,
+			b.umName
+		FROM
+			qnaRequests a
+			join userMember b on b.umSeq = a.userMember_umSeq
+		WHERE 1=1
+		AND a.qrSeq = #{qrSeq}
+	</select>
 	<insert id="insertRequest">
         INSERT INTO qnaRequests (
 	        qrTitle
 			,qrContent
 			,qrType
 			,userMember_umSeq
+			,qrDelNy
 			,qrRegDate
 			
         ) VALUES (
@@ -42,6 +58,7 @@
 	        ,#{qrContent}
 	        ,#{qrType}
 	        ,#{userMember_umSeq}
+	        ,0
 	        ,now()
         )
         <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
@@ -55,40 +72,60 @@
 		FROM
 			qnaAnswers a
 			join staffMember b on b.sfSeq = a.staffMember_sfSeq
+			join qnaRequests c on c.qrSeq = a.qnaRequests_qrSeq
 		where 1=1
+			AND a.qaDelNy = 0
 	</sql>
-	<select id="AnsSelectList" resultMap="AnswerResultMapObj">
+	<select id="selectListAnswer" resultMap="AnswerResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			a.qaSeq
-			,a.qaTitle
 			,a.qaContent
+			,a.qaDelNy
 			,a.qaRegDate
 			,a.qaModDate
 			,a.qnaRequests_qrSeq
 			,b.sfName
+			,c.qrType
+			,c.qrTitle
 		<include refid="AnsSelectCommon"/>
-		ORDER BY a.qrSeq DESC
+		ORDER BY a.qaSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	<select id="listCountA" resultType="int">
 		SELECT COUNT(*) 
 		<include refid="AnsSelectCommon"/>
 	</select>
+	<select id="selectOneAnswer" resultMap="AnswerResultMapObj">
+		SELECT
+			a.qaSeq,
+			a.qaContent,
+			a.userMember_umSeq,
+			b.umName
+		FROM
+			qnaRequests a
+			join userMember b on b.umSeq = a.userMember_umSeq
+		WHERE 1=1
+		AND a.qrSeq = #{qrSeq}
+	</select>
 	<insert id="insertAnswer">
         INSERT INTO qnaAnswers (
-			,qrContent
+			qaContent
 			,staffMember_sfSeq
+			,qnaRequests_qrSeq
+			,qaDelNy
+			,qaRegDate
 			,qaModDate
 			
         ) VALUES (
-	        #{qrTitle}
-	        ,#{qrContent}
-	        ,#{qrType}
-	        ,#{userMember_umSeq}
+	        #{qaContent}
+	        ,#{staffMember_sfSeq}
+	        ,#{qnaRequests_qrSeq}
+	        ,0
+	        ,now()
 	        ,now()
         )
-        <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
+        <selectKey resultType="String" keyProperty="qaSeq" order="AFTER">
             SELECT last_insert_id()
         </selectKey>
     </insert>
