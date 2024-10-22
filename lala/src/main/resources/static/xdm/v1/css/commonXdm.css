@@ -147,6 +147,9 @@ table .td_spotlight,table .td_spotlight a{
 table .td_spotlight a:hover{
 	text-decoration: underline;
 }
+.dataTable-pagination-list{
+    gap: 10px;
+}
 
 
 /*index*/
