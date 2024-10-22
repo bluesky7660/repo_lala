@@ -77,7 +77,6 @@
             SELECT last_insert_id()
         </selectKey>
 	</insert>
-	
 	<select id="rcSelectOne" resultMap="receptionResultMapObj">
 		SELECT
 			a.rcSeq,
