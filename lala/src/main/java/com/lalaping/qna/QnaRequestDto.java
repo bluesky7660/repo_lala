@@ -11,6 +11,8 @@ public class QnaRequestDto {
 	private Integer qrType;
 	private String umName;
 	private String userMember_umSeq;
+	private String qrTypeCount;
+	private String cdSeq;
 //--------------------------------
 	public String getQrSeq() {
 		return qrSeq;
@@ -59,6 +61,18 @@ public class QnaRequestDto {
 	}
 	public void setQrDelNy(Integer qrDelNy) {
 		this.qrDelNy = qrDelNy;
+	}
+	public String getQrTypeCount() {
+		return qrTypeCount;
+	}
+	public void setQrTypeCount(String qrTypeCount) {
+		this.qrTypeCount = qrTypeCount;
+	}
+	public String getCdSeq() {
+		return cdSeq;
+	}
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
 	}
 	
 }

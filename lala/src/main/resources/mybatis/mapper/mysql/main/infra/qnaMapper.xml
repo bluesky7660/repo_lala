@@ -66,6 +66,18 @@
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
+	<!-- <select id="qnaTypeCount" resultMap="RequestResultMapObj">
+        SELECT qrType, COUNT(*) AS qrTypeCount
+	    FROM qnaRequests
+	    GROUP BY qrType
+    </select> -->
+    <select id="qnaTypeCount" resultMap="RequestResultMapObj">
+        SELECT b.cdSeq, COALESCE(COUNT(a.qrType), 0) AS qrTypeCount
+		FROM commoncode b
+		LEFT JOIN qnaRequests a ON b.cdSeq = a.qrType
+		WHERE b.codeGroup_cgSeq = 2 
+		GROUP BY b.cdSeq
+    </select>
 	<insert id="insertRequest">
         INSERT INTO qnaRequests (
 	        qrTitle

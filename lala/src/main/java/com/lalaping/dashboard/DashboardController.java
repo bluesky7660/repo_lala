@@ -28,6 +28,7 @@ public class DashboardController {
 		model.addAttribute("comList", complaintService.receptionSelectList(receptionVo));
 		model.addAttribute("DeptType", complaintService.answerTypeCount());
 		model.addAttribute("CompType", complaintService.receptionTypeCount());
+		model.addAttribute("qnaType", qnaService.qnaTypeCount());
 		return "xdm/v1/index";
 	}
 }
