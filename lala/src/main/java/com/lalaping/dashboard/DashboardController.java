@@ -30,5 +30,4 @@ public class DashboardController {
 		model.addAttribute("CompType", complaintService.receptionTypeCount());
 		return "xdm/v1/index";
 	}
-	
 }
