@@ -108,31 +108,31 @@ window.addEventListener('load', function() {
     
             //ajax 로그인
             $.ajax({
-                async: true 
-                ,cache: false
-                ,type: "post"
-                /* ,dataType:"json" */
-                ,url: "/v1/infra/member/loginXdmProc"
-                /* ,data : $("#formLogin").serialize() */
-                ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
-                ,success: function(response) {
-                    if(response.rt == "success") {
-                        // if(response.changePwd == "true") {
-                        //     location.href = "/v1/infra/member/expiredPwdUsrForm";
-                        // } else {
-                        //     location.href = "/v1/infra/index/indexXdmView";
-                        // }
-                        location.href = "/v1/infra/index/indexXdmView";
-                    } else {
-                        document.getElementById("modalAlertTitle").innerText = "확 인";
-                        document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-                        $("#modalAlert").modal("show");
-                    }
-                }
-                ,error : function(jqXHR, textStatus, errorThrown){
-                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-                }
-            });
+				async : true, 
+				cache : false, 
+				type : "post", 
+				url : "/v1/infra/loginProc", 
+				data : {
+					"sfId" : $("#userId").val()
+					,"sfPasswd" : $("#userPassword").val() 
+					,"autoLogin" : $("#rememberPassword").is(":checked")
+				},
+				success : function(response) {
+					if (response.rt === "success") {
+						console.log("로그인 성공");
+						location.href = "/v1/dashboard";
+					} else {
+						$("#modalAlertTitle").text("다시 확인해주세요");
+						$("#modalAlertBody").text(
+								"ID / 비밀번호를 잘못 입력하셨거나 등록되지 않은 계정입니다.");
+						$("#modalAlert").modal("show");
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.error("AJAX 요청 오류:", textStatus, errorThrown); 
+				}
+			});
+
         })
     }
     if(document.querySelector(".login-container form")){
@@ -208,29 +208,28 @@ window.addEventListener('load', function() {
         
                 //ajax 로그인
                 $.ajax({
-                    async: true 
-                    ,cache: false
-                    ,type: "post"
-                    /* ,dataType:"json" */
-                    ,url: "/v1/infra/member/loginXdmProc"
-                    /* ,data : $("#formLogin").serialize() */
-                    ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
-                    ,success: function(response) {
-                        if(response.rt == "success") {
-                            // if(response.changePwd == "true") {
-                            //     location.href = "/v1/infra/member/expiredPwdUsrForm";
-                            // } else {
-                            //     location.href = "/v1/infra/index/indexXdmView";
-                            // }
-                            location.href = "/v1/infra/index/indexXdmView";
+                    async : true, 
+                    cache : false, 
+                    type : "post", 
+                    url : "/v1/infra/loginProc", 
+                    data : {
+                        "sfId" : $("#userId").val()
+                        ,"sfPasswd" : $("#userPassword").val() 
+                        ,"autoLogin" : $("#rememberPassword").is(":checked")
+                    },
+                    success : function(response) {
+                        if (response.rt === "success") {
+                            console.log("로그인 성공");
+                            location.href = "/v1/dashboard";
                         } else {
-                            document.getElementById("modalAlertTitle").innerText = "확 인";
-                            document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+                            $("#modalAlertTitle").text("다시 확인해주세요");
+                            $("#modalAlertBody").text(
+                                    "ID / 비밀번호를 잘못 입력하셨거나 등록되지 않은 계정입니다.");
                             $("#modalAlert").modal("show");
                         }
-                    }
-                    ,error : function(jqXHR, textStatus, errorThrown){
-                        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX 요청 오류:", textStatus, errorThrown); 
                     }
                 });
             }
@@ -328,33 +327,7 @@ window.addEventListener('load', function() {
             // alert("통과!");
             form.action = formUrl;
             form.submit();
-            //ajax 로그인
-            // $.ajax({
-            //     async: true 
-            //     ,cache: false
-            //     ,type: "post"
-            //     /* ,dataType:"json" */
-            //     ,url: "/v1/infra/member/loginXdmProc"
-            //     /* ,data : $("#formLogin").serialize() */
-            //     ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
-            //     ,success: function(response) {
-            //         if(response.rt == "success") {
-            //             // if(response.changePwd == "true") {
-            //             //     location.href = "/v1/infra/member/expiredPwdUsrForm";
-            //             // } else {
-            //             //     location.href = "/v1/infra/index/indexXdmView";
-            //             // }
-            //             location.href = "/v1/infra/index/indexXdmView";
-            //         } else {
-            //             document.getElementById("modalAlertTitle").innerText = "확 인";
-            //             document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-            //             $("#modalAlert").modal("show");
-            //         }
-            //     }
-            //     ,error : function(jqXHR, textStatus, errorThrown){
-            //         alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-            //     }
-            // });
+
         }
     }
 
@@ -364,19 +337,22 @@ window.addEventListener('load', function() {
     if (logoutBtn) {
         logoutBtn.onclick = function (){
             //ajax 로그아웃
+           
             $.ajax({
-                async: true 
-                ,cache: false
-                ,type: "post"
-                /* ,dataType:"json" */
-                ,url: "/v1/infra/login/logoutXdmProc"
-                /* ,data : $("#formLogin").serialize() */
-                // ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val() }//, "autoLogin" : $("#autoLogin").is(":checked")}
-                ,success: function(response) {
-                    location.href = "/v1/infra/member/loginXdm";
-                }
-                ,error : function(jqXHR, textStatus, errorThrown){
-                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                async : true, 
+                cache : false, 
+                type : "post", 
+                url : "/v1/infra/logoutProc", 
+                success : function(response) {
+                    if (response.rt === "success") { 
+                        location.href = response.redirectUrl; 
+                    } else {
+                        alert("로그아웃 실패: " + response.message);
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX Error: " + textStatus + " - "
+                                    + errorThrown);
                 }
             });
         }

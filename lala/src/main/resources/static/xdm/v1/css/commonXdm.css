@@ -154,6 +154,9 @@ table .td_spotlight a:hover{
 .dataTable-pagination-list{
     gap: 10px;
 }
+.login-box .login-form .btn{
+    margin-left: 0;
+}
 
 
 /*index*/
