@@ -259,17 +259,17 @@
 									</div>
 								</div>
 								<div class="list_types row">
-									<div class="col-xxl col-sm-6 col-12"  th:each="CompType : ${CompType}">
+									<div class="col-xxl col-sm-6 col-12"  th:each="qnaType : ${qnaType}">
 										<div class="stats-tile">
 											<div class="qna_type">
-												<h3 th:class="${CompType.rcType == 4 ? 'text-red' 
-												: CompType.rcType == 5 ? 'text-blue' 
-												: CompType.rcType == 6 ? 'text-yellow' 
-												: CompType.rcType == 7 ? 'text-green' 
-												: CompType.rcType == 8 ? 'text-dark' 
+												<h3 th:class="${qnaType.cdSeq == '4' ? 'text-red' 
+												: qnaType.cdSeq == '5' ? 'text-blue' 
+												: qnaType.cdSeq == '6' ? 'text-yellow' 
+												: qnaType.cdSeq == '7' ? 'text-green' 
+												: qnaType.cdSeq == '8' ? 'text-dark' 
 												: ''}"
-												th:text="${CompType.rcTypeCount + '건'}"></h3>
-												<p th:text="${@codeService.selectOneCachedCode(CompType.rcType)}">행정, 서류</p>
+												th:text="${qnaType.qrTypeCount + '건'}"></h3>
+												<p th:text="${@codeService.selectOneCachedCode(qnaType.cdSeq)}">행정, 서류</p>
 											</div>
 										</div>
 									</div>

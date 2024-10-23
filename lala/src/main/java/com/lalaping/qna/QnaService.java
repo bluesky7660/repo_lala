@@ -16,6 +16,9 @@ public class QnaService {
 	public List<QnaRequestDto> selectListRequest(QnaRequestVo vo){
 		return qnaDao.selectListRequest(vo);
 	}
+	public List<QnaRequestDto> qnaTypeCount(){
+		return qnaDao.qnaTypeCount();
+	}
 	public int listCountR(QnaRequestVo vo) {
 		return qnaDao.listCountR(vo);
 	}
