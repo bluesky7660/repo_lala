@@ -14,6 +14,9 @@ public class ComplaintService {
 	public List<ReceptionDto> receptionSelectList(ReceptionVo vo) {
 		return complaintDao.receptionSelectList(vo);
 	}
+	public List<ReceptionDto> receptionTypeCount(){
+		return complaintDao.receptionTypeCount();
+	}
 	public int rcInsert(ReceptionDto receptionDto) {
 		return complaintDao.rcInsert(receptionDto);
 	}
@@ -37,6 +40,9 @@ public class ComplaintService {
 	
 	public List<AnswerDto> answerSelectList(AnswerVo vo){
 		return complaintDao.answerSelectList(vo);
+	}
+	public List<AnswerDto> answerTypeCount(){
+		return complaintDao.answerTypeCount();
 	}
 	public int awInsert(AnswerDto answerDto) {
 		return complaintDao.awInsert(answerDto);

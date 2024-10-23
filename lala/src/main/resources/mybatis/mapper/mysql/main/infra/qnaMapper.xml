@@ -10,7 +10,29 @@
 			qnaRequests a
 			join userMember b on b.umSeq = a.userMember_umSeq
 		where 1=1
-			AND a.qrDelNy = 0
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
+			<if test="shQnaType != null and !shQnaType.equals('')">AND a.qrType = #{shQnaType}</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR a.qrTitle Like CONCAT('%',#{shValue},'%')
+							OR b.umName Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND a.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND b.umName Like CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			</if>
+			<choose>
+				<when test="shOptionDate == 1"> AND a.cdRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2"> AND a.cdModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			
 	</sql>
 	<select id="selectListRequest" resultMap="RequestResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>

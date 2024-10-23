@@ -203,12 +203,23 @@
 															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
 														</select>
 													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectUseNy">사용검색</label>
-														<select class="form-select" id="selectUseNy" name="shUseNy">
+													<!-- <div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectQrStatus">답변여부</label>
+														<select class="form-select" id="selectQrStatus" name="shQrStatus">
 															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+															<option value="1" th:selected="${vo.shQrStatus == 1}">Y</option>
+															<option value="0" th:selected="${vo.shQrStatus == 0}">N</option>
+														</select>
+													</div> -->
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectQnaType">문의 종류</label>
+														<select class="form-select" id="selectQnaType" name="shQnaType">
+															<option value="" selected>문의 종류 선택해주세요.</option>
+															<option value="4" th:selected="${vo.shQnaType == 4}">행정, 서류</option>
+															<option value="5" th:selected="${vo.shQnaType == 5}">세무</option>
+															<option value="6" th:selected="${vo.shQnaType == 6}">교통</option>
+															<option value="7" th:selected="${vo.shQnaType == 7}">불편사항</option>
+															<option value="8" th:selected="${vo.shQnaType == 8}">기타</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -233,10 +244,9 @@
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
 															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="1" th:selected="${vo.shOption == 1}">문의번호</option>
+															<option value="2" th:selected="${vo.shOption == 2}">문의제목</option>
+															<option value="3" th:selected="${vo.shOption == 3}">작성자</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -299,9 +309,9 @@
 														</td>
 														<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 														<td th:text="${list.qrSeq}"></td>
-														<td th:text="${list.qrType}"></td>
+														<td th:text="${@codeService.selectOneCachedCode(list.qrType)}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/xdm/v1/infra/qnaRequests/qnaRequestsXdmMfom(qrSeq=${list.qrSeq})}" th:text="${list.qrTitle}"></a>
+															<a th:href="@{/v1/qna/qnaRequestsXdmMFom(qrSeq=${list.qrSeq})}" th:text="${list.qrTitle}"></a>
 														</td>
 														<td th:if ="${list.qrDelNy eq 0}">N</td>
 														<td th:unless = "${list.qrDelNy eq 0}">Y</td>

@@ -92,22 +92,23 @@
 						</div> -->
 						<!-- Row start -->
 						<div class="top_row row">
-							<div class="col-xxl col-sm-6 col-12">
+							<div class="col-xxl col-sm-6 col-12" th:each="DeptType : ${DeptType}">
 								<div class="stats-tile">
-									<!-- <div class="sale-icon shade-blue">
-										<i class="bi bi-emoji-smile"></i>
-									</div> -->
 									<div class="complaint_type">
-										<h3 class="text-green">환경과</h3>
-										<p>송치환</p>
+										<h3 th:class="${DeptType.cdSeq == '14' ? 'text-dark' 
+                                      : DeptType.cdSeq == '15' ? 'text-blue' 
+                                      : DeptType.cdSeq == '16' ? 'text-yellow' 
+                                      : DeptType.cdSeq == '17' ? 'text-green' 
+                                      : DeptType.cdSeq == '18' ? 'text-dark' 
+                                      : DeptType.cdSeq == '19' ? 'text-red' 
+                                      : ''}"
+    									th:text="${@codeService.selectOneCachedCode(DeptType.cdSeq)}">환경과</h3>
+										<p th:text="${DeptType.awDeptCount + '건'}"></p>
 									</div>
 								</div>
 							</div>
-							<div class="col-xxl col-sm-6 col-12">
+							<!-- <div class="col-xxl col-sm-6 col-12">
 								<div class="stats-tile">
-									<!-- <div class="sale-icon shade-yellow">
-										<i class="bi bi-box-seam"></i>
-									</div> -->
 									<div class="complaint_type">
 										<h3 class="text-yellow">보건복지과</h3>
 										<p>김하늘</p>
@@ -116,9 +117,6 @@
 							</div>
 							<div class="col-xxl col-sm-6 col-12">
 								<div class="stats-tile">
-									<!-- <div class="sale-icon shade-green">
-										<i class="bi bi-handbag"></i>
-									</div> -->
 									<div class="complaint_type">
 										<h3 class="text-blue">교통지도과</h3>
 										<p>박진구</p>
@@ -127,9 +125,6 @@
 							</div>
 							<div class="col-xxl col-sm-6 col-12">
 								<div class="stats-tile">
-									<!-- <div class="sale-icon shade-green">
-										<i class="bi bi-handbag"></i>
-									</div> -->
 									<div class="complaint_type">
 										<h3 class="text-red">행정지원과</h3>
 										<p>이상청</p>
@@ -138,15 +133,12 @@
 							</div>
 							<div class="col-xxl col-sm-6 col-12">
 								<div class="stats-tile">
-									<!-- <div class="sale-icon shade-green">
-										<i class="bi bi-handbag"></i>
-									</div> -->
 									<div class="complaint_type">
 										<h3 class="text-dark">세무관리과</h3>
 										<p>김미영</p>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<!-- Row end -->
 						<!-- Row start -->
@@ -218,22 +210,22 @@
 							</div>
 							<div class="col-lg-7 col-sm-7 col-12 complaint_list_view">
 								<div class="list_types row">
-									<div class="col-xxl col-sm-6 col-12">
+									<div class="col-xxl col-sm-6 col-12"  th:each="CompType : ${CompType}">
 										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-red">
-												<i class="bi bi-pie-chart"></i>
-											</div> -->
 											<div class="complaint_type">
-												<h3 class="text-red">25건</h3>
-												<p>행정, 서류</p>
+												<h3 th:class="${CompType.rcType == 4 ? 'text-red' 
+												: CompType.rcType == 5 ? 'text-blue' 
+												: CompType.rcType == 6 ? 'text-yellow' 
+												: CompType.rcType == 7 ? 'text-green' 
+												: CompType.rcType == 8 ? 'text-dark' 
+												: ''}"
+												th:text="${CompType.rcTypeCount + '건'}"></h3>
+												<p th:text="${@codeService.selectOneCachedCode(CompType.rcType)}">행정, 서류</p>
 											</div>
 										</div>
 									</div>
-									<div class="col-xxl col-sm-6 col-12">
+									<!-- <div class="col-xxl col-sm-6 col-12">
 										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-blue">
-												<i class="bi bi-emoji-smile"></i>
-											</div> -->
 											<div class="complaint_type">
 												<h3 class="text-blue">24건</h3>
 												<p>세무</p>
@@ -242,9 +234,6 @@
 									</div>
 									<div class="col-xxl col-sm-6 col-12">
 										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-yellow">
-												<i class="bi bi-box-seam"></i>
-											</div> -->
 											<div class="complaint_type">
 												<h3 class="text-yellow">15건</h3>
 												<p>교통</p>
@@ -253,9 +242,6 @@
 									</div>
 									<div class="col-xxl col-sm-6 col-12">
 										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-green">
-												<i class="bi bi-handbag"></i>
-											</div> -->
 											<div class="complaint_type">
 												<h3 class="text-green">18건</h3>
 												<p>불편사항</p>
@@ -264,15 +250,12 @@
 									</div>
 									<div class="col-xxl col-sm-6 col-12">
 										<div class="stats-tile">
-											<!-- <div class="sale-icon shade-green">
-												<i class="bi bi-handbag"></i>
-											</div> -->
 											<div class="complaint_type">
 												<h3 class="text-dark">18건</h3>
 												<p>기타</p>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="row">
 									<div class="card">

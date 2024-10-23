@@ -31,7 +31,6 @@ public class ComplaintController {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.receptionListCount(vo));
-		System.out.println("리스트:"+complaintService.receptionSelectList(vo).get(0).getUserMember_umSeq());
 		model.addAttribute("list", complaintService.receptionSelectList(vo));
 		model.addAttribute("formLink", "receptionXdmForm");
 		return "xdm/v1/complaint/receptionXdmList";
@@ -92,7 +91,6 @@ public class ComplaintController {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.answerListCount(vo));
-		System.out.println("리스트:"+complaintService.answerSelectList(vo).get(0).getReception_rcSeq());
 		model.addAttribute("list", complaintService.answerSelectList(vo));
 		return "/xdm/v1/complaint/answerXdmList";
 	}

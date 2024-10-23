@@ -124,6 +124,11 @@
         SELECT COUNT(*)
         <include refid="receptionSelectCommon" />
     </select>
+    <select id="receptionTypeCount" resultMap="receptionResultMapObj">
+        SELECT rcType, COUNT(*) AS rcTypeCount
+	    FROM reception
+	    GROUP BY rcType
+    </select>
     
 	<!--answer 영역 -->
 	
@@ -256,7 +261,13 @@
         <include refid="answerSelectCommon" />
     </select>
 	
-	
+	<select id="answerTypeCount" resultMap="answerResultMapObj">
+        SELECT b.cdSeq, COALESCE(COUNT(a.awDept), 0) AS awDeptCount
+		FROM commoncode b
+		LEFT JOIN answer a ON b.cdSeq = a.awDept
+		WHERE b.codeGroup_cgSeq = 4 
+		GROUP BY b.cdSeq
+    </select>
 	
 	
 	
