@@ -94,7 +94,7 @@
 						<div class="top_row row">
 							<div class="col-xxl col-sm-6 col-12" th:each="DeptType : ${DeptType}">
 								<div class="stats-tile">
-									<div class="complaint_type">
+									<div class="complaint_deptType">
 										<h3 th:class="${DeptType.cdSeq == '14' ? 'text-dark' 
                                       : DeptType.cdSeq == '15' ? 'text-blue' 
                                       : DeptType.cdSeq == '16' ? 'text-yellow' 
@@ -224,38 +224,6 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="complaint_type">
-												<h3 class="text-blue">24건</h3>
-												<p>세무</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="complaint_type">
-												<h3 class="text-yellow">15건</h3>
-												<p>교통</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="complaint_type">
-												<h3 class="text-green">18건</h3>
-												<p>불편사항</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="complaint_type">
-												<h3 class="text-dark">18건</h3>
-												<p>기타</p>
-											</div>
-										</div>
-									</div> -->
 								</div>
 								<div class="row">
 									<div class="card">
@@ -272,50 +240,16 @@
 														<tr>
 															<th>접수자</th>
 															<th>민원 제목</th>
-															<th>민원 내용</th>
+															<th>민원 종류</th>
 															<th>접수날짜</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
+														<tr th:each="comList:${comList}">
+															<td th:text="${comList.umName}"></td>
+															<td th:text="${comList.rcTitle}"></td>
+															<td th:text="${@codeService.selectOneCachedCode(comList.rcType)}"></td>
+															<td th:text="${#dates.format(comList.rcRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 														</tr>
 													</tbody>
 												</table>
@@ -325,43 +259,17 @@
 									</div>
 								</div>
 								<div class="list_types row">
-									<div class="col-xxl col-sm-6 col-12">
+									<div class="col-xxl col-sm-6 col-12"  th:each="CompType : ${CompType}">
 										<div class="stats-tile">
 											<div class="qna_type">
-												<h3 class="text-red">25건</h3>
-												<p>행정, 서류</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="qna_type">
-												<h3 class="text-blue">24건</h3>
-												<p>세무</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="qna_type">
-												<h3 class="text-yellow">15건</h3>
-												<p>교통</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="qna_type">
-												<h3 class="text-green">18건</h3>
-												<p>불편사항</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-xxl col-sm-6 col-12">
-										<div class="stats-tile">
-											<div class="qna_type">
-												<h3 class="text-dark">18건</h3>
-												<p>기타</p>
+												<h3 th:class="${CompType.rcType == 4 ? 'text-red' 
+												: CompType.rcType == 5 ? 'text-blue' 
+												: CompType.rcType == 6 ? 'text-yellow' 
+												: CompType.rcType == 7 ? 'text-green' 
+												: CompType.rcType == 8 ? 'text-dark' 
+												: ''}"
+												th:text="${CompType.rcTypeCount + '건'}"></h3>
+												<p th:text="${@codeService.selectOneCachedCode(CompType.rcType)}">행정, 서류</p>
 											</div>
 										</div>
 									</div>
@@ -385,45 +293,11 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
-														</tr>
-														<tr>
-															<td>
-																이광준
-															</td>
-															<td>
-																민원 보냅
-															</td>
-															<td>ㅏㅎ하하하하하</td>
-															<td>2024.10.12</td>
+														<tr th:each="qnaList:${qnaList}">
+															<td th:text="${qnaList.umName}"></td>
+															<td th:text="${qnaList.qrTitle}"></td>
+															<td th:text="${@codeService.selectOneCachedCode(qnaList.qrType)}"></td>
+															<td th:text="${#dates.format(qnaList.qrRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 														</tr>
 													</tbody>
 												</table>
