@@ -12,7 +12,12 @@ public class AnswerDto {
 	private Integer rcType;
 	private String rcTitle;
 	private String sfName;
-	private String awDept;
+	private Integer awDept;
+	private String umSeq;
+	private String umName;
+	private String userMember_umSeq;
+	private String rcContent;
+	private Integer rcStatus;
 	
 //	-------------------------------------
 	
@@ -52,7 +57,6 @@ public class AnswerDto {
 	public void setReception_rcSeq(String reception_rcSeq) {
 		this.reception_rcSeq = reception_rcSeq;
 	}
-	
 	public Integer getRcType() {
 		return rcType;
 	}
@@ -71,10 +75,46 @@ public class AnswerDto {
 	public void setSfName(String sfName) {
 		this.sfName = sfName;
 	}
-	public String getAwDept() {
+	public Integer getAwDept() {
 		return awDept;
 	}
-	public void setAwDept(String awDept) {
+	public void setAwDept(Integer awDept) {
 		this.awDept = awDept;
 	}
+	public String getUmSeq() {
+		return umSeq;
+	}
+	public void setUmSeq(String umSeq) {
+		this.umSeq = umSeq;
+	}
+	public String getUmName() {
+		return umName;
+	}
+	public void setUmName(String umName) {
+		this.umName = umName;
+	}
+	public String getUserMember_umSeq() {
+		return userMember_umSeq;
+	}
+	public void setUserMember_umSeq(String userMember_umSeq) {
+		this.userMember_umSeq = userMember_umSeq;
+	}
+	public String getRcContent() {
+		return rcContent;
+	}
+	public void setRcContent(String rcContent) {
+		this.rcContent = rcContent;
+	}
+	public Integer getRcStatus() {
+		return rcStatus;
+	}
+	public void setRcStatus(Integer rcStatus) {
+		this.rcStatus = rcStatus;
+	}
+	
+
+	
+
+	
+	
 }

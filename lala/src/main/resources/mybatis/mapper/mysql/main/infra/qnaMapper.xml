@@ -100,13 +100,20 @@
 		SELECT
 			a.qaSeq,
 			a.qaContent,
-			a.userMember_umSeq,
-			b.umName
+			a.staffMember_sfSeq,
+			a.qnaRequests_qrSeq,
+			b.qrTitle,
+			b.qrContent,
+			b.qrType,
+			c.sfName,
+			d.umName
 		FROM
-			qnaRequests a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			qnaAnswers a
+			join qnaRequests b on b.qrSeq = a.qnaRequests_qrSeq
+			join staffMember c on c.sfSeq = a.staffMember_sfSeq
+			join userMember d on d.umSeq = b.userMember_umSeq
 		WHERE 1=1
-		AND a.qrSeq = #{qrSeq}
+		AND a.qaSeq = #{qaSeq}
 	</select>
 	<insert id="insertAnswer">
         INSERT INTO qnaAnswers (
@@ -129,4 +136,12 @@
             SELECT last_insert_id()
         </selectKey>
     </insert>
+    <update id="updateAnswer">
+    	UPDATE qnaAnswers 
+		set
+			qaContent = #{qaContent},
+		    qaModDate = now()
+		WHERE 1=1
+			AND qaSeq = #{qaSeq}
+	</update>
 </mapper>

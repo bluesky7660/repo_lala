@@ -110,7 +110,7 @@
 									<!-- Breadcrumb end -->
 								</div>
 								<div class="pb-4">
-									<h2>Code</h2>
+									<h2>답변수정</h2>
 								</div>
 							</div>
 						</div>
@@ -124,70 +124,102 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form class="needs-validation" method="post" autocomplete="off" action="/v1/infra/answer/answerXdmInst" novalidate>
+										<form class="needs-validation" method="post" autocomplete="off" action="/v1/complaint/answerXdmUpdt" novalidate>
 											<!-- Row start -->
 											<div class="row">
+												
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeGroup" class="form-label">staffMember_sfSeq</label>
-														<select class="form-select validate-this" id="inputStaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.staffMember_sfSeq}">
+														<label for="inputName" class="form-label">코드</label>
+														<input type="text" class="form-control" id="inputRcSeq" name="awSeq" th:value="${item.awSeq}"  readonly>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputName" class="form-label">민원외래키</label>
+														<input type="text" class="form-control" id="inputReception_rcSeq" name="reception_rcSeq" th:value="${item.reception_rcSeq}"  readonly>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">	
+														<label for="inputUseNy" class="form-label">처리상태</label>
+														<select class="form-select validate-this" id="inputRcStatus" name="rcStatus"  required>
 															<option value="" selected disabled>선택하세요</option>
-															<option></option>
+															<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.rcStatus}"></option>
 														</select>
 														<div class="invalid-feedback">
-															코드그룹을 선택해주세요.
+															처리상태를 선택해주세요.
 														</div>
 													</div>
 												</div>
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCodeGroup" class="form-label">recepotion_rcSeq</label>
-														<select class="form-select validate-this" id="inputRecepotion_rcSeq" name="recepotion_rcSeq" th:value="${item.recepotion_rcSeq}">
-															<option value="" selected disabled>선택하세요</option>
-															<option></option>
-														</select>
-														<div class="invalid-feedback">
-															코드그룹을 선택해주세요.
-														</div>
-													</div>
-												</div>
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputName" class="form-label">answer코드</label>
-														<input type="text" class="form-control" id="inputAwSeq" name="awSeq" th:value="${item.qwSeq}" placeholder="자동생성" readonly="readonly">
-													</div>
-												</div>
+												
 											</div>
+											
 											<div class="row">
+											
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeName" class="form-label">awTitle제목</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputAwTitlte" name="awTitle" th:value="${item.awTitle}" placeholder="답변제목을 적어주세요" required>
-														<div class="invalid-feedback">
-															제목을 적어주세요.
-														</div>
+														<label for="inputRcTitle" class="form-label">민원제목</label>
+														<input type="text" class="form-control" id="inputRcTitle" name="rcTitle" th:value="${item.rcTitle}"  readonly>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputRcType" class="form-label">민원종류</label>
+														<input type="text" class="form-control" id="inputRcType" th:value="${@codeService.selectOneCachedCode(item.rcType)}" readonly>
+														<input type="hidden" class="valid-korean-alpha-num form-control validate-this" name="rcType"  required>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputUmName" class="form-label">작성자</label>
+														<input type="text" class="form-control" id="inputUmName" th:value="${item.umName}"  readonly>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<input type="hidden" class="form-control" id="inputuserMember_umSeq" name="userMember_umSeq" th:value="${item.userMember_umSeq}"  placeholder="자동생성" readonly>
 													</div>
 												</div>
 												
-												
-												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCodeOrder" class="form-label">순서</label>
-														<input type="text" class="form-control valid-numeric validate-this" id="inputCodeOrder" name="cdOrder" placeholder="숫자만" required>
-														<div class="invalid-feedback">
-															순서를 적어주세요.
-														</div>
-													</div>
-												</div> -->
 											</div>
 											<div class="row">
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
-														<label for="inputCodeDesc" class="form-label">내용</label>
-														<textarea class="form-control exclude-validation" id="inputAwContent" name="awContent" th:text="${item.awContent}" placeholder="답변내용을 적어주세요." rows="3"></textarea>
+														<label for="inputCodeDesc" class="form-label">민원내용</label>
+														<textarea class="form-control exclude-validation" id="inputRcContent" name="rcContent" th:text="${item.rcContent}"  placeholder="민원내용을 입력해주세요" rows="3" readonly></textarea>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">	
+														<label for="inputUseNy" class="form-label">부서</label>
+														<select class="form-select validate-this" id="inputAwDept" th:value="${item.awDept}" name="awDept" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option th:each="list : ${@codeService.selectListCachedCode(4)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.awDept}"></option>
+														</select>
 														<div class="invalid-feedback">
-															답변내용을 적어주세요.
+															처리부서를 선택해주세요.
 														</div>
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<!-- <label for="inputName" class="form-label">직원외래키</label> -->
+														<input type="hidden" class="form-control" id="inputstaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.staffMember_sfSeq}" placeholder="로그인으로받아오기?">
+														
+														<input type="hidden" class="form-control" id="inputstaffMember_sfSeq" name="rcSeq" th:value="${item.reception_rcSeq}">
+														
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xl-6 col-md-8 col-12">
+													<div class="mb-3">
+														<label for="inputCodeDesc" class="form-label">답변내용</label>
+														<textarea class="form-control exclude-validation" id="inputRcContent" name="awContent" th:text="${item.awContent}"  placeholder="민원내용을 입력해주세요" rows="3"></textarea>
 													</div>
 												</div>
 											</div>

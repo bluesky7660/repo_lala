@@ -55,7 +55,7 @@ public class QnaController {
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmUpdt")
 	public String qnaAnswersXdmInst(QnaAnswerDto qnaAnswerDto,QnaRequestDto qnaRequestDto) {
 		qnaService.updateAnswer(qnaAnswerDto);
-		qnaService.updateRequest(qnaRequestDto);
+//		qnaService.updateRequest(qnaRequestDto);
 		return "redirect:/v1/qna/qnaAnswersXdmList";
 	}
 	
@@ -107,7 +107,7 @@ public class QnaController {
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmMFom")
 	public String qnaRequestsXdmMFom(Model model,QnaRequestDto qnaRequestDto) {
 		model.addAttribute("item", qnaService.selectOneRequest(qnaRequestDto));
-		model.addAttribute("listLink", "qnaAnswersXdmList");
+		model.addAttribute("listLink", "qnaRequestsXdmList");
 		return "/xdm/v1/qna/qnaRequestsXdmMFom";
 	}
 	

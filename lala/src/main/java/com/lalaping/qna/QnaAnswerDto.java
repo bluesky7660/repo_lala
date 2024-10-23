@@ -13,6 +13,8 @@ public class QnaAnswerDto {
 	private String sfName;
 	private String qrTitle;
 	private Integer qrType;
+	private String umName;
+	private String qrContent;
 //---------------------------------------
 	public String getQaSeq() {
 		return qaSeq;
@@ -73,6 +75,18 @@ public class QnaAnswerDto {
 	}
 	public void setQrType(Integer qrType) {
 		this.qrType = qrType;
+	}
+	public String getUmName() {
+		return umName;
+	}
+	public void setUmName(String umName) {
+		this.umName = umName;
+	}
+	public String getQrContent() {
+		return qrContent;
+	}
+	public void setQrContent(String qrContent) {
+		this.qrContent = qrContent;
 	}
 	
 }

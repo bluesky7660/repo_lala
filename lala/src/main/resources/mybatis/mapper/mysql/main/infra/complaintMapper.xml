@@ -77,6 +77,7 @@
             SELECT last_insert_id()
         </selectKey>
 	</insert>
+	
 	<select id="rcSelectOne" resultMap="receptionResultMapObj">
 		SELECT
 			a.rcSeq,
@@ -92,6 +93,7 @@
 		WHERE 1=1
 		AND a.rcSeq = #{rcSeq}
 	</select>
+	
 	<update id="rcUpdate">
     	UPDATE reception 
 		set
@@ -201,18 +203,24 @@
 		SELECT
 			b.awSeq,
 			b.awContent,
-			b.awRegDate,
+			b.awModDate,
 			b.staffMember_sfSeq,
 			b.reception_rcSeq,
 			a.rcType,
 			a.rcTitle,
 			a.rcContent,
-			c.sfName
+			a.userMember_umSeq,
+			a.rcStatus,
+			c.sfName,
+			b.awDept,
+			d.umName
 		FROM answer b
 			LEFT JOIN reception a
 			ON a.rcSeq = b.reception_rcSeq
 			LEFT JOIN staffMember c
 			ON c.sfSeq = b.staffMember_sfSeq
+			LEFT JOIN userMember d
+			ON a.userMember_umSeq = d.umSeq
 		WHERE 1=1
 		AND b.awSeq = #{awSeq}
 	</select>
@@ -221,8 +229,8 @@
     	UPDATE answer 
 		set
 			awContent = #{awContent},
-			awStatus = #{awStatus},
-		    awRegDate = now(),
+			awDept = #{awDept},
+		    awModDate = now(),
 		    staffMember_sfSeq = #{staffMember_sfSeq},
 			reception_rcSeq = #{reception_rcSeq}
 		WHERE 1=1

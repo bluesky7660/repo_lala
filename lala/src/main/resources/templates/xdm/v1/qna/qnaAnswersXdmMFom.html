@@ -124,67 +124,57 @@
 										<div class="card-title">기본정보</div>
 									</div>
 									<div class="card-body">
-										<form class="needs-validation" method="post" autocomplete="off" action="/v1/infra/qnaAnswers/qnaAnswersXdmInst" novalidate>
+										<form class="needs-validation" method="post" autocomplete="off" action="/v1/qna/qnaAnswersXdmUpdt" novalidate>
 											<!-- Row start -->
 											<div class="row">
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCodeGroup" class="form-label">staffMember_sfSeq</label>
-														<select class="form-select validate-this" id="inputStaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.sfSeq}" readonly>
-															<option value="" selected disabled>선택하세요</option>
-															<option></option>
-														</select>
-														<div class="invalid-feedback">
-															코드그룹을 선택해주세요.
-														</div>
-													</div>
-												</div>
+												
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeGroup" class="form-label">qnaRequests_qrSeq</label>
-														<select class="form-select validate-this" id="qnaRequests_qrSeq" th:value="${item.qnaRequests_qrSeq}" name="qnaRequests_qrSeq" readonly>
-															<option value="" selected disabled>선택하세요</option>
-															<option></option>
-														</select>
-														<div class="invalid-feedback">
-															코드그룹을 선택해주세요.
-														</div>
+														<input type="text" class="form-control" id="inputQnaRequests_qrSeq" th:value="${item.qnaRequests_qrSeq}" readonly="readonly">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputName" class="form-label">qnaAnswers코드</label>
-														<input type="text" class="form-control" id="inputAaSeq" name="aaSeq" th:value="${item.adSeq}" placeholder="자동생성" readonly="readonly">
+														<label for="inputUmName" class="form-label">문의 작성자</label>
+														<input type="text" class="form-control" id="inputUmName" th:value="${item.umName}" readonly="readonly">
+													</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCodeName" class="form-label">문의 제목</label>
+														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputQaTitle" name="qrTitle" th:value="${item.qrTitle}" readonly>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-12">
+													<div class="mb-3">
+														<label for="inputQrContent" class="form-label">내용</label>
+														<textarea class="form-control exclude-validation" id="inputQrContent" th:text="${item.qrContent}" rows="4" readonly></textarea>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeName" class="form-label">qaTitle제목</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputQaTitle" name="aaTitle" th:value="${item.adTitle}" placeholder="답변제목을 입력해주세요." required>
-														<div class="invalid-feedback">
-															제목을 적어주세요.
-														</div>
+														<label for="inputName" class="form-label">답변코드 번호</label>
+														<input type="text" class="form-control" id="inputAaSeq" name="qaSeq" th:value="${item.qaSeq}" placeholder="자동생성" readonly="readonly">
 													</div>
 												</div>
-												
-												
-												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputCodeOrder" class="form-label">순서</label>
-														<input type="text" class="form-control valid-numeric validate-this" id="inputCodeOrder" name="cdOrder" placeholder="숫자만" required>
-														<div class="invalid-feedback">
-															순서를 적어주세요.
-														</div>
+														<label for="inputSfName" class="form-label">답변자</label>
+														<input type="text" class="form-control" id="inputSfName" th:value="${item.sfName}" readonly="readonly">
+														<input type="hidden" class="form-control" id="inputStaffMember_sfSeq" th:value="${item.staffMember_sfSeq}" readonly="readonly">
 													</div>
-												</div> -->
+												</div>
 											</div>
 											<div class="row">
-												<div class="col-xl-6 col-md-8 col-12">
+												<div class="col-12">
 													<div class="mb-3">
-														<label for="inputCodeDesc" class="form-label">내용</label>
-														<textarea class="form-control exclude-validation" id="inputQaContent" name="qaContent" th:text="${item.qaContent}" placeholder="답변내용을 입력해주세요" rows="3"></textarea>
+														<label for="inputQaContent" class="form-label">내용</label>
+														<textarea class="form-control exclude-validation" id="inputQaContent" name="qaContent" th:text="${item.qaContent}" placeholder="답변내용을 입력해주세요" rows="4"></textarea>
 													</div>
 												</div>
 											</div>

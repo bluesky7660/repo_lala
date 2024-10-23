@@ -300,9 +300,8 @@
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.qaSeq}"></td>
 													<td th:text="${list.qnaRequests_qrSeq}"></td>
-													<td th:text="${list.qrTitle}"></td>
 													<td class="td_spotlight">
-														<a th:href="@{/xdm/v1/infra/answer/answerXdmMfom(qaSeq=${list.qaSeq})}" th:text="${list.qaTitle}"></a>
+														<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qaSeq=${list.qaSeq})}" th:text="${list.qrTitle}"></a>
 													</td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>
 													<td th:unless = "${list.qaDelNy eq 0}">Y</td>

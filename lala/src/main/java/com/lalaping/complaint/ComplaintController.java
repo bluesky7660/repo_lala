@@ -89,11 +89,10 @@ public class ComplaintController {
 	
 	@RequestMapping(value = "/v1/complaint/answerXdmList")
 	public String answerXdmList(@ModelAttribute("vo") AnswerVo vo ,Model model) {
-		System.out.println("answerXdmList");
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.answerListCount(vo));
-//		System.out.println("리스트:"+complaintService.answerSelectList(vo).get(0).getReception_rcSeq());
+		System.out.println("리스트:"+complaintService.answerSelectList(vo).get(0).getReception_rcSeq());
 		model.addAttribute("list", complaintService.answerSelectList(vo));
 		return "/xdm/v1/complaint/answerXdmList";
 	}
@@ -102,6 +101,12 @@ public class ComplaintController {
 		model.addAttribute("item", complaintService.awSelectOne(answerDto));
 		model.addAttribute("listLink", "answerXdmList");
 		return "/xdm/v1/complaint/answerXdmMFom";
+	}
+	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")
+	public String answerXdmUpdt(AnswerDto answerDto,ReceptionDto receptionDto) {
+		complaintService.rcUpdate(receptionDto);
+		complaintService.awUpdate(answerDto);
+		return "redirect:/v1/complaint/answerXdmList";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUete")
 	public String answerXdmUete(AnswerDto answerDto) {

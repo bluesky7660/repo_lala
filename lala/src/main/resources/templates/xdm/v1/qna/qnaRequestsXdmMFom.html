@@ -132,7 +132,7 @@
 														<label for="inputUseNy" class="form-label">민원종류</label>
 														<select class="form-select validate-this" id="inputQrType" name="qrType" th:value="${item.qrType}">
 															<option value="" selected disabled>선택하세요</option>
-															<option th:each="list : ${@codeService.selectListCachedCode(1)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.qrType}"></option>
+															<option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.qrType}"></option>
 															
 														</select>
 														<div class="invalid-feedback">
@@ -151,7 +151,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">제목</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputQrTitle" name="qrTitle" th:value="${qrTitle}" placeholder="문의제목을 입력해주세요." required>
+														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputQrTitle" name="qrTitle" th:value="${item.qrTitle}" placeholder="문의제목을 입력해주세요." required>
 														<div class="invalid-feedback">
 															제목을 적어주세요.
 														</div>
@@ -161,7 +161,8 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputName" class="form-label">userMember_umSeq</label>
-														<input type="text" class="form-control" id="inputUserMember_umSeq" name="userMember_umSeq" th:value="${userMember_umSeq}" placeholder="자동생성" readonly="readonly">
+														<input type="text" class="form-control" id="inputUserMember_umSeq" name="umName" th:value="${item.umName}" placeholder="자동생성" readonly="readonly">
+														<input type="hidden" class="form-control" id="inputUserMember_umSeq" name="userMember_umSeq" th:value="${item.userMember_umSeq}" placeholder="자동생성" readonly="readonly">
 													</div>
 												</div>
 												
