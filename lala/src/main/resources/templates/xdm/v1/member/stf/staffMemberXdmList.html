@@ -188,7 +188,7 @@
 								<div class="card border">
 									<div class="card-header bg-light">
 										<h2 class="card-title">
-											직원Member
+											직원회원
 										</h2>
 										<div>
 											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/member/staffMemberXdmList">
@@ -280,7 +280,6 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">직원 코드</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">직원 이름</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">아이디</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">비밀번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">전화번호</span></th>
@@ -308,7 +307,6 @@
 														<a th:href="@{/v1/member/staffMemberXdmMfom(sfSeq=${list.sfSeq})}" th:text="${list.sfName}"></a>
 													</td>
 													<td th:text="${list.sfId}"></td>
-													<td th:text = "${list.sfPasswd}"></td>
 													<td th:text = "${@codeService.selectOneCachedCode(list.sfGender)}"></td>
 													<td th:text = "${list.sfEmail}"></td>
 													<td th:text="${#strings.substring(list.sfTel, 0, 3)} + '-' + ${#strings.substring(list.sfTel, 3, 7)} + '-' + ${#strings.substring(list.sfTel, 7)}"></td>
