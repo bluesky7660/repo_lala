@@ -215,6 +215,15 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="shRcStatus">
+															<option value="" selected>처리상태</option>
+															<option value="9" th:selected="${vo.shRcStatus == 9}">접수중</option>
+															<option value="10" th:selected="${vo.shRcStatus == 10}">처리중</option>
+															<option value="11" th:selected="${vo.shRcStatus == 11}">답변완료</option>
+														</select>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="shOptionDate">
 															<option value="" selected>날짜종류 선택해주세요.</option>
@@ -231,15 +240,18 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
+													
+													
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
-														<select class="form-select" id="selectKeywordType" name="shOption">
-															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">민원번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">민원제목</option>
-															<option value="3" th:selected="${vo.shOption == 3}">민원내용</option>
-														</select>
-													</div>
+															<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+															<select class="form-select" id="selectKeywordType" name="shOption">
+																<option value="" selected>검색구분</option>
+																<option value="1" th:selected="${vo.shOption == 1}">민원번호</option>
+																<option value="2" th:selected="${vo.shOption == 2}">민원제목</option>
+																<option value="3" th:selected="${vo.shOption == 3}">접수자</option>
+															</select>
+														</div>
+														
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputKeyword">검색어</label>
 														<input type="text" class="form-control" id="inputKeyword" name="shValue" th:value="${vo.shValue}" placeholder="검색어">
@@ -250,8 +262,11 @@
 													</div>
 													<div class="col">      
 													</div>
-													<div class="col">
+													<div class="col">      
 													</div>
+													<div class="col">      
+													</div>
+													
 												</div>
 											</form>
 										</div>
@@ -281,7 +296,6 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원내용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">처리상태</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">접수자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -305,7 +319,6 @@
 														<td class="td_spotlight">
 															<a th:href="@{/v1/complaint/receptionXdmMFom(rcSeq=${list.rcSeq})}" th:text="${list.rcTitle}"></a>
 														</td>
-														<td th:text = "${list.rcContent}"></td>
 														<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 														<!-- <td th:text = "${list.usermember_umSeq}"></td> -->
 														<td th:text = "${list.umName}"></td>

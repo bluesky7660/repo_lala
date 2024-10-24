@@ -238,7 +238,6 @@
 															<option value="1" th:selected="${vo.shOption == 1}">답변번호</option>
 															<option value="2" th:selected="${vo.shOption == 2}">민원번호</option>
 															<option value="3" th:selected="${vo.shOption == 3}">민원제목</option>
-															<option value="4" th:selected="${vo.shOption == 4}">답변내용</option>
 															<option value="5" th:selected="${vo.shOption == 5}">답변자</option>
 														</select>
 													</div>
@@ -284,7 +283,6 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변내용</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -310,7 +308,6 @@
 													<td class="td_spotlight">
 														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" th:text="${list.rcTitle}"></a>
 													</td>
-													<td th:text="${list.awContent}"></td>
 													<td th:text="${list.sfName}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>
