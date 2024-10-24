@@ -18,6 +18,7 @@ public interface MemberDao {
 	public int ueleteStaffMember(StaffMemberDto staffMemberDto);
 	public int deleteStaffMember(StaffMemberDto staffMemberDto);
 	
+	public int selectStaffOneCount(StaffMemberVo staffMemberVo);
 	// UserMember
 	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
 	public UserMemberDto userSelectOne(UserMemberDto userMemberDto);
