@@ -53,9 +53,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmUpdt")
-	public String qnaAnswersXdmInst(QnaAnswerDto qnaAnswerDto,QnaRequestDto qnaRequestDto) {
+	public String qnaAnswersXdmUpdt(QnaAnswerDto qnaAnswerDto,QnaRequestDto qnaRequestDto) {
 		qnaService.updateAnswer(qnaAnswerDto);
-//		qnaService.updateRequest(qnaRequestDto);
+		qnaService.updateRequest(qnaRequestDto);
 		return "redirect:/v1/qna/qnaAnswersXdmList";
 	}
 	
@@ -78,6 +78,7 @@ public class QnaController {
 		qnaRequestVo.setShDateEnd(qnaRequestVo.getShDateEnd() == null || qnaRequestVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(qnaRequestVo.getShDateEnd()));
 		qnaRequestVo.setParamsPaging(qnaService.listCountR(qnaRequestVo));
 		model.addAttribute("list",qnaService.selectListRequest(qnaRequestVo));
+		System.out.println("qnaService.selectListRequest(qnaRequestVo):"+qnaService.selectListRequest(qnaRequestVo).get(0).getQaSeq());
 		model.addAttribute("formLink", "qnaRequestsXdmForm");
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}

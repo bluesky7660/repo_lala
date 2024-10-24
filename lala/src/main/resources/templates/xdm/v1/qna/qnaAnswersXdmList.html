@@ -280,6 +280,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의답변 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의제목</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">담당자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -303,6 +304,9 @@
 													<td class="td_spotlight">
 														<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qaSeq=${list.qaSeq})}" th:text="${list.qrTitle}"></a>
 													</td>
+													<td th:if="${list.qrStatus eq 0}">접수중</td>
+													<td th:unless="${list.qrStatus eq 0}">답변완료</td>
+													<td th:text="${list.qrStatus}"></td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>
 													<td th:unless = "${list.qaDelNy eq 0}">Y</td>
 													<td th:text = "${list.sfName}"></td>

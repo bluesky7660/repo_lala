@@ -11,6 +11,7 @@ public interface QnaDao {
 	//Qna Request
 	public List<QnaRequestDto> selectListRequest(QnaRequestVo vo);
 	public List<QnaRequestDto> qnaTypeCount();
+	public List<QnaRequestDto> qnaStatusCount();
 	public int listCountR(QnaRequestVo vo);
 	public QnaRequestDto selectOneRequest(QnaRequestDto qnaRequestDto);
 	public int insertRequest(QnaRequestDto qnaRequestDto);
