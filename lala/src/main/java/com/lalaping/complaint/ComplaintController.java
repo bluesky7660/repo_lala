@@ -35,7 +35,7 @@ public class ComplaintController {
 		model.addAttribute("list", complaintService.receptionSelectList(vo));
 		model.addAttribute("formLink", "receptionXdmForm");
 		return "xdm/v1/complaint/receptionXdmList";
-	}
+	} 
 	@RequestMapping(value = "/v1/complaint/receptionXdmForm")
 	public String receptionXdmForm(Model model) {
 		model.addAttribute("listLink", "receptionXdmList");
