@@ -18,6 +18,8 @@ public class AnswerDto {
 	private String userMember_umSeq;
 	private String rcContent;
 	private Integer rcStatus;
+	private Integer awDeptCount;
+	private String cdSeq;
 	
 //	-------------------------------------
 	
@@ -111,10 +113,17 @@ public class AnswerDto {
 	public void setRcStatus(Integer rcStatus) {
 		this.rcStatus = rcStatus;
 	}
-	
-
-	
-
-	
+	public Integer getAwDeptCount() {
+		return awDeptCount;
+	}
+	public void setAwDeptCount(Integer awDeptCount) {
+		this.awDeptCount = awDeptCount;
+	}
+	public String getCdSeq() {
+		return cdSeq;
+	}
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
+	}
 	
 }

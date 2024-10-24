@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface ComplaintDao {
 //	민원 reception
 	public List<ReceptionDto> receptionSelectList(ReceptionVo vo);
+	public List<ReceptionDto> receptionTypeCount();
 	public int rcInsert(ReceptionDto receptionDto);
 	public ReceptionDto rcSelectOne(ReceptionDto receptionDto);
 	public int rcUpdate(ReceptionDto receptionDto);
@@ -18,6 +19,7 @@ public interface ComplaintDao {
 	
 //	답변 answer
 	public List<AnswerDto> answerSelectList(AnswerVo vo);
+	public List<AnswerDto> answerTypeCount();
 	public int awInsert(AnswerDto answerDto);
 	public AnswerDto awSelectOne(AnswerDto answerDto);
 	public int awUpdate(AnswerDto answerDto);
