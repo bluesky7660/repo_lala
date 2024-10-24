@@ -160,7 +160,17 @@ table .td_spotlight a:hover{
 .login-box .login-form .btn{
     margin-left: 0;
 }
-
+.login-logo{
+    cursor: pointer;
+}
+.sidebar-wrapper .sidebar-menu ul li.active a span{
+    color: #3688fa;
+    font-weight: bold;
+}
+.sidebar-wrapper .sidebar-menu ul li a:hover i{
+    color: #3688fa;
+    font-weight: bold;
+}
 
 /*index*/
 .pageCategory{

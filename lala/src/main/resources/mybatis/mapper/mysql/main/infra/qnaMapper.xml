@@ -9,6 +9,7 @@
 		FROM
 			qnaRequests a
 			join userMember b on b.umSeq = a.userMember_umSeq
+			left join qnaAnswers c on a.qrSeq = c.qnaRequests_qrSeq
 		where 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
 			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
@@ -40,10 +41,12 @@
 			a.qrSeq
 			,a.qrTitle
 			,a.qrContent
+			,a.qrStatus
 			,a.qrDelNy
 			,a.qrRegDate
 			,a.qrType
 			,b.umName
+			,c.qaSeq
 		<include refid="ReqSelectCommon"/>
 		ORDER BY a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
@@ -58,6 +61,7 @@
 			a.qrTitle,
 			a.qrContent,
 			a.qrType,
+			a.qrStatus,
 			a.userMember_umSeq,
 			b.umName
 		FROM
@@ -83,6 +87,7 @@
 	        qrTitle
 			,qrContent
 			,qrType
+			,qrStatus
 			,userMember_umSeq
 			,qrDelNy
 			,qrRegDate
@@ -91,6 +96,7 @@
 	        #{qrTitle}
 	        ,#{qrContent}
 	        ,#{qrType}
+	        ,0
 	        ,#{userMember_umSeq}
 	        ,0
 	        ,now()
@@ -99,6 +105,19 @@
             SELECT last_insert_id()
         </selectKey>
     </insert>
+    <update id="updateRequest">
+    	UPDATE qnaRequests 
+		set
+			qrStatus = 1
+		WHERE 1=1
+			AND qrSeq = #{qnaRequests_qrSeq}
+    </update>
+    <select id="qnaStatusCount" resultMap="RequestResultMapObj">
+        SELECT qrStatus, COUNT(*) AS qnaStatusCount
+		FROM qnaRequests
+		GROUP BY qrStatus
+		ORDER BY qrStatus = 0 DESC
+    </select>
 	
 	<!-- qna답변 영역 -->
 	<resultMap type="com.lalaping.qna.QnaAnswerDto" id="AnswerResultMapObj"></resultMap>
@@ -121,9 +140,10 @@
 			,a.qnaRequests_qrSeq
 			,b.sfName
 			,c.qrType
+			,c.qrStatus
 			,c.qrTitle
 		<include refid="AnsSelectCommon"/>
-		ORDER BY a.qaSeq DESC
+		ORDER BY a.qaSeq DESC, c.qrStatus DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	<select id="listCountA" resultType="int">
@@ -178,4 +198,5 @@
 		WHERE 1=1
 			AND qaSeq = #{qaSeq}
 	</update>
+	
 </mapper>

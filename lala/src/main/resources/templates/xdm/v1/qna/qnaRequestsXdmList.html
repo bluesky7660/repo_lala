@@ -290,6 +290,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의제목</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">작성자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -311,8 +312,10 @@
 														<td th:text="${list.qrSeq}"></td>
 														<td th:text="${@codeService.selectOneCachedCode(list.qrType)}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/v1/qna/qnaRequestsXdmMFom(qrSeq=${list.qrSeq})}" th:text="${list.qrTitle}"></a>
+															<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qaSeq=${list.qaSeq})}" th:text="${list.qrTitle}"></a>
 														</td>
+														<td th:if ="${list.qrStatus eq 0}">접수중</td>
+														<td th:unless ="${list.qrStatus eq 0}">답변완료</td>
 														<td th:if ="${list.qrDelNy eq 0}">N</td>
 														<td th:unless = "${list.qrDelNy eq 0}">Y</td>
 														<td th:text = "${list.umName}"></td>

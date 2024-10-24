@@ -185,22 +185,17 @@
 										<div class="row">
 											<div id="qna_graph"></div>
 											<ul class="task-list-container">
-												<li class="task-list-item">
-													<div class="task-icon shade-blue">
-														<i class="bi bi-clipboard-plus"></i>
+												<li class="task-list-item" th:each="qnaStatus:${qnaStatus}">
+													<div class="task-icon "th:classappend="${qnaStatus.qrStatus == 0 ? 'shade-blue' 
+													: qnaStatus.qrStatus == 1 ? 'shade-green'
+													: ''}">
+														<i th:class="${qnaStatus.qrStatus == 0 ? 'bi bi-clipboard-plus' : 'bi bi-clipboard-check'}"></i>
 													</div>
 													<div class="task-info">
-														<h5 class="task-title">접수중</h5>
-														<p class="amount-spend">12</p>
-													</div>
-												</li>
-												<li class="task-list-item">
-													<div class="task-icon shade-green">
-														<i class="bi bi-clipboard-check"></i>
-													</div>
-													<div class="task-info">
-														<h5 class="task-title">처리완료</h5>
-														<p class="amount-spend">15</p>
+														<h5 class="task-title" 
+															th:text="${qnaStatus.qrStatus == 0 ? '접수중' : '처리완료'}">
+														</h5>
+														<p class="amount-spend" th:text="${qnaStatus.qnaStatusCount}"></p>
 													</div>
 												</li>
 											</ul>
@@ -288,7 +283,7 @@
 														<tr>
 															<th>접수자</th>
 															<th>QnA 제목</th>
-															<th>QnA 내용</th>
+															<th>QnA 종류</th>
 															<th>접수날짜</th>
 														</tr>
 													</thead>

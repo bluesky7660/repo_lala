@@ -15,6 +15,7 @@ public class QnaAnswerDto {
 	private Integer qrType;
 	private String umName;
 	private String qrContent;
+	private Integer qrStatus;
 //---------------------------------------
 	public String getQaSeq() {
 		return qaSeq;
@@ -87,6 +88,12 @@ public class QnaAnswerDto {
 	}
 	public void setQrContent(String qrContent) {
 		this.qrContent = qrContent;
+	}
+	public Integer getQrStatus() {
+		return qrStatus;
+	}
+	public void setQrStatus(Integer qrStatus) {
+		this.qrStatus = qrStatus;
 	}
 	
 }

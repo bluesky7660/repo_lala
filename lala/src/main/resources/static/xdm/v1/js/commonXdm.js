@@ -626,5 +626,12 @@ window.addEventListener('load', function() {
     //     }
         
     //}
+    const sidebarDropdown = document.querySelectorAll(".sidebar-dropdown > a");
 
+    sidebarDropdown.forEach(function(link) {
+        link.addEventListener("contextmenu", function(event) {
+            event.preventDefault(); // 오른쪽 클릭 메뉴 방지
+            // alert("오른쪽 클릭이 방지되었습니다.");
+        });
+    });
 });
