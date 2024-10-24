@@ -31,43 +31,79 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
 
+    // var options1 = {
+    //     chart: {
+    //         height: 350,
+    //         type: 'radialBar',
+    //         toolbar: {
+    //             show: false,
+    //         },
+    //     },
+    //     title: {
+    //         text: "※민원",
+    //     },
+    //     plotOptions: {
+    //         radialBar: {
+    //             dataLabels: {
+    //                 name: {
+    //                     fontSize: '12px',
+    //                     fontColor: 'black',
+    //             fontFamily: 'Merriweather',
+    //                 },
+    //                 value: {
+    //                     fontSize: '21px',
+    //                     fontFamily: 'Merriweather',
+    //                 },
+    //                 total: {
+    //                     show: true,
+    //                     label: '민원 종류',
+    //                     formatter: function (w) {
+    //                         console.log("총합:"+totalQnAs)
+    //                         return totalComplaints+"건"; // 총합 반환
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     },
+    //     series: complaintPercentages,
+    //     labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
+    //     colors: ['#4267cd', '#32b2fa', '#f87957', '#8e44ad', '#2e8b57'],
+    // }
     var options1 = {
         chart: {
-            height: 350,
-            type: 'radialBar',
-            toolbar: {
-                show: false,
-            },
+            width: 400,
+            type: 'pie',
         },
         title: {
             text: "※민원",
         },
-        plotOptions: {
-            radialBar: {
-                dataLabels: {
-                    name: {
-                        fontSize: '12px',
-                        fontColor: 'black',
-                fontFamily: 'Merriweather',
-                    },
-                    value: {
-                        fontSize: '21px',
-                        fontFamily: 'Merriweather',
-                    },
-                    total: {
-                        show: true,
-                        label: '민원 종류',
-                        formatter: function (w) {
-                            console.log("총합:"+totalQnAs)
-                            return totalComplaints+"건"; // 총합 반환
-                        }
-                    }
+        series: qnaCounts,
+        labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
+        colors: ['#f87957', '#3688fa', '#ffae1f', '#26ba4f', '#9ba2ab'],
+        // theme: {
+        //     monochrome: {
+        //         enabled: true,
+        //         color: '#435EEF',
+        //     }
+        // },
+        // title: {
+        // 	text: "Weekly Sales",
+        // },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
                 }
             }
+        }],
+        stroke: {
+            width: 0,
         },
-        series: complaintPercentages,
-        labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
-        colors: ['#4267cd', '#32b2fa', '#f87957', '#8e44ad', '#2e8b57'],
+        
     }
     
     var options2 = {
@@ -106,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         series: qnaPercentages,
         labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
-        colors: ['#4267cd', '#32b2fa', '#f87957', '#8e44ad', '#2e8b57'],
+        colors: ['red', 'blue', 'yellow', 'green', 'lightgray'],
     }
     var options3 = {
                 chart: {
@@ -118,12 +154,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 series: qnaCounts,
                 labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
-                theme: {
-                    monochrome: {
-                        enabled: true,
-                        color: '#435EEF',
-                    }
-                },
+                colors: ['#f87957', '#3688fa', '#ffae1f', '#26ba4f', '#9ba2ab'],
+                // theme: {
+                //     monochrome: {
+                //         enabled: true,
+                //         color: '#435EEF',
+                //     }
+                // },
                 // title: {
                 // 	text: "Weekly Sales",
                 // },
@@ -141,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 stroke: {
                     width: 0,
                 },
+                
             }
     var chart1 = new ApexCharts(
         document.querySelector("#complaint_graph"),

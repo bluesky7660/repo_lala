@@ -121,7 +121,7 @@
         SET
 	        sfId = #{sfId},
 	        sfName = #{sfName},
-	        sfPasswd = #{sfPasswd},
+	        <!-- sfPasswd = #{sfPasswd}, -->
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
 	        sfEmail = #{sfEmail},
@@ -256,7 +256,7 @@
         UPDATE userMember
         SET
 	        umId = #{umId},
-	        umPasswd = #{umPasswd},
+	        <!-- umPasswd = #{umPasswd}, -->
 	        umName = #{umName},
 	        umTel = #{umTel},
 	        umBirthDay = #{umBirthDay},

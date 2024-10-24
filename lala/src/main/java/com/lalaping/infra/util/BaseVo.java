@@ -29,6 +29,7 @@ public class BaseVo {
 	    private int startRnumForMysql = 0; 	// 쿼리 시작하는 row[index번호]
 	    private int sortOrder = 1;
 	    private String sortOrderString;
+	    private String shStaff;
 	    //-------------
 	    public void setParamsPaging(int totalRows) {
 			
@@ -172,6 +173,12 @@ public class BaseVo {
 		}
 		public void setSortOrderString(String sortOrderString) {
 			this.sortOrderString = sortOrderString;
+		}
+		public String getShStaff() {
+			return shStaff;
+		}
+		public void setShStaff(String shStaff) {
+			this.shStaff = shStaff;
 		}
 		
 	    
