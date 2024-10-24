@@ -80,8 +80,9 @@
 	</select>
     <select id="staffSeqList" resultMap="staffResultMapObj">
         SELECT
-	        a.sfSeq
-        FROM staffMember a
+	        sfSeq
+	        ,sfName
+        FROM staffMember
         WHERE 1=1
     </select>
     <select id="staffListCount" resultType="int">

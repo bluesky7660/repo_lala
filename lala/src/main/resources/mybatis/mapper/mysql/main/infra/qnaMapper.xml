@@ -127,7 +127,31 @@
 			join staffMember b on b.sfSeq = a.staffMember_sfSeq
 			join qnaRequests c on c.qrSeq = a.qnaRequests_qrSeq
 		where 1=1
-			AND a.qaDelNy = 0
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qaDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND c.qrStatus = #{shQrStatus}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.sfseq Like CONCAT('%',#{shStaff},'%')</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qaSeq Like CONCAT('%',#{shValue},'%')
+							OR c.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR c.qrTitle Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND c.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND c.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND a.qaSeq = #{shValue}</when>
+				</choose>
+			</if>
+			<if test="((shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals('')))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.qaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.qaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+			
 	</sql>
 	<select id="selectListAnswer" resultMap="AnswerResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
