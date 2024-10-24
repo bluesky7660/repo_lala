@@ -13,7 +13,7 @@ public class ReceptionVo extends BaseVo {
 	}
 
 	public void setShRcType(Integer shRcType) {
-		this.shRcType = shRcType;
+		this.shRcType = shRcType;  
 	}
 	
 	
