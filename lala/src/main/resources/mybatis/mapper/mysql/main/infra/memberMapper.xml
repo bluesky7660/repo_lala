@@ -17,7 +17,7 @@
                     )
                 </when>
                 <when test="shOption == 1 and shOption != null and shOption != ''">
-                    AND a.sfId = #{shValue}
+                    AND a.sfSeq = #{shValue}
                 </when>
                 <when test="shOption == 2 and shOption != null and shOption != ''">
                     AND a.sfName LIKE CONCAT('%', #{shValue}, '%')
@@ -26,6 +26,9 @@
         </if>
         <if test="shDelNy != null and !shDelNy.equals('')">
             AND a.sfDelNy = #{shDelNy}
+        </if>
+        <if test="shUseNy != null and !shUseNy.equals('')">
+            AND a.sfUseNy = #{shUseNy}
         </if>
         <if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
             <choose>
@@ -38,37 +41,37 @@
             </choose>
         </if>
     </sql>
+    
     <select id="staffSelectList" resultMap="staffResultMapObj">
     	<include refid="base.selectListUpperForMysql"/>
         SELECT
-        a.sfSeq,
-        a.sfId,
-        a.sfPasswd,
-        a.sfName,
-        a.sfTel,
-        a.sfBirthDay,
-        a.sfDelNy,
-        a.sfRegDate,
-        a.sfModDate,
-        a.sfEmail,
-        a.sfGender
+	        a.sfSeq,
+	        a.sfId,
+	        a.sfName,
+	        a.sfTel,
+	        a.sfBirthDay,
+	        a.sfDelNy,
+	        a.sfUseNy,
+	        a.sfRegDate,
+	        a.sfModDate,
+	        a.sfEmail,
+	        a.sfGender
         <include refid="staffSelectCommon" />
         ORDER BY a.sfSeq DESC
         <include refid="base.selectListLowerForMysql"/>
     </select>
     <select id="staffSelectOne" resultMap="staffResultMapObj">
 		SELECT
-		a.sfSeq,
-        a.sfId,
-        a.sfPasswd,
-        a.sfName,
-        a.sfTel,
-        a.sfBirthDay,
-        a.sfDelNy,
-        a.sfRegDate,
-        a.sfModDate,
-        a.sfEmail,
-        a.sfGender
+			a.sfSeq,
+	        a.sfId,
+	        a.sfName,
+	        a.sfTel,
+	        a.sfBirthDay,
+	        a.sfDelNy,
+	        a.sfRegDate,
+	        a.sfModDate,
+	        a.sfEmail,
+	        a.sfGender
 		FROM
 		staffMember a
 		WHERE 1=1
@@ -76,8 +79,9 @@
 	</select>
     <select id="staffSeqList" resultMap="staffResultMapObj">
         SELECT
-	        a.sfSeq
-        FROM staffMember a
+	        sfSeq
+	        ,sfName
+        FROM staffMember
         WHERE 1=1
     </select>
     <select id="staffListCount" resultType="int">
@@ -134,6 +138,11 @@
         	sfDelNy = 1
         WHERE sfSeq = #{sfSeq}
     </update>
+    
+    <select id="selectStaffOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="staffSelectCommon" />
+	</select>
 
     <!-- UserMember 영역 -->
     <resultMap type="com.lalaping.infra.member.UserMemberDto" id="userResultMapObj"></resultMap>
@@ -175,7 +184,6 @@
         SELECT
 	        a.umSeq,
 	        a.umId,
-	        a.umPasswd,
 	        a.umName,
 	        a.umTel,
 	        a.umBirthDay,
@@ -190,22 +198,28 @@
     </select>
     <select id="userSelectOne" resultMap="userResultMapObj">
 		SELECT
-		a.umSeq,
-        a.umId,
-        a.umPasswd,
-        a.umName,
-        a.umTel,
-        a.umBirthDay,
-        a.umDelNy,
-        a.umRegDate,
-        a.umModDate,
-        a.umEmail,
-        a.umGender
+			a.umSeq,
+	        a.umId,
+	        a.umName,
+	        a.umTel,
+	        a.umBirthDay,
+	        a.umDelNy,
+	        a.umRegDate,
+	        a.umModDate,
+	        a.umEmail,
+	        a.umGender
 		FROM
 		userMember a
 		WHERE 1=1
 		AND a.umSeq = #{umSeq}
 	</select>
+	<select id="userSeqList" resultMap="userResultMapObj">
+        SELECT
+	        umSeq
+	        ,umName
+        FROM userMember
+        WHERE 1=1
+    </select>
     <select id="userListCount" resultType="int">
         SELECT COUNT(*)
         <include refid="userSelectCommon" />

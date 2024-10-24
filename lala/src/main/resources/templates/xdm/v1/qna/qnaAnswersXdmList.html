@@ -195,20 +195,20 @@
 												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
-													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
-														<select class="form-select" id="selectDelNy" name="shDelNy">
-															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+													
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectStaff">답변자</label>
+														<select class="form-select" id="selectStaff" name="shStaff">
+															<option value="" selected>답변자 선택해주세요.</option>
+															<option th:each="staff:${@memberService.staffSeqList()}" th:text="${staff.sfName}" th:value="${staff.sfSeq}" th:selected="${vo.shStaff == staff.sfSeq}"></option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectUseNy">사용검색</label>
-														<select class="form-select" id="selectUseNy" name="shUseNy">
-															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+														<label class="visually-hidden" for="selectUseNy">답변여부</label>
+														<select class="form-select" id="selectUseNy" name="shQrStatus">
+															<option value="" selected>답변여부를 선택하세요</option>
+															<option value="1" th:selected="${vo.shQrStatus == 1}">Y</option>
+															<option value="0" th:selected="${vo.shQrStatus == 0}">N</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -229,14 +229,21 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually-hidden" for="selectDelNy">삭제여부</label>
+														<select class="form-select" id="selectDelNy" name="shDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+														</select>
+													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
 															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="1" th:selected="${vo.shOption == 1}">문의번호</option>
+															<option value="2" th:selected="${vo.shOption == 2}">문의제목</option>
+															<option value="3" th:selected="${vo.shOption == 3}">답변번호</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -248,8 +255,6 @@
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
 													<div class="col">      
-													</div>
-													<div class="col">
 													</div>
 												</div>
 											</form>
@@ -306,7 +311,6 @@
 													</td>
 													<td th:if="${list.qrStatus eq 0}">접수중</td>
 													<td th:unless="${list.qrStatus eq 0}">답변완료</td>
-													<td th:text="${list.qrStatus}"></td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>
 													<td th:unless = "${list.qaDelNy eq 0}">Y</td>
 													<td th:text = "${list.sfName}"></td>

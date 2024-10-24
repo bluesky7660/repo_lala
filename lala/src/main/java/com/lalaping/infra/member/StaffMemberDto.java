@@ -13,13 +13,21 @@ public class StaffMemberDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date sfBirthDay;
 	private Boolean sfDelNy;
+	private Boolean sfUseNy;
 	private Date sfRegDate;
 	private Date sfModDate;
 	private String sfEmail;
 	private String sfGender;
 //-------------------------------
+	
 	public String getSfSeq() {
 		return sfSeq;
+	}
+	public Boolean getSfUseNy() {
+		return sfUseNy;
+	}
+	public void setSfUseNy(Boolean sfUseNy) {
+		this.sfUseNy = sfUseNy;
 	}
 	public void setSfSeq(String sfSeq) {
 		this.sfSeq = sfSeq;

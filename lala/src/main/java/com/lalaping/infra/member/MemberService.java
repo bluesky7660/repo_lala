@@ -16,6 +16,8 @@ public class MemberService {
     	return memberDao.staffSelectList(staffMemberVo);
     }
     public List<StaffMemberDto> staffSeqList() {
+    	System.out.println("스텝2:"+memberDao.staffSeqList().get(0).getSfSeq());
+    	System.out.println("스텝2:"+memberDao.staffSeqList().get(2).getSfSeq());
     	return memberDao.staffSeqList();
     }
     public StaffMemberDto staffSelectOne(StaffMemberDto staffMemberDto) {
@@ -24,6 +26,9 @@ public class MemberService {
     public int listCountStaffMember(StaffMemberVo staffMemberVo) {
         return memberDao.staffListCount(staffMemberVo);
     }
+	public int selectOneCount(StaffMemberVo staffMemberVo) {
+		return memberDao.selectStaffOneCount(staffMemberVo); 
+	}
     
     // StaffMember CRUD
     public int insertStaffMember(StaffMemberDto staffMemberDto) {
