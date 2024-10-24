@@ -21,6 +21,7 @@ public interface MemberDao {
 	public int selectStaffOneCount(StaffMemberVo staffMemberVo);
 	// UserMember
 	public List<UserMemberDto> userSelectList(UserMemberVo userMemberVo);
+	public List<UserMemberDto> userSeqList();
 	public UserMemberDto userSelectOne(UserMemberDto userMemberDto);
 	public int userListCount(UserMemberVo userMemberVo);
 

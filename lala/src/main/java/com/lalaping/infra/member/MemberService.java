@@ -16,8 +16,6 @@ public class MemberService {
     	return memberDao.staffSelectList(staffMemberVo);
     }
     public List<StaffMemberDto> staffSeqList() {
-    	System.out.println("스텝2:"+memberDao.staffSeqList().get(0).getSfSeq());
-    	System.out.println("스텝2:"+memberDao.staffSeqList().get(2).getSfSeq());
     	return memberDao.staffSeqList();
     }
     public StaffMemberDto staffSelectOne(StaffMemberDto staffMemberDto) {
@@ -47,6 +45,9 @@ public class MemberService {
     // UserMember 
     public List<UserMemberDto> selectUserMemberList(UserMemberVo userMemberVo) {
         return memberDao.userSelectList(userMemberVo);
+    }
+    public List<UserMemberDto> userSeqList() {
+    	return memberDao.userSeqList();
     }
     public UserMemberDto userSelectOne(UserMemberDto userMemberDto) {
     	return memberDao.userSelectOne(userMemberDto);
