@@ -180,6 +180,9 @@
 			<if test="shRcType != null and !shRcType.equals('')">
 				AND a.rcType = #{shRcType}
 			</if>
+			<if test="shStaff != null and !shStaff.equals('')">
+				AND c.sfseq Like CONCAT('%',#{shStaff},'%')
+			</if>
 			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
 				<choose>
 					<when test="shOptionDate == 1"> AND b.awRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
