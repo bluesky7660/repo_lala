@@ -214,6 +214,13 @@
 		WHERE 1=1
 		AND a.umSeq = #{umSeq}
 	</select>
+	<select id="userSeqList" resultMap="userResultMapObj">
+        SELECT
+	        umSeq
+	        ,umName
+        FROM userMember
+        WHERE 1=1
+    </select>
     <select id="userListCount" resultType="int">
         SELECT COUNT(*)
         <include refid="userSelectCommon" />
