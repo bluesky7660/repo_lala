@@ -9,7 +9,7 @@ public class ReceptionVo extends BaseVo {
 
 
 	public Integer getShRcType() {
-		return shRcType;
+		return shRcType; 
 	}
 
 	public void setShRcType(Integer shRcType) {
