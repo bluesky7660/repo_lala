@@ -97,7 +97,6 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/answerXdmMFom")
 	public String answerXdmMFom(Model model,AnswerDto answerDto) {
 		model.addAttribute("item", complaintService.awSelectOne(answerDto));
-		model.addAttribute("listLink", "answerXdmList");
 		return "/xdm/v1/complaint/answerXdmMFom";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")
