@@ -68,7 +68,6 @@
 	        a.sfTel,
 	        a.sfBirthDay,
 	        a.sfDelNy,
-	        a.sfUseNy,
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,

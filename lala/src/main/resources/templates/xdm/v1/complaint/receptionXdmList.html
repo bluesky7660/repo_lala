@@ -195,14 +195,6 @@
 												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
-													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
-														<select class="form-select" id="selectDelNy" name="shDelNy">
-															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
-														</select>
-													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectShRcType">민원종류</label>
 														<select class="form-select" id="selectUseNy" name="shRcType">
@@ -240,8 +232,14 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
-													
-													
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="shDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+														</select>
+													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 															<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 															<select class="form-select" id="selectKeywordType" name="shOption">
@@ -262,11 +260,6 @@
 													</div>
 													<div class="col">      
 													</div>
-													<div class="col">      
-													</div>
-													<div class="col">      
-													</div>
-													
 												</div>
 											</form>
 										</div>
