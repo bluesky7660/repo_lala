@@ -24,6 +24,9 @@ public class MemberService {
     public int listCountStaffMember(StaffMemberVo staffMemberVo) {
         return memberDao.staffListCount(staffMemberVo);
     }
+	public int selectOneCount(StaffMemberVo staffMemberVo) {
+		return memberDao.selectStaffOneCount(staffMemberVo); 
+	}
     
     // StaffMember CRUD
     public int insertStaffMember(StaffMemberDto staffMemberDto) {

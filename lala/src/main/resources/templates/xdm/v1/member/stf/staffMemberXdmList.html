@@ -18,7 +18,7 @@
 		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
-		<title>Bootstrap Admin Dashboards</title>
+		<title>직원회원</title>
 
 
 		<!-- *************
@@ -232,25 +232,41 @@
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
-															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="" selected>직원 검색구분</option>
+															<option value="1" th:selected="${vo.shOption == 1}">직원코드</option>
+															<option value="2" th:selected="${vo.shOption == 2}">직원이름</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="inputKeyword">검색어</label>
+														<label class="visually-hidden" for="inputKeyword">검색어</label> 
 														<input type="text" class="form-control" id="inputKeyword" name="shValue" th:value="${vo.shValue}" placeholder="검색어">
+													</div> 
+													
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="shOption">
+															<option value="" selected>상세 검색구분</option>
+															<option value="3" th:selected="${vo.shOption == 3}">아이디</option>
+															<option value="4" th:selected="${vo.shOption == 4}">성별</option>
+															<option value="5" th:selected="${vo.shOption == 5}">이메일</option>
+															<option value="6" th:selected="${vo.shOption == 6}">전화번호</option>
+															<option value="7" th:selected="${vo.shOption == 7}">생년월일</option>
+														</select>
 													</div>
-													<div class="col-12 col-lg-4 col-xl ">
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="inputKeyword">검색어</label> 
+														<input type="text" class="form-control" id="inputKeyword" name="shValue" th:value="${vo.shValue}" placeholder="검색어">
+													</div> 
+													
+													<div class="col-12 col-lg-4 col-xl "> 
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
+													</div> 
+													<div class="col"> 
+													</div> 
+													<div class="col"> 
 													</div>
-													<div class="col">      
-													</div>
-													<div class="col">
-													</div>
+													
 												</div>
 											</form>
 										</div>
@@ -260,12 +276,10 @@
 											<div class="col-6 col-lg-3">Total: <span th:text="${vo.totalRows}"></span></div>
 											<div class="col-4 col-xs-3 col-lg-2 dataTable-dropdown dataTables_length">
 												<select class="dataTable-selector form-select" id="rowNumToShowSelect" name="rowNumToShow">
-													<option value="2" th:selected="${vo.rowNumToShow == 2}">2</option>
-													<option value="3" th:selected="${vo.rowNumToShow == 3}">3</option>
 													<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
 													<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
-													<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
 													<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
+													<option value="100" th:selected="${vo.rowNumToShow == 100}">100</option>
 												</select>
 											</div>
 										</div>
@@ -284,6 +298,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">전화번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">사용여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
@@ -309,8 +324,10 @@
 													<td th:text="${list.sfId}"></td>
 													<td th:text = "${@codeService.selectOneCachedCode(list.sfGender)}"></td>
 													<td th:text = "${list.sfEmail}"></td>
-													<td th:text="${#strings.substring(list.sfTel, 0, 3)} + '-' + ${#strings.substring(list.sfTel, 3, 7)} + '-' + ${#strings.substring(list.sfTel, 7)}"></td>
+													<td th:text="${#strings.substring(list.sfTel, 0, 3)} + '-' + ${#strings.substring(list.sfTel, 3, 7)} + '-' + ${#strings.substring(list.sfTel, 7, 11)}"></td>
 													<td th:text = "${#dates.format(list.sfBirthDay, 'yyyy-MM-dd')}"></td>	
+													<td th:if="${list.sfUseNy eq false }">N</td>
+													<td th:unless ="${list.sfUseNy eq false }">Y</td>
 													<td th:if="${list.sfDelNy eq false }">N</td>
 													<td th:unless ="${list.sfDelNy eq false }">Y</td>
 													<td th:text="${#dates.format(list.sfRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
