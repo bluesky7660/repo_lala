@@ -191,7 +191,7 @@
 											민원접수
 										</h2>
 										<div>
-											<form name class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/complaint/receptionXdmList">
+											<form class="row gx-3 align-items-center" method="post" autocomplete="off" action="/v1/complaint/receptionXdmList">
 												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
@@ -204,11 +204,14 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectUseNy">사용검색</label>
-														<select class="form-select" id="selectUseNy" name="shUseNy">
-															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+														<label class="visually-hidden" for="selectShRcType">민원종류</label>
+														<select class="form-select" id="selectUseNy" name="shRcType">
+															<option value="" selected>민원종류를 선택하세요</option>
+															<option value="1" th:selected="${vo.shRcType == 1}">행정,서류</option>
+															<option value="2" th:selected="${vo.shRcType == 2}">세무</option>
+															<option value="3" th:selected="${vo.shRcType == 3}">교통</option>
+															<option value="4" th:selected="${vo.shRcType == 4}">불편사항신고</option>
+															<option value="5" th:selected="${vo.shRcType == 5}">기타</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -216,7 +219,6 @@
 														<select class="form-select" id="selectDateType" name="shOptionDate">
 															<option value="" selected>날짜종류 선택해주세요.</option>
 															<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-															<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -233,10 +235,9 @@
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
 															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="1" th:selected="${vo.shOption == 1}">민원번호</option>
+															<option value="2" th:selected="${vo.shOption == 2}">민원제목</option>
+															<option value="3" th:selected="${vo.shOption == 3}">민원내용</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -300,7 +301,7 @@
 														</td>
 														<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 														<td th:text="${list.rcSeq}"></td>
-														<td th:text="${list.rcType}"></td>
+														<td th:text="${@codeService.selectOneCachedCode(list.rcType)}"></td>
 														<td class="td_spotlight">
 															<a th:href="@{/v1/complaint/receptionXdmMFom(rcSeq=${list.rcSeq})}" th:text="${list.rcTitle}"></a>
 														</td>
