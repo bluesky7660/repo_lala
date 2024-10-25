@@ -32,7 +32,6 @@ public class BaseVo {
 	    private String shStaff;
 	    //-------------
 	    public void setParamsPaging(int totalRows) {
-			
 //			setThisPage(3);
 
 			setTotalRows(totalRows);
