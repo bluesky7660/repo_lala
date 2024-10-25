@@ -7,6 +7,7 @@
     <resultMap type="com.lalaping.infra.member.StaffMemberDto" id="staffResultMapObj"></resultMap>
     <sql id="staffSelectCommon">
         FROM staffMember a
+<!--         LEFT JOIN commonCode c ON a.sfGender = c.cdSeq -->
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -22,6 +23,19 @@
                 <when test="shOption == 2 and shOption != null and shOption != ''">
                     AND a.sfName LIKE CONCAT('%', #{shValue}, '%')
                 </when>
+ 				<when test="shOption == 3">
+                	AND a.sfId LIKE CONCAT('%', #{shValue}, '%')
+            	</when>
+            	<when test="shOption == 4">
+				</when>
+            	<when test="shOption == 5">
+              		AND a.sfEmail LIKE CONCAT('%', #{shValue}, '%')
+	            </when>
+	            <when test="shOption == 6">
+	            </when>
+	            <when test="shOption == 7">
+	                AND a.sfBirthDay = #{shValue} 
+	            </when>
             </choose>
         </if>
         <if test="shDelNy != null and !shDelNy.equals('')">
@@ -51,7 +65,6 @@
 	        a.sfTel,
 	        a.sfBirthDay,
 	        a.sfDelNy,
-	        a.sfUseNy,
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
@@ -68,7 +81,6 @@
 	        a.sfTel,
 	        a.sfBirthDay,
 	        a.sfDelNy,
-	        a.sfUseNy,
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
@@ -158,11 +170,24 @@
                     )
                 </when>
                 <when test="shOption == 1 and shOption != null and shOption != ''">
-                    AND a.umId = #{shValue}
+                    AND a.umSeq = #{shValue}
                 </when>
                 <when test="shOption == 2 and shOption != null and shOption != ''">
                     AND a.umName LIKE CONCAT('%', #{shValue}, '%')
                 </when>
+                <when test="shOption == 3">
+                	AND a.umId LIKE CONCAT('%', #{shValue}, '%')
+            	</when>
+            	<when test="shOption == 4">
+				</when>
+            	<when test="shOption == 5">
+              		AND a.umEmail LIKE CONCAT('%', #{shValue}, '%')
+	            </when>
+	            <when test="shOption == 6">
+	            </when>
+	            <when test="shOption == 7">
+	                AND a.umBirthDay = #{shValue} 
+	            </when>
             </choose>
         </if>
         <if test="shDelNy != null and !shDelNy.equals('')">
