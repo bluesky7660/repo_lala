@@ -46,6 +46,9 @@ public class MemberService {
     public List<UserMemberDto> selectUserMemberList(UserMemberVo userMemberVo) {
         return memberDao.userSelectList(userMemberVo);
     }
+    public List<UserMemberDto> userSeqList() {
+    	return memberDao.userSeqList();
+    }
     public UserMemberDto userSelectOne(UserMemberDto userMemberDto) {
     	return memberDao.userSelectOne(userMemberDto);
     }

@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.common.util.UtilDateTime;
-import com.lalaping.infra.code.CodeDto;
 import com.lalaping.infra.code.CodeService;
 import com.lalaping.infra.member.MemberService;
 import com.lalaping.infra.member.StaffMemberDto;
 import com.lalaping.infra.member.StaffMemberVo;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ComplaintController {
@@ -34,7 +35,7 @@ public class ComplaintController {
 		model.addAttribute("list", complaintService.receptionSelectList(vo));
 		model.addAttribute("formLink", "receptionXdmForm");
 		return "xdm/v1/complaint/receptionXdmList";
-	}
+	} 
 	@RequestMapping(value = "/v1/complaint/receptionXdmForm")
 	public String receptionXdmForm(Model model) {
 		model.addAttribute("listLink", "receptionXdmList");
@@ -97,7 +98,6 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/answerXdmMFom")
 	public String answerXdmMFom(Model model,AnswerDto answerDto) {
 		model.addAttribute("item", complaintService.awSelectOne(answerDto));
-		model.addAttribute("listLink", "answerXdmList");
 		return "/xdm/v1/complaint/answerXdmMFom";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")

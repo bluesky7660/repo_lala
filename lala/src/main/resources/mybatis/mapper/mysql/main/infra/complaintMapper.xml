@@ -17,19 +17,29 @@
 						)
 					</when>
 					<when test="shOption == 1 and shOption != null and shOption != ''">
-						AND a.rcTitle = #{shValue}
+						AND a.rcSeq = #{shValue}
 					</when>
 					<when test="shOption == 2 and shOption != null and shOption != ''">
-						AND a.rcType LIKE CONCAT('%', #{shValue}, '%')
+						AND a.rcTitle LIKE CONCAT('%', #{shValue}, '%')
 					</when>
 					<when test="shOption == 3 and shOption != null and shOption != ''">
-						AND a.rcStatus LIKE CONCAT('%', #{shValue}, '%')
+						AND b.umName LIKE CONCAT('%', #{shValue}, '%')
 					</when>
+					
 				</choose>
+	
 			</if>
+			<if test="shRcStatus != null and !shRcStatus.equals('')">
+				AND a.rcStatus = #{shRcStatus}
+			</if>
+			<if test="shRcType != null and !shRcType.equals('')">
+				AND a.RcType = #{shRcType}
+			</if>
+			
 			<if test="shDelNy != null and !shDelNy.equals('')">
 				AND a.rcDelNy = #{shDelNy}
 			</if>
+			
 			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
 				<choose>
 					<when test="shOptionDate == 1"> AND a.rcRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -124,6 +134,11 @@
         SELECT COUNT(*)
         <include refid="receptionSelectCommon" />
     </select>
+     <select id="receptionTypeCount" resultMap="receptionResultMapObj">
+        SELECT rcType, COUNT(*) AS rcTypeCount
+	    FROM reception
+	    GROUP BY rcType
+    </select>
     
 	<!--answer 영역 -->
 	
@@ -143,17 +158,35 @@
 						)
 					</when>
 					<when test="shOption == 1 and shOption != null and shOption != ''">
-						AND b.awContent = #{shValue}
+						AND b.awSeq= #{shValue}
+					</when>
+					<when test="shOption == 2 and shOption != null and shOption != ''">
+						AND b.reception_rcSeq = #{shValue}
+					</when>
+					<when test="shOption == 3 and shOption != null and shOption != ''">
+						AND a.rcTitle LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+					<when test="shOption == 4 and shOption != null and shOption != ''">
+						AND b.awContent LIKE CONCAT('%', #{shValue}, '%')
+					</when>
+					<when test="shOption == 5 and shOption != null and shOption != ''">
+						AND c.sfName LIKE CONCAT('%', #{shValue}, '%')
 					</when>
 				</choose>
 			</if>
 			<if test="shDelNy != null and !shDelNy.equals('')">
 				AND b.awDelNy = #{shDelNy}
 			</if>
+			<if test="shRcType != null and !shRcType.equals('')">
+				AND a.rcType = #{shRcType}
+			</if>
+			<if test="shStaff != null and !shStaff.equals('')">
+				AND c.sfseq Like CONCAT('%',#{shStaff},'%')
+			</if>
 			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
 				<choose>
 					<when test="shOptionDate == 1"> AND b.awRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2"> AND b.awModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<!-- <when test="shOptionDate == 2"> AND b.awModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
 				</choose>
 			</if>
 	</sql>
@@ -255,7 +288,13 @@
         SELECT COUNT(*)
         <include refid="answerSelectCommon" />
     </select>
-	
+	<select id="answerTypeCount" resultMap="answerResultMapObj">
+        SELECT b.cdSeq, COALESCE(COUNT(a.awDept), 0) AS awDeptCount
+		FROM commoncode b
+		LEFT JOIN answer a ON b.cdSeq = a.awDept
+		WHERE b.codeGroup_cgSeq = 4 
+		GROUP BY b.cdSeq
+    </select>
 	
 	
 	

@@ -106,28 +106,28 @@ public class MemberController {
 	}
 
 	// CRUD
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmInst")
+	@RequestMapping(value = "/v1/member/userMemberXdmInst")
 	public String userMemberXdmInst(UserMemberDto userMemberDto) {
 	    System.out.println("UserMemberDto.getUmName(): " + userMemberDto.getUmName());
 	    int inst = memberService.insertUserMember(userMemberDto);
 	    System.out.println("memberService.insertUserMember(userMemberDto): " + inst);
 	    return "redirect:/v1/member/userMemberXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmUpdate")
+	@RequestMapping(value = "/v1/member/userMemberXdmUpdate")
 	public String userMemberXdmUpdate(UserMemberDto userMemberDto) {
 	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
 	    int updt = memberService.updateUserMember(userMemberDto);
 	    System.out.println("memberService.updateUserMember(userMemberDto): " + updt);
 	    return "redirect:/v1/member/userMemberXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmDelete")
+	@RequestMapping(value = "/v1/member/userMemberXdmDelete")
 	public String userMemberXdmDelete(UserMemberDto userMemberDto) {
 	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
 	    int delt = memberService.deleteUserMember(userMemberDto);
 	    System.out.println("memberService.deleteUserMember(userMemberDto): " + delt);
 	    return "redirect:/v1/member/userMemberXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/member/userMemberXdmUelete")
+	@RequestMapping(value = "/v1/member/userMemberXdmUelete")
 	public String userMemberXdmUelete(UserMemberDto userMemberDto) {
 	    System.out.println("UserMemberDto.getUmSeq(): " + userMemberDto.getUmSeq());
 	    int uelt = memberService.ueleteUserMember(userMemberDto);

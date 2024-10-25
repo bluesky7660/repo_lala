@@ -94,8 +94,9 @@
 	</select>
     <select id="staffSeqList" resultMap="staffResultMapObj">
         SELECT
-	        a.sfSeq
-        FROM staffMember a
+	        sfSeq
+	        ,sfName
+        FROM staffMember
         WHERE 1=1
     </select>
     <select id="staffListCount" resultType="int">
@@ -135,7 +136,7 @@
         SET
 	        sfId = #{sfId},
 	        sfName = #{sfName},
-	        sfPasswd = #{sfPasswd},
+	        <!-- sfPasswd = #{sfPasswd}, -->
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
 	        sfEmail = #{sfEmail},
@@ -243,6 +244,13 @@
 		WHERE 1=1
 		AND a.umSeq = #{umSeq}
 	</select>
+	<select id="userSeqList" resultMap="userResultMapObj">
+        SELECT
+	        umSeq
+	        ,umName
+        FROM userMember
+        WHERE 1=1
+    </select>
     <select id="userListCount" resultType="int">
         SELECT COUNT(*)
         <include refid="userSelectCommon" />
@@ -279,7 +287,7 @@
         UPDATE userMember
         SET
 	        umId = #{umId},
-	        umPasswd = #{umPasswd},
+	        <!-- umPasswd = #{umPasswd}, -->
 	        umName = #{umName},
 	        umTel = #{umTel},
 	        umBirthDay = #{umBirthDay},

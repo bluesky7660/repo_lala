@@ -27,7 +27,7 @@
 		<!-- Animated css -->
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/css/animate.css">
 
-		<!-- Bootstrap font icons css -->
+		<
 		<link rel="stylesheet" href="/xdm/v1/template/arise-v1.0/assets/fonts/bootstrap/bootstrap-icons.css">
 
 		<!-- Main css -->
@@ -195,20 +195,23 @@
 												<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 												<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 												<div class="row gy-3">
-													<div class="col-12 col-md-6 col-lg-4 col-xl ">
-														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
-														<select class="form-select" id="selectDelNy" name="shDelNy">
-															<option value="" selected>삭제여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectStaff">작성자</label>
+														<select class="form-select" id="selectStaff" name="shStaff">
+															<option value="" selected>작성자 선택해주세요.</option>
+															<option th:each="staff:${@memberService.staffSeqList()}" th:text="${staff.sfName}" th:value="${staff.sfSeq}" th:selected="${vo.shStaff == staff.sfSeq}"></option>
 														</select>
 													</div>
+													
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectUseNy">사용검색</label>
-														<select class="form-select" id="selectUseNy" name="shUseNy">
-															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+														<label class="visually-hidden" for="selectShRcType">민원종류</label>
+														<select class="form-select" id="selectUseNy" name="shRcType">
+															<option value="" selected>민원종류를 선택하세요</option>
+															<option value="1" th:selected="${vo.shRcType == 1}">행정,서류</option>
+															<option value="2" th:selected="${vo.shRcType == 2}">세무</option>
+															<option value="3" th:selected="${vo.shRcType == 3}">교통</option>
+															<option value="4" th:selected="${vo.shRcType == 4}">불편사항신고</option>
+															<option value="5" th:selected="${vo.shRcType == 5}">기타</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -216,7 +219,6 @@
 														<select class="form-select" id="selectDateType" name="shOptionDate">
 															<option value="" selected>날짜종류 선택해주세요.</option>
 															<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-															<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -229,14 +231,23 @@
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
+													<div class="col-12 col-md-6 col-lg-4 col-xl ">
+														<label class="visually-hidden" for="selectDelNy">삭제검색</label>
+														<select class="form-select" id="selectDelNy" name="shDelNy">
+															<option value="" selected>삭제여부를 선택하세요</option>
+															<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+														</select>
+													</div>
+													
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
 															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="1" th:selected="${vo.shOption == 1}">답변번호</option>
+															<option value="2" th:selected="${vo.shOption == 2}">민원번호</option>
+															<option value="3" th:selected="${vo.shOption == 3}">민원제목</option>
+															<option value="5" th:selected="${vo.shOption == 5}">답변자</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -249,8 +260,7 @@
 													</div>
 													<div class="col">      
 													</div>
-													<div class="col">
-													</div>
+													
 												</div>
 											</form>
 										</div>
@@ -279,8 +289,8 @@
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원 번호</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변제목</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변내용</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원종류</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -302,11 +312,10 @@
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.awSeq}"></td>
 													<td th:text="${list.reception_rcSeq}"></td>
-													
+													<td th:text = "${@codeService.selectOneCachedCode(list.rcType)}"></td>
 													<td class="td_spotlight">
 														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" th:text="${list.rcTitle}"></a>
 													</td>
-													<td th:text="${list.awContent}"></td>
 													<td th:text="${list.sfName}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>

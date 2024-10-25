@@ -9,8 +9,31 @@
 		FROM
 			qnaRequests a
 			join userMember b on b.umSeq = a.userMember_umSeq
+			left join qnaAnswers c on a.qrSeq = c.qnaRequests_qrSeq
 		where 1=1
-			AND a.qrDelNy = 0
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
+			<if test="shQnaType != null and !shQnaType.equals('')">AND a.qrType = #{shQnaType}</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR a.qrTitle Like CONCAT('%',#{shValue},'%')
+							OR b.umName Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND a.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND b.umName Like CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			</if>
+			<choose>
+				<when test="shOptionDate == 1"> AND a.cdRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2"> AND a.cdModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			
 	</sql>
 	<select id="selectListRequest" resultMap="RequestResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
@@ -18,10 +41,12 @@
 			a.qrSeq
 			,a.qrTitle
 			,a.qrContent
+			,a.qrStatus
 			,a.qrDelNy
 			,a.qrRegDate
 			,a.qrType
 			,b.umName
+			,c.qaSeq
 		<include refid="ReqSelectCommon"/>
 		ORDER BY a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
@@ -36,6 +61,7 @@
 			a.qrTitle,
 			a.qrContent,
 			a.qrType,
+			a.qrStatus,
 			a.userMember_umSeq,
 			b.umName
 		FROM
@@ -44,11 +70,24 @@
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
+	<!-- <select id="qnaTypeCount" resultMap="RequestResultMapObj">
+        SELECT qrType, COUNT(*) AS qrTypeCount
+	    FROM qnaRequests
+	    GROUP BY qrType
+    </select> -->
+    <select id="qnaTypeCount" resultMap="RequestResultMapObj">
+        SELECT b.cdSeq, COALESCE(COUNT(a.qrType), 0) AS qrTypeCount
+		FROM commoncode b
+		LEFT JOIN qnaRequests a ON b.cdSeq = a.qrType
+		WHERE b.codeGroup_cgSeq = 2 
+		GROUP BY b.cdSeq
+    </select>
 	<insert id="insertRequest">
         INSERT INTO qnaRequests (
 	        qrTitle
 			,qrContent
 			,qrType
+			,qrStatus
 			,userMember_umSeq
 			,qrDelNy
 			,qrRegDate
@@ -57,6 +96,7 @@
 	        #{qrTitle}
 	        ,#{qrContent}
 	        ,#{qrType}
+	        ,0
 	        ,#{userMember_umSeq}
 	        ,0
 	        ,now()
@@ -65,6 +105,19 @@
             SELECT last_insert_id()
         </selectKey>
     </insert>
+    <update id="updateRequest">
+    	UPDATE qnaRequests 
+		set
+			qrStatus = 1
+		WHERE 1=1
+			AND qrSeq = #{qnaRequests_qrSeq}
+    </update>
+    <select id="qnaStatusCount" resultMap="RequestResultMapObj">
+        SELECT qrStatus, COUNT(*) AS qnaStatusCount
+		FROM qnaRequests
+		GROUP BY qrStatus
+		ORDER BY qrStatus = 0 DESC
+    </select>
 	
 	<!-- qna답변 영역 -->
 	<resultMap type="com.lalaping.qna.QnaAnswerDto" id="AnswerResultMapObj"></resultMap>
@@ -74,7 +127,31 @@
 			join staffMember b on b.sfSeq = a.staffMember_sfSeq
 			join qnaRequests c on c.qrSeq = a.qnaRequests_qrSeq
 		where 1=1
-			AND a.qaDelNy = 0
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qaDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND c.qrStatus = #{shQrStatus}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.sfseq Like CONCAT('%',#{shStaff},'%')</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qaSeq Like CONCAT('%',#{shValue},'%')
+							OR c.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR c.qrTitle Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND c.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND c.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND a.qaSeq = #{shValue}</when>
+				</choose>
+			</if>
+			<if test="((shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals('')))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.qaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.qaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+			
 	</sql>
 	<select id="selectListAnswer" resultMap="AnswerResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
@@ -87,9 +164,10 @@
 			,a.qnaRequests_qrSeq
 			,b.sfName
 			,c.qrType
+			,c.qrStatus
 			,c.qrTitle
 		<include refid="AnsSelectCommon"/>
-		ORDER BY a.qaSeq DESC
+		ORDER BY a.qaSeq DESC, c.qrStatus DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	<select id="listCountA" resultType="int">
@@ -144,4 +222,5 @@
 		WHERE 1=1
 			AND qaSeq = #{qaSeq}
 	</update>
+	
 </mapper>

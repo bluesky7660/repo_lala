@@ -141,9 +141,12 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
     font-weight: bold;
     /* padding: 18px; */
 }
-.top_row .stats-tile p::after{
-    content:" 팀장"
+.top_row .stats-tile h3{
+    font-size: 1.8rem;
 }
+/* .top_row .stats-tile p::after{
+    content:" 팀장"
+} */
 table .td_spotlight,table .td_spotlight a{
 	color: rgb(0, 110, 255);
     font-weight: bold;
@@ -157,7 +160,17 @@ table .td_spotlight a:hover{
 .login-box .login-form .btn{
     margin-left: 0;
 }
-
+.login-logo{
+    cursor: pointer;
+}
+.sidebar-wrapper .sidebar-menu ul li.active a span{
+    color: #3688fa;
+    font-weight: bold;
+}
+.sidebar-wrapper .sidebar-menu ul li a:hover i{
+    color: #3688fa;
+    font-weight: bold;
+}
 
 /*index*/
 .pageCategory{

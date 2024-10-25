@@ -11,6 +11,11 @@ public class QnaRequestDto {
 	private Integer qrType;
 	private String umName;
 	private String userMember_umSeq;
+	private Integer qrStatus;
+	private String qrTypeCount;
+	private String cdSeq;
+	private String qaSeq;
+	private Integer qnaStatusCount;
 //--------------------------------
 	public String getQrSeq() {
 		return qrSeq;
@@ -54,11 +59,41 @@ public class QnaRequestDto {
 	public void setUserMember_umSeq(String userMember_umSeq) {
 		this.userMember_umSeq = userMember_umSeq;
 	}
+	public Integer getQrStatus() {
+		return qrStatus;
+	}
+	public void setQrStatus(Integer qrStatus) {
+		this.qrStatus = qrStatus;
+	}
 	public Integer getQrDelNy() {
 		return qrDelNy;
 	}
 	public void setQrDelNy(Integer qrDelNy) {
 		this.qrDelNy = qrDelNy;
+	}
+	public String getQrTypeCount() {
+		return qrTypeCount;
+	}
+	public void setQrTypeCount(String qrTypeCount) {
+		this.qrTypeCount = qrTypeCount;
+	}
+	public String getCdSeq() {
+		return cdSeq;
+	}
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
+	}
+	public String getQaSeq() {
+		return qaSeq;
+	}
+	public void setQaSeq(String qaSeq) {
+		this.qaSeq = qaSeq;
+	}
+	public Integer getQnaStatusCount() {
+		return qnaStatusCount;
+	}
+	public void setQnaStatusCount(Integer qnaStatusCount) {
+		this.qnaStatusCount = qnaStatusCount;
 	}
 	
 }
