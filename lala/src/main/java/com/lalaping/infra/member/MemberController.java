@@ -73,9 +73,7 @@ public class MemberController {
 		System.out.println("memberService.ueleteStaffMember(staffMemberDto): " + uelt);
 		return "redirect:/v1/member/staffMemberXdmList";
 	}
-	
-	//-------------------------------------------------------------------
-	
+	//---------------------------------------------------------------------------------------
 	// UserMember 영역
 	@RequestMapping(value = "/v1/member/userMemberXdmList")
 	public String userMemberXdmList(@ModelAttribute("vo") UserMemberVo userMemberVo, Model model) {
@@ -88,7 +86,7 @@ public class MemberController {
 	    userMemberVo.setShDateEnd(userMemberVo.getShDateEnd() == null || userMemberVo.getShDateEnd().isEmpty() ? null
 	            : UtilDateTime.add59TimeString(userMemberVo.getShDateEnd()));
 	    userMemberVo.setParamsPaging(memberService.listCountUserMember(userMemberVo));
-	    System.out.println("패스워드:"+memberService.selectUserMemberList(userMemberVo).get(0).getUmDelNy());
+	    System.out.println("값없으면 나옴:"+memberService.selectUserMemberList(userMemberVo)+"@@@@@@@@@@@@");
 	    model.addAttribute("list", memberService.selectUserMemberList(userMemberVo));
 	    model.addAttribute("formLink", "userMemberXdmForm");
 	    return "/xdm/v1/member/usr/userMemberXdmList";

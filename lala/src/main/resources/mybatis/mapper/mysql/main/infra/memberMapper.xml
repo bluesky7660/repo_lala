@@ -7,7 +7,7 @@
     <resultMap type="com.lalaping.infra.member.StaffMemberDto" id="staffResultMapObj"></resultMap>
     <sql id="staffSelectCommon">
         FROM staffMember a
-<!--         LEFT JOIN commonCode c ON a.sfGender = c.cdSeq -->
+        LEFT JOIN commonCode c ON a.sfGender = c.cdSeq
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -27,11 +27,13 @@
                 	AND a.sfId LIKE CONCAT('%', #{shValue}, '%')
             	</when>
             	<when test="shOption == 4">
+            		AND c.cdName LIKE CONCAT('%', #{shValue}, '%')
 				</when>
             	<when test="shOption == 5">
               		AND a.sfEmail LIKE CONCAT('%', #{shValue}, '%')
 	            </when>
 	            <when test="shOption == 6">
+	          		AND a.sfTel LIKE CONCAT('%', #{shValue}, '%')
 	            </when>
 	            <when test="shOption == 7">
 	                AND a.sfBirthDay = #{shValue} 
@@ -160,6 +162,7 @@
     <resultMap type="com.lalaping.infra.member.UserMemberDto" id="userResultMapObj"></resultMap>
     <sql id="userSelectCommon">
         FROM userMember a
+        LEFT JOIN commonCode c ON a.umGender = c.cdSeq
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -179,11 +182,13 @@
                 	AND a.umId LIKE CONCAT('%', #{shValue}, '%')
             	</when>
             	<when test="shOption == 4">
+            		AND c.cdName LIKE CONCAT('%', #{shValue}, '%')
 				</when>
             	<when test="shOption == 5">
               		AND a.umEmail LIKE CONCAT('%', #{shValue}, '%')
 	            </when>
 	            <when test="shOption == 6">
+                  	AND a.umTel LIKE CONCAT('%', #{shValue}, '%')
 	            </when>
 	            <when test="shOption == 7">
 	                AND a.umBirthDay = #{shValue} 
