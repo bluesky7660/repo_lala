@@ -18,7 +18,7 @@
 		<link rel="shortcut icon" href="/xdm/v1/template/arise-v1.0/assets/images/favicon.svg">
 
 		<!-- Title -->
-		<title>Bootstrap Admin Dashboards</title>
+		<title>일반회원</title>
 
 
 		<!-- *************
@@ -204,39 +204,36 @@
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
-														<label class="visually-hidden" for="selectUseNy">사용검색</label>
-														<select class="form-select" id="selectUseNy" name="shUseNy">
-															<option value="" selected>사용여부를 선택하세요</option>
-															<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-															<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
-														</select>
-													</div>
-													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectDateType">검색날짜 종류</label>
 														<select class="form-select" id="selectDateType" name="shOptionDate">
-															<option value="" selected>날짜종류 선택해주세요.</option>
+															<option value="" selected>날짜종류 선택하세요</option>
 															<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
 															<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateStart">시작일</label>
-														<input type="text" class="form-control" id="inputDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일을 선택하세요" value="">
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="inputDateEnd">종료일</label>
-														<input type="text" class="form-control" id="inputDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일을 선택해주세요" value="">
+														<input type="text" class="form-control" id="inputDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일을 선택하세요" value="">
+													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
 													</div>
 												</div>
 												<div class="row gy-3 mt-0">
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
 														<select class="form-select" id="selectKeywordType" name="shOption">
-															<option value="" selected>검색구분</option>
-															<option value="1" th:selected="${vo.shOption == 1}">코드번호</option>
-															<option value="2" th:selected="${vo.shOption == 2}">코드이름</option>
-															<option value="3" th:selected="${vo.shOption == 3}">코드그룹번호</option>
-															<option value="4" th:selected="${vo.shOption == 4}">코드그룹이름</option>
+															<option value="" selected>상세 검색구분</option>
+															<option value="1" th:selected="${vo.shOption == 1}">회원 코드</option>
+															<option value="2" th:selected="${vo.shOption == 2}">회원 이름</option>
+															<option value="3" th:selected="${vo.shOption == 3}">아이디</option>
+															<option value="4" th:selected="${vo.shOption == 4}">성별</option>
+															<option value="5" th:selected="${vo.shOption == 5}">이메일</option>
+															<option value="6" th:selected="${vo.shOption == 6}">전화번호</option>
+															<option value="7" th:selected="${vo.shOption == 7}">생년월일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -265,7 +262,7 @@
 													<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
 													<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
 													<option value="20" th:selected="${vo.rowNumToShow == 20}">20</option>
-													<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
+													<option value="100" th:selected="${vo.rowNumToShow == 100}">100</option>
 												</select>
 											</div>
 										</div>
