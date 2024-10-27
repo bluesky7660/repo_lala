@@ -15,7 +15,6 @@ public class BaseVo {
 	    private Integer shOption;	//검색키워드 타입
 	    private Integer shDelNy;			//검색 조건[삭제] 
 	    private Integer shUseNy;			//검색 조건[사용]
-	    private Integer shStaff;
 	    //페이지네이션
 	    private int thisPage = 1; 				//현재 페이지
 	    private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;//	5;	// 화면에 보여줄 데이터 줄 갯수
@@ -114,12 +113,6 @@ public class BaseVo {
 			this.shUseNy = shUseNy;
 		}
 		
-		public Integer getShStaff() {
-			return shStaff;
-		}
-		public void setShStaff(Integer shStaff) {
-			this.shStaff = shStaff;
-		}
 		public int getThisPage() {
 			return thisPage;
 		}

@@ -16,7 +16,6 @@ public interface ComplaintDao {
 	public int rcDelete(ReceptionDto receptionDto);
 	public int receptionListCount(ReceptionVo vo);
 	
-	
 //	답변 answer
 	public List<AnswerDto> answerSelectList(AnswerVo vo);
 	public List<AnswerDto> answerTypeCount();
@@ -26,5 +25,8 @@ public interface ComplaintDao {
 	public int awUelete(AnswerDto answerDto);
 	public int awDelete(AnswerDto answerDto);
 	public int answerListCount(AnswerVo vo);
+
+//민원 대시보드용
+	public List<ComplaintDto> compStatusCount();
 
 }

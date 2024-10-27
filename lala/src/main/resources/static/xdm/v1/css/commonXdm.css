@@ -79,6 +79,11 @@ table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, tab
 .graph_area{
     align-items: stretch;
 }
+.graphs_box .card-body{
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+}
 
 .graphs_box .card-body>div{
     width: fit-content;
@@ -170,6 +175,9 @@ table .td_spotlight a:hover{
 .sidebar-wrapper .sidebar-menu ul li a:hover i{
     color: #3688fa;
     font-weight: bold;
+}
+.graphs_box .card-body>.row{
+    
 }
 
 /*index*/

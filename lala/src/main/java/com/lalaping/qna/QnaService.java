@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lalaping.complaint.ReceptionDto;
 import com.lalaping.infra.code.CodeDto;
 
 @Service
@@ -13,33 +14,34 @@ public class QnaService {
 	QnaDao qnaDao;
 	
 	//Qna Request
-	public List<QnaRequestDto> selectListRequest(QnaRequestVo vo){
+	public List<QnaDto> selectListRequest(QnaRequestVo vo){
 		return qnaDao.selectListRequest(vo);
 	}
-	public List<QnaRequestDto> qnaTypeCount(){
+	public List<QnaDto> qnaTypeCount(){
 		return qnaDao.qnaTypeCount();
 	}
-	public List<QnaRequestDto> qnaStatusCount(){
+	public List<QnaDto> qnaStatusCount(){
 		return qnaDao.qnaStatusCount();
 	}
 	public int listCountR(QnaRequestVo vo) {
 		return qnaDao.listCountR(vo);
 	}
-	public QnaRequestDto selectOneRequest(QnaRequestDto qnaRequestDto) {
-		return qnaDao.selectOneRequest(qnaRequestDto);
+	public QnaDto selectOneRequest(QnaDto qnaDto) {
+		return qnaDao.selectOneRequest(qnaDto);
 	}
-	public int insertRequest(QnaRequestDto qnaRequestDto){
-		return qnaDao.insertRequest(qnaRequestDto);
+	public int insertRequest(QnaDto qnaDto){
+		return qnaDao.insertRequest(qnaDto);
 	}
-	public int updateRequest(QnaRequestDto qnaRequestDto){
-		return qnaDao.updateRequest(qnaRequestDto);
+	public int updateRequest(QnaDto qnaDto){
+		return qnaDao.updateRequest(qnaDto);
 	}
-	public int ueleteRequest(QnaRequestDto qnaRequestDto){
-		return qnaDao.ueleteRequest(qnaRequestDto);
+	public int ueleteRequest(QnaDto qnaDto){
+		return qnaDao.ueleteRequest(qnaDto);
 	}
-	public int deleteRequest(QnaRequestDto qnaRequestDto){
-		return qnaDao.deleteRequest(qnaRequestDto);
+	public int deleteRequest(QnaDto qnaDto){
+		return qnaDao.deleteRequest(qnaDto);
 	}
+	
 	
 	//Qna Answer
 	public List<QnaAnswerDto> selectListAnswer(QnaAnswerVo vo){
@@ -64,5 +66,29 @@ public class QnaService {
 		return qnaDao.deleteAnswer(qnaAnswerDto);
 	}
 	
+	
+	//대시보드
+	public int getQnaTypeCountForType(String type) {
+	    List<QnaDto> qnaList = qnaDao.qnaTypeCount();
+	    for (QnaDto qna : qnaList) {
+	        if (qna.getQrType() != null && qna.getQrType().toString().equals(type)) {
+	            return qna.getQrTypeCount(); // 해당하는 값 반환
+	        }
+	        
+	    }
+	    return 0; // 일치하는 항목이 없을 경우 0 반환
+	}
+	public int getQnaStatusCount(int status) {
+	    List<QnaDto> qnaStatusList = qnaDao.qnaStatusCount();
+	    for (QnaDto qnaStatus : qnaStatusList) {
+	        if (qnaStatus.getQrStatus() != null && qnaStatus.getQrStatus().equals(status)) {
+	        	System.out.println("성공");
+	            return qnaStatus.getQnaStatusCount(); // 해당하는 값 반환
+	        }
+	        
+	    }
+	    System.out.println("실패");
+	    return 0; // 일치하는 항목이 없을 경우 0 반환
+	}
 
 }

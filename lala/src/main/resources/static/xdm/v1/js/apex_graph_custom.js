@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         title: {
             text: "※민원",
         },
-        series: qnaCounts,
+        series: complaintCounts,
         labels: ["행정,서류", "세무", "교통", "불편사항", "기타"],
         colors: ['#f87957', '#3688fa', '#ffae1f', '#26ba4f', '#9ba2ab'],
         // theme: {

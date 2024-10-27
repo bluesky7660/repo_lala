@@ -4,7 +4,8 @@
 <mapper namespace="com.lalaping.qna.QnaDao">
 
 	<!-- qna질문 영역 -->
-	<resultMap type="com.lalaping.qna.QnaRequestDto" id="RequestResultMapObj"></resultMap>
+	<!-- <resultMap type="com.lalaping.qna.QnaRequestDto" id="qnaResultMapObj"></resultMap> -->
+	<resultMap type="com.lalaping.qna.QnaDto" id="qnaResultMapObj"></resultMap>
 	<sql id="ReqSelectCommon">
 		FROM
 			qnaRequests a
@@ -35,7 +36,7 @@
 			</choose>
 			
 	</sql>
-	<select id="selectListRequest" resultMap="RequestResultMapObj">
+	<select id="selectListRequest" resultMap="qnaResultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			a.qrSeq
@@ -55,7 +56,7 @@
 		SELECT COUNT(*) 
 		<include refid="ReqSelectCommon"/>
 	</select>
-	<select id="selectOneRequest" resultMap="RequestResultMapObj">
+	<select id="selectOneRequest" resultMap="qnaResultMapObj">
 		SELECT
 			a.qrSeq,
 			a.qrTitle,
@@ -70,17 +71,15 @@
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
-	<!-- <select id="qnaTypeCount" resultMap="RequestResultMapObj">
+	<!-- <select id="qnaTypeCount" resultMap="qnaResultMapObj">
         SELECT qrType, COUNT(*) AS qrTypeCount
 	    FROM qnaRequests
 	    GROUP BY qrType
     </select> -->
-    <select id="qnaTypeCount" resultMap="RequestResultMapObj">
-        SELECT b.cdSeq, COALESCE(COUNT(a.qrType), 0) AS qrTypeCount
-		FROM commoncode b
-		LEFT JOIN qnaRequests a ON b.cdSeq = a.qrType
-		WHERE b.codeGroup_cgSeq = 2 
-		GROUP BY b.cdSeq
+    <select id="qnaTypeCount" resultMap="qnaResultMapObj">
+        SELECT qrType, COUNT(qrType) AS qrTypeCount
+		FROM qnaRequests
+		GROUP BY qrType
     </select>
 	<insert id="insertRequest">
         INSERT INTO qnaRequests (
@@ -112,11 +111,11 @@
 		WHERE 1=1
 			AND qrSeq = #{qnaRequests_qrSeq}
     </update>
-    <select id="qnaStatusCount" resultMap="RequestResultMapObj">
-        SELECT qrStatus, COUNT(*) AS qnaStatusCount
+    <select id="qnaStatusCount" resultMap="qnaResultMapObj">
+        SELECT qrStatus, COUNT(qrStatus) AS qnaStatusCount
 		FROM qnaRequests
 		GROUP BY qrStatus
-		ORDER BY qrStatus = 0 DESC
+		order by qrStatus
     </select>
 	
 	<!-- qna답변 영역 -->

@@ -135,9 +135,15 @@
         <include refid="receptionSelectCommon" />
     </select>
      <select id="receptionTypeCount" resultMap="receptionResultMapObj">
-        SELECT rcType, COUNT(*) AS rcTypeCount
+        SELECT rcType, COUNT(rcType) AS rcTypeCount
 	    FROM reception
 	    GROUP BY rcType
+    </select>
+    <resultMap type="com.lalaping.complaint.ComplaintDto" id="compResultMapObj"></resultMap>
+    <select id="compStatusCount" resultMap="compResultMapObj">
+        SELECT rcStatus, COUNT(rcStatus) AS rcStatusCount
+		FROM reception
+		GROUP BY rcStatus
     </select>
     
 	<!--answer 영역 -->
@@ -289,11 +295,9 @@
         <include refid="answerSelectCommon" />
     </select>
 	<select id="answerTypeCount" resultMap="answerResultMapObj">
-        SELECT b.cdSeq, COALESCE(COUNT(a.awDept), 0) AS awDeptCount
-		FROM commoncode b
-		LEFT JOIN answer a ON b.cdSeq = a.awDept
-		WHERE b.codeGroup_cgSeq = 4 
-		GROUP BY b.cdSeq
+		SELECT a.awDept, COUNT(a.awDept) AS awDeptCount
+	    FROM answer a
+	    GROUP BY a.awDept
     </select>
 	
 	
