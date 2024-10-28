@@ -24,7 +24,7 @@ public class DashboardController {
 //		System.out.println("getAwDept:"+complaintService.answerTypeCount().get(0).getCdSeq());
 		qnaRequestVo.setRowNumToShow(5);
 		receptionVo.setRowNumToShow(5);
-		model.addAttribute("qnaList", qnaService.selectListRequest(qnaRequestVo));
+		model.addAttribute("qnaList", qnaService.pendingRequestList(qnaRequestVo));
 		model.addAttribute("qnaStatus", qnaService.qnaStatusCount());
 		model.addAttribute("comList", complaintService.receptionSelectList(receptionVo));
 		model.addAttribute("DeptType", complaintService.answerTypeCount());
