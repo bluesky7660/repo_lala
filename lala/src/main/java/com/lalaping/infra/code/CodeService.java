@@ -67,6 +67,7 @@ public class CodeService {
 		String rt = "";
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
 			if (codeRow.getCdSeq().equals(Integer.toString(code))) {
+				System.out.println("selectOneCachedCode :" + codeRow.getCdName());
 				rt = codeRow.getCdName();
 			} else {
 				// by pass
@@ -74,5 +75,4 @@ public class CodeService {
 		}
 		return rt;
 	}
-
 }
