@@ -9,15 +9,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QnaDao {
 	//Qna Request
-	public List<QnaRequestDto> selectListRequest(QnaRequestVo vo);
-	public List<QnaRequestDto> qnaTypeCount();
-	public List<QnaRequestDto> qnaStatusCount();
+	public List<QnaDto> selectListRequest(QnaRequestVo vo);
+	public List<QnaDto> qnaTypeCount();
+	public List<QnaDto> qnaStatusCount();
 	public int listCountR(QnaRequestVo vo);
-	public QnaRequestDto selectOneRequest(QnaRequestDto qnaRequestDto);
-	public int insertRequest(QnaRequestDto qnaRequestDto);
-	public int updateRequest(QnaRequestDto qnaRequestDto);
-	public int ueleteRequest(QnaRequestDto qnaRequestDto);
-	public int deleteRequest(QnaRequestDto qnaRequestDto);
+	public QnaDto selectOneRequest(QnaDto qnaDto);
+	public int insertRequest(QnaDto qnaDto);
+	public int updateRequest(QnaDto qnaDto);
+	public int ueleteRequest(QnaDto qnaDto);
+	public int deleteRequest(QnaDto qnaDto);
 	//Qna Answer
 	public List<QnaAnswerDto> selectListAnswer(QnaAnswerVo vo);
 	public int listCountA(QnaAnswerVo vo);

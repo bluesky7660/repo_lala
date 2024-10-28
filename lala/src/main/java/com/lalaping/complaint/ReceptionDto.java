@@ -18,7 +18,8 @@ public class ReceptionDto {
     private Date awRegDate;
     private Integer awDept;
     private String umName;
-    private Integer rcTypeCount; 
+    private Integer rcTypeCount;
+    private Integer rcStatusCount;
 	
 //	----------------------------------
 	
@@ -117,5 +118,11 @@ public class ReceptionDto {
 	}
 	public void setRcTypeCount(Integer rcTypeCount) {
 		this.rcTypeCount = rcTypeCount;
+	}
+	public Integer getRcStatusCount() {
+		return rcStatusCount;
+	}
+	public void setRcStatusCount(Integer rcStatusCount) {
+		this.rcStatusCount = rcStatusCount;
 	}
 }

@@ -53,9 +53,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmUpdt")
-	public String qnaAnswersXdmUpdt(QnaAnswerDto qnaAnswerDto,QnaRequestDto qnaRequestDto) {
+	public String qnaAnswersXdmUpdt(QnaAnswerDto qnaAnswerDto,QnaDto qnaDto) {
 		qnaService.updateAnswer(qnaAnswerDto);
-		qnaService.updateRequest(qnaRequestDto);
+		qnaService.updateRequest(qnaDto);
 		return "redirect:/v1/qna/qnaAnswersXdmList";
 	}
 	
@@ -83,15 +83,15 @@ public class QnaController {
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmForm")
-	public String qnaRequestsXdmForm(Model model, QnaRequestDto qnaRequestDto) {
-		model.addAttribute("item", qnaService.selectOneRequest(qnaRequestDto));
+	public String qnaRequestsXdmForm(Model model, QnaDto qnaDto) {
+		model.addAttribute("item", qnaService.selectOneRequest(qnaDto));
 		model.addAttribute("listLink", "qnaRequestsXdmList");
 		return "xdm/v1/qna/qnaRequestsXdmForm";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaRequestsInst")
-	public String qnaRequestsInst(QnaRequestDto qnaRequestDto, QnaAnswerDto qnaAnswerDto, StaffMemberVo staffMemberVo) {
-		qnaService.insertRequest(qnaRequestDto);
+	public String qnaRequestsInst(QnaDto qnaDto, QnaAnswerDto qnaAnswerDto, StaffMemberVo staffMemberVo) {
+		qnaService.insertRequest(qnaDto);
 		//담당자배정
 		List<StaffMemberDto> type = memberService.staffSeqList();
 		
@@ -100,33 +100,33 @@ public class QnaController {
 	    
 	    qnaAnswerDto.setStaffMember_sfSeq(randomStaff.getSfSeq());
 	    
-	    qnaAnswerDto.setQnaRequests_qrSeq(qnaRequestDto.getQrSeq());
+	    qnaAnswerDto.setQnaRequests_qrSeq(qnaDto.getQrSeq());
 	    
 		qnaService.insertAnswer(qnaAnswerDto);
 		return "redirect:/v1/qna/qnaRequestsXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmMFom")
-	public String qnaRequestsXdmMFom(Model model,QnaRequestDto qnaRequestDto) {
-		model.addAttribute("item", qnaService.selectOneRequest(qnaRequestDto));
+	public String qnaRequestsXdmMFom(Model model,QnaDto qnaDto) {
+		model.addAttribute("item", qnaService.selectOneRequest(qnaDto));
 		model.addAttribute("listLink", "qnaRequestsXdmList");
 		return "/xdm/v1/qna/qnaRequestsXdmMFom";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmUpdt")
-	public String qnaRequestsXdmInst(QnaRequestDto qnaRequestDto) {
-		qnaService.updateRequest(qnaRequestDto);
+	public String qnaRequestsXdmInst(QnaDto qnaDto) {
+		qnaService.updateRequest(qnaDto);
 		return "redirect:/v1/qna/qnaRequestsXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmUete")
-	public String qnaRequestsXdmUete(QnaRequestDto qnaRequestDto) {
-//		qnaService.ueleteRequest(qnaRequestDto);
+	public String qnaRequestsXdmUete(QnaDto qnaDto) {
+//		qnaService.ueleteRequest(qnaDto);
 		return "redirect:/v1/qna/qnaRequestsXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmDete")
-	public String qnaRequestsXdmDete(QnaRequestDto qnaRequestDto) {
-		qnaService.deleteRequest(qnaRequestDto);
+	public String qnaRequestsXdmDete(QnaDto qnaDto) {
+		qnaService.deleteRequest(qnaDto);
 		return "redirect:/v1/qna/qnaRequestsXdmList";
 	}
 }

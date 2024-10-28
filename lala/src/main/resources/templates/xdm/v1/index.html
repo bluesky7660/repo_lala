@@ -97,19 +97,19 @@
 					<!-- Row start -->
 					<div class="top_row row">
 						<div class="col-xxl col-sm-6 col-12"
-							th:each="DeptType : ${DeptType}">
+							th:each="deptType : ${@codeService.selectListCachedCode(4)}">
 							<div class="stats-tile">
 								<div class="complaint_deptType">
 									<h3
-										th:class="${DeptType.cdSeq == '14' ? 'text-dark' 
-                                      : DeptType.cdSeq == '15' ? 'text-blue' 
-                                      : DeptType.cdSeq == '16' ? 'text-yellow' 
-                                      : DeptType.cdSeq == '17' ? 'text-green' 
-                                      : DeptType.cdSeq == '18' ? 'text-dark' 
-                                      : DeptType.cdSeq == '19' ? 'text-red' 
+										th:class="${deptType.cdSeq == '14' ? 'text-dark' 
+                                      : deptType.cdSeq == '15' ? 'text-blue' 
+                                      : deptType.cdSeq == '16' ? 'text-yellow' 
+                                      : deptType.cdSeq == '17' ? 'text-green' 
+                                      : deptType.cdSeq == '18' ? 'text-dark' 
+                                      : deptType.cdSeq == '19' ? 'text-red' 
                                       : ''}"
-										th:text="${@codeService.selectOneCachedCode(DeptType.cdSeq)}">환경과</h3>
-									<p th:text="${DeptType.awDeptCount + '건'}"></p>
+										th:text="${@codeService.selectOneCachedCode(deptType.cdSeq)}">환경과</h3>
+										<p th:text="${@complaintService.getAnswerTypeCountForDept(deptType.cdSeq) + '건'}"></p>
 								</div>
 							</div>
 						</div>
@@ -159,31 +159,24 @@
 									<div class="row">
 										<div id="complaint_graph"></div>
 										<ul class="task-list-container">
-											<li class="task-list-item">
-												<div class="task-icon shade-blue">
-													<i class="bi bi-clipboard-plus"></i>
+											<li class="task-list-item" th:each="compStatus:${@codeService.selectListCachedCode(3)}">
+												<div class="task-icon "
+												th:classappend="${compStatus.cdSeq == '11' ? 'shade-blue' 
+												: compStatus.cdSeq == '12' ? 'shade-yellow'
+												: compStatus.cdSeq == '13' ? 'shade-green'
+												: ''}">
+													<i th:class="${compStatus.cdSeq == '11' ? 'bi bi-clipboard-plus' 
+													: compStatus.cdSeq == '12' ? 'bi bi-clipboard-data' 
+													: compStatus.cdSeq == '13' ? 'bi bi-clipboard-check' : ''}"></i>
 												</div>
 												<div class="task-info">
-													<h5 class="task-title">접수중</h5>
-													<p class="amount-spend">12</p>
-												</div>
-											</li>
-											<li class="task-list-item">
-												<div class="task-icon shade-yellow">
-													<i class="bi bi-clipboard-data"></i>
-												</div>
-												<div class="task-info">
-													<h5 class="task-title">처리중</h5>
-													<p class="amount-spend">10</p>
-												</div>
-											</li>
-											<li class="task-list-item">
-												<div class="task-icon shade-green">
-													<i class="bi bi-clipboard-check"></i>
-												</div>
-												<div class="task-info">
-													<h5 class="task-title">처리완료</h5>
-													<p class="amount-spend">15</p>
+													<h5 class="task-title"
+														th:text="${compStatus.cdSeq == '11' ? '접수중' 
+														: compStatus.cdSeq == '12' ? '처리중'
+														: compStatus.cdSeq == '13' ? '처리완료': ''}">
+													</h5>
+													<p class="amount-spend"
+														th:text="${@complaintService.getCompStatusCount(compStatus.cdSeq) + '건'}"></p>
 												</div>
 											</li>
 										</ul>
@@ -191,7 +184,7 @@
 									<div class="row">
 										<div id="qna_graph"></div>
 										<ul class="task-list-container">
-											<li class="task-list-item" th:each="qnaStatus:${qnaStatus}">
+											<!-- <li class="task-list-item" th:each="qnaStatus:${qnaStatus}">
 												<div class="task-icon "
 													th:classappend="${qnaStatus.qrStatus == 0 ? 'shade-blue' 
 													: qnaStatus.qrStatus == 1 ? 'shade-green'
@@ -206,6 +199,26 @@
 													<p class="amount-spend"
 														th:text="${qnaStatus.qnaStatusCount}"></p>
 												</div>
+											</li> -->
+											<li class="task-list-item">
+												<div class="task-icon shade-blue">
+													<i class="bi bi-clipboard-plus"></i>
+												</div>
+												<div class="task-info">
+													<h5 class="task-title">접수중</h5>
+													<p class="amount-spend"
+														th:text="${@qnaService.getQnaStatusCount(0) + '건'}"></p>
+												</div>
+											</li>
+											<li class="task-list-item">
+												<div class="task-icon shade-green">
+													<i class="bi bi-clipboard-check"></i>
+												</div>
+												<div class="task-info">
+													<h5 class="task-title">처리완료</h5>
+													<p class="amount-spend"
+														th:text="${@qnaService.getQnaStatusCount(1) + '건'}"></p>
+												</div>
 											</li>
 										</ul>
 									</div>
@@ -215,19 +228,19 @@
 						<div class="col-lg-7 col-sm-7 col-12 complaint_list_view">
 							<div class="list_types row">
 								<div class="col-xxl col-sm-6 col-12"
-									th:each="CompType : ${CompType}">
+									th:each="compType : ${@codeService.selectListCachedCode(2)}">
 									<div class="stats-tile">
 										<div class="complaint_type">
 											<h3
-												th:class="${CompType.rcType == 4 ? 'text-red' 
-												: CompType.rcType == 5 ? 'text-blue' 
-												: CompType.rcType == 6 ? 'text-yellow' 
-												: CompType.rcType == 7 ? 'text-green' 
-												: CompType.rcType == 8 ? 'text-dark' 
+												th:class="${compType.cdSeq == '4' ? 'text-red' 
+												: compType.cdSeq == '5' ? 'text-blue' 
+												: compType.cdSeq == '6' ? 'text-yellow' 
+												: compType.cdSeq == '7' ? 'text-green' 
+												: compType.cdSeq == '8' ? 'text-dark' 
 												: ''}"
-												th:text="${CompType.rcTypeCount + '건'}"></h3>
+												th:text="${@complaintService.getReceptionTypeCountForType(compType.cdSeq) + '건'}"></h3>
 											<p
-												th:text="${@codeService.selectOneCachedCode(CompType.rcType)}">행정,
+												th:text="${@codeService.selectOneCachedCode(compType.cdSeq)}">행정,
 												서류</p>
 										</div>
 									</div>
@@ -271,7 +284,7 @@
 							</div>
 							<div class="list_types row">
 								<div class="col-xxl col-sm-6 col-12"
-									th:each="qnaType : ${qnaType}">
+									th:each="qnaType : ${@codeService.selectListCachedCode(2)}">
 									<div class="stats-tile">
 										<div class="qna_type">
 											<h3
@@ -281,7 +294,7 @@
 												: qnaType.cdSeq == '7' ? 'text-green' 
 												: qnaType.cdSeq == '8' ? 'text-dark' 
 												: ''}"
-												th:text="${qnaType.qrTypeCount + '건'}"></h3>
+												th:text="${@qnaService.getQnaTypeCountForType(qnaType.cdSeq) + '건'}"></h3>
 											<p
 												th:text="${@codeService.selectOneCachedCode(qnaType.cdSeq)}">행정,
 												서류</p>
