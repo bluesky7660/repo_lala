@@ -15,6 +15,7 @@
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
 			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
 			<if test="shQnaType != null and !shQnaType.equals('')">AND a.qrType = #{shQnaType}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.umseq Like CONCAT('%',#{shStaff},'%')</if>
 			<if test="shValue != null and !shValue.equals('')">
 				<choose>
 					<when test="shOption == null">
