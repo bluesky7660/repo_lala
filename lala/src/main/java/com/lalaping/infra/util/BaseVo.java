@@ -112,7 +112,6 @@ public class BaseVo {
 		public void setShUseNy(Integer shUseNy) {
 			this.shUseNy = shUseNy;
 		}
-		
 		public int getThisPage() {
 			return thisPage;
 		}
