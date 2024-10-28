@@ -234,7 +234,6 @@
 															<option value="5" th:selected="${vo.shOption == 5}">이메일</option>
 															<option value="6" th:selected="${vo.shOption == 6}">전화번호</option>
 															<option value="7" th:selected="${vo.shOption == 7}">생년월일</option>
-															<option value="8" th:selected="${vo.shOption == 8}">부서</option>
 														</select> 
 													</div> 
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -284,7 +283,6 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">이메일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">전화번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">생년월일</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">부서</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
@@ -311,8 +309,7 @@
 													<td th:text = "${@codeService.selectOneCachedCode(list.sfGender)}"></td>
 													<td th:text = "${list.sfEmail}"></td>
 													<td th:text="${#strings.substring(list.sfTel, 0, 3)} + '-' + ${#strings.substring(list.sfTel, 3, 7)} + '-' + ${#strings.substring(list.sfTel, 7, 11)}"></td>
-													<td th:text ="${#dates.format(list.sfBirthDay, 'yyyy-MM-dd')}"></td>
-													<td th:text = "${@codeService.selectOneCachedCode(list.sfDept)}"></td>
+													<td th:text ="${#dates.format(list.sfBirthDay, 'yyyy-MM-dd')}"></td>	
 													<td th:if="${list.sfDelNy eq false }">N</td>
 													<td th:unless ="${list.sfDelNy eq false }">Y</td>
 													<td th:text="${#dates.format(list.sfRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
