@@ -70,8 +70,6 @@
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
-	        a.sfDept,
-	        a.sfGender
 	        a.sfGender,
 	        a.sfDept
         <include refid="staffSelectCommon" />
@@ -90,9 +88,7 @@
 	        a.sfModDate,
 	        a.sfEmail,
 	        a.sfDept,
-	        a.sfGender,
-	        a.sfGender,
-	        a.sfDept
+	        a.sfGender
 		FROM
 		staffMember a
 		WHERE 1=1
