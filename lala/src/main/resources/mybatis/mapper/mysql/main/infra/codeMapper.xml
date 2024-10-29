@@ -72,10 +72,11 @@
 		    ,#{cdOrder}
 		    ,#{cdDesc}
 		    ,#{cdUseNy}
-		    ,#{cdDelNy}
+		    ,0
 		    ,now()
 		    ,now()
 		    ,#{codeGroup_cgSeq}
+		    )
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 		select

@@ -18,6 +18,7 @@ public class StaffMemberDto {
 	private Date sfModDate;
 	private String sfEmail;
 	private String sfGender;
+	private String sfDept;
 //-------------------------------
 	
 	public String getSfSeq() {
@@ -92,5 +93,12 @@ public class StaffMemberDto {
 	public void setSfGender(String sfGender) {
 		this.sfGender = sfGender;
 	}
+	public String getSfDept() {
+		return sfDept;
+	}
+	public void setSfDept(String sfDept) {
+		this.sfDept = sfDept;
+	}
+	
 	
 }

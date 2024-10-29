@@ -67,6 +67,7 @@
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
+	        a.sfDept,
 	        a.sfGender
         <include refid="staffSelectCommon" />
         ORDER BY a.sfSeq DESC
@@ -83,6 +84,7 @@
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
+	        a.sfDept,
 	        a.sfGender
 		FROM
 		staffMember a
@@ -110,6 +112,7 @@
 	        sfDelNy,
 	        sfRegDate,
 	        sfModDate,
+	        sfDept,
 	        sfEmail,
 	        sfGender
         ) VALUES (
@@ -121,6 +124,7 @@
 	        0,
 	        now(),
 	        now(),
+	        #{sfDept},
 	        #{sfEmail},
 	        #{sfGender}
         )
@@ -136,6 +140,7 @@
 	        <!-- sfPasswd = #{sfPasswd}, -->
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
+	        sfDept = #{sfDept},
 	        sfEmail = #{sfEmail},
 	        sfGender = #{sfGender}
         WHERE sfSeq = #{sfSeq}

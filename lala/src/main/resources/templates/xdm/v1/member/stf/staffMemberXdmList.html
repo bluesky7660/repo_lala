@@ -277,6 +277,7 @@
 														</th>
 														<th><span>#</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">직원 코드</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">부서</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">직원 이름</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">아이디</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">성별</span></th>
@@ -302,6 +303,7 @@
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 													<td th:text="${list.sfSeq}"></td>
+													<td th:text = "${@codeService.selectOneCachedCode(list.sfDept)}"></td>
 													<td class="td_spotlight">
 														<a th:href="@{/v1/member/staffMemberXdmMfom(sfSeq=${list.sfSeq})}" th:text="${list.sfName}"></a>
 													</td>
