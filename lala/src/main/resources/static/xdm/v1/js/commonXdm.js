@@ -281,11 +281,14 @@ window.addEventListener('load', function() {
             var i= 0;
             var validateChk = false;
             for(let element of objs){
+                console.log("element:",element);
                 var objValue = element.value.trim();
                 const feedback = element.parentElement.querySelector(".invalid-feedback");
                 if (objValue == "" || objValue == null) {
                     // var waring = feedback.textContent.trim();
                     if(element.tagName ==='INPUT'){
+                        console.log("테스트:",inputNullText);
+                        console.log("feedback:"+feedback);
                         feedback.textContent = inputNullText;
                         // alert(inputNullText);
                     }else if(element.tagName ==='SELECT'){
