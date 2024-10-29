@@ -219,6 +219,7 @@
 														<select class="form-select" id="selectDateType" name="shOptionDate">
 															<option value="" selected>날짜종류 선택해주세요.</option>
 															<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+															<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -293,8 +294,8 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
-														<!-- <th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th> -->
 													</tr>
 												</thead>
 												<tbody>
@@ -319,6 +320,7 @@
 													<td th:text="${list.sfName}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>
+													<td th:text="${#dates.format(list.awModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													<td th:text="${#dates.format(list.awRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>
 											</tbody>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface QnaDao {
 	//Qna Request
 	public List<QnaDto> selectListRequest(QnaRequestVo vo);
+	public List<QnaDto> pendingRequestList(QnaRequestVo vo);
 	public List<QnaDto> qnaTypeCount();
 	public List<QnaDto> qnaStatusCount();
 	public int listCountR(QnaRequestVo vo);

@@ -20,6 +20,7 @@ public class ComplaintDto {
 	private String awContent;
 	private Integer awDelNy;
 	private Date awRegDate;
+	private Date awModDate;
 	private String staffMember_sfSeq;
 	private String reception_rcSeq;
 	private String sfName;
@@ -117,6 +118,12 @@ public class ComplaintDto {
 	}
 	public void setAwRegDate(Date awRegDate) {
 		this.awRegDate = awRegDate;
+	}
+	public Date getAwModDate() {
+		return awModDate;
+	}
+	public void setAwModDate(Date awModDate) {
+		this.awModDate = awModDate;
 	}
 	public String getStaffMember_sfSeq() {
 		return staffMember_sfSeq;
