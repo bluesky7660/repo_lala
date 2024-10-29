@@ -28,5 +28,6 @@ public interface ComplaintDao {
 
 //민원 대시보드용
 	public List<ComplaintDto> compStatusCount();
+	public List<ComplaintDto> pendingReceptionList(ReceptionVo ReceptionVo);
 
 }

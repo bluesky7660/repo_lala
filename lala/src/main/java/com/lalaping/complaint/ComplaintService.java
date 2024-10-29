@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class ComplaintService {
+	private static final ReceptionVo ReceptionVo = null;
 	@Autowired
 	ComplaintDao complaintDao;
 	
@@ -95,6 +96,9 @@ public class ComplaintService {
 	        
 	    }
 	    return 0; // 일치하는 항목이 없을 경우 0 반환
+	}
+	public List<ComplaintDto> pendingReceptionList(ReceptionVo ReceptionVo){
+		return complaintDao.pendingReceptionList(ReceptionVo);
 	}
 
 }

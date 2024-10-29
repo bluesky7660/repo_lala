@@ -60,7 +60,7 @@
 			a.userMember_umSeq,
 			b.umName
 		<include refid="receptionSelectCommon"/>
-		ORDER BY a.rcSeq DESC
+		ORDER BY a.rcStatus ,a.rcSeq Desc
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	
@@ -76,7 +76,7 @@
 		)VALUES(
 			#{rcTitle},
 			#{rcContent},
-			#{rcStatus},
+			9,
 			#{rcType},
 			0,
 			now(),
@@ -223,7 +223,7 @@
 		    ,reception_rcSeq
 		)VALUES(
 			#{awContent},
-			#{awDept},
+			9,
 			0,
 			now(),
 			now(),
@@ -295,6 +295,26 @@
 		SELECT a.awDept, COUNT(a.awDept) AS awDeptCount
 	    FROM answer a
 	    GROUP BY a.awDept
+    </select>
+    
+    <select id="pendingReceptionList">
+    	SELECT
+			a.rcSeq,
+			a.rcTitle,
+			a.rcContent,
+			a.rcStatus,
+			a.rcType,
+			a.rcDelNy,
+			a.rcRegDate,
+			a.userMember_umSeq,
+			b.umName
+		FROM reception a
+		LEFT join userMember b
+	 	ON b.umSeq = a.userMember_umSeq
+		WHERE 1=1
+		AND a.rcDelNy = 0
+		AND a.rcStatus = 9
+		ORDER BY a.rcStatus,a.rcSeq Desc
     </select>
 	
 	

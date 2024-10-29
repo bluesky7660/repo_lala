@@ -227,7 +227,7 @@
 													<div class="mb-3">
 														<label for="inputRcType" class="form-label">민원종류</label>
 														<input type="text" class="form-control" id="inputRcType" th:value="${@codeService.selectOneCachedCode(item.rcType)}" readonly>
-														<input type="hidden" class="valid-korean-alpha-num form-control validate-this" name="rcType"  required>
+														<input type="hidden" class="form-control" name="rcType"  required>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">

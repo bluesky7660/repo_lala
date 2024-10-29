@@ -136,7 +136,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputName" class="form-label">userMember_umSeq</label>
-														<input type="text" class="form-control" id="inputUmSeq" name="umSeq" placeholder="유저맴버Seq넣을것">
+														<input type="text" class="form-control" id="inputUmSeq" name="userMember_umSeq" placeholder="유저맴버Seq넣을것">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -165,18 +165,18 @@
 													</div>
 												</div>
 												
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
 														<label for="inputUseNy" class="form-label">처리상태</label>
 														<select class="form-select validate-this" id="inputRcStatus" name="rcStatus" required>
 															<option value="" selected disabled>선택하세요</option>
-															<option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.cdSeq}" th:text="${list.cdName}" ></option>
+															<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.cdSeq}" th:text="${list.cdName}" ></option>
 														</select>
 														<div class="invalid-feedback">
 															처리상태을 선택해주세요.
 														</div>
 													</div>
-												</div>
+												</div> -->
 											</div>
 											<div class="row">
 												<div class="col-12">
