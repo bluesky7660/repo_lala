@@ -74,7 +74,7 @@
 
 	)values(
 		#{cgName}
-		#{cgOrder}
+		,#{cgOrder}
 		,#{cgDesc}
 		,#{cgUseNy}
 		,0
@@ -99,10 +99,10 @@
     <update id="update">
     	UPDATE codeGroup 
 		set
-			cgName = #{cdName}
-			,cgUseNy = #{cdUseNy}
-			,cgOrder = #{cdOrder}
-			,cgDesc = #{cdDesc}
+			cgName = #{cgName}
+			,cgUseNy = #{cgUseNy}
+			,cgOrder = #{cgOrder}
+			,cgDesc = #{cgDesc}
 			,cgModDate = now()
 		WHERE 1=1
 			AND cgSeq = #{cgSeq}

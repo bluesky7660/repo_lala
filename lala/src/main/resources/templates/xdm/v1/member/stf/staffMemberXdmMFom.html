@@ -151,12 +151,21 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
 														<label for="inputUseNy" class="form-label">부서</label>
+<<<<<<< HEAD
+														<select class="form-select validate-this" id="inputSfDept" th:value="${item.sfDept}" name="sfDept" required>
+															<option value="" selected disabled>선택하세요</option>
+															<option th:each="list : ${@codeService.selectListCachedCode(4)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.sfDept}"></option>
+														</select>
+														<div class="invalid-feedback">
+															처리부서를 선택해주세요.
+=======
 														<select class="form-select validate-this valid-dept" id="inputSfDept" name="sfDept" th:value="${item.sfDept}" required>
 															<option value="" selected disabled>선택하세요</option>
 															<option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.sfDept}"></option>
 														</select>
 														<div class="invalid-feedback">
 															부서를 선택해주세요.
+>>>>>>> branch 'chang' of https://github.com/bluesky7660/repo_lala.git
 														</div>
 													</div>
 												</div>

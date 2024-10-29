@@ -10,7 +10,6 @@ public interface AfterReportDao {
 	public List<AfterReportDto> selectList(AfterReportVo afterReportVo);
 	public AfterReportDto selectOne(AfterReportDto afterReportDto);
 	public int listCount(AfterReportVo afterReportvo);
-
 	public int insert(AfterReportDto afterReportDto);
 	public int update(AfterReportDto afterReportDto);
 	public int uelete(AfterReportDto afterReportDto);

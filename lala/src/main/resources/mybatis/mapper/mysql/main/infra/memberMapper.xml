@@ -70,6 +70,8 @@
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
+	        a.sfDept,
+	        a.sfGender
 	        a.sfGender,
 	        a.sfDept
         <include refid="staffSelectCommon" />
@@ -87,6 +89,8 @@
 	        a.sfRegDate,
 	        a.sfModDate,
 	        a.sfEmail,
+	        a.sfDept,
+	        a.sfGender,
 	        a.sfGender,
 	        a.sfDept
 		FROM
@@ -115,6 +119,7 @@
 	        sfDelNy,
 	        sfRegDate,
 	        sfModDate,
+	        sfDept,
 	        sfEmail,
 	        sfGender,
 	        sfDept
@@ -127,6 +132,7 @@
 	        0,
 	        now(),
 	        now(),
+	        #{sfDept},
 	        #{sfEmail},
 	        #{sfGender},
 	        #{sfDept}
@@ -143,6 +149,7 @@
 	        <!-- sfPasswd = #{sfPasswd}, -->
 	        sfTel = #{sfTel},
 	        sfBirthDay = #{sfBirthDay},
+	        sfDept = #{sfDept},
 	        sfEmail = #{sfEmail},
 	        sfGender = #{sfGender},
 	        sfDept = #{sfDept}

@@ -26,7 +26,7 @@ public class DashboardController {
 		receptionVo.setRowNumToShow(5);
 		model.addAttribute("qnaList", qnaService.pendingRequestList(qnaRequestVo));
 		model.addAttribute("qnaStatus", qnaService.qnaStatusCount());
-		model.addAttribute("comList", complaintService.receptionSelectList(receptionVo));
+		model.addAttribute("comList", complaintService.pendingReceptionList(receptionVo));
 		model.addAttribute("DeptType", complaintService.answerTypeCount());
 		model.addAttribute("CompType", complaintService.receptionTypeCount());
 		model.addAttribute("qnaType", qnaService.qnaTypeCount());

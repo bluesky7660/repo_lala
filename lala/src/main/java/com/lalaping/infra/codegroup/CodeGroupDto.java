@@ -12,6 +12,7 @@ public class CodeGroupDto {
 	private Integer cgDelNy;
 	private Date cgRegDate;
 	private Date cgModDate;
+	private String cdName;
 //----------------------------
 	public String getCgSeq() {
 		return cgSeq;
@@ -67,5 +68,12 @@ public class CodeGroupDto {
 	public void setCgModDate(Date cgModDate) {
 		this.cgModDate = cgModDate;
 	}
+	public String getCdName() {
+		return cdName;
+	}
+	public void setCdName(String cdName) {
+		this.cdName = cdName;
+	}
+	
 	
 }

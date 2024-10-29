@@ -23,12 +23,7 @@ public class StaffMemberDto {
 	public String getSfSeq() {
 		return sfSeq;
 	}
-	public String getSfDept() {
-		return sfDept;
-	}
-	public void setSfDept(String sfDept) {
-		this.sfDept = sfDept;
-	}
+	
 	public Boolean getSfUseNy() {
 		return sfUseNy;
 	}
@@ -98,5 +93,12 @@ public class StaffMemberDto {
 	public void setSfGender(String sfGender) {
 		this.sfGender = sfGender;
 	}
+	public String getSfDept() {
+		return sfDept;
+	}
+	public void setSfDept(String sfDept) {
+		this.sfDept = sfDept;
+	}
+	
 	
 }
