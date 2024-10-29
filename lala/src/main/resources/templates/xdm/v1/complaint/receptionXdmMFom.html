@@ -259,7 +259,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputName" class="form-label">직원외래키</label>
-														<input type="text" class="form-control" id="inputstaffMember_sfSeq" name="staffMember_sfSeq" placeholder="로그인으로받아오기?">
+														<input type="text" class="form-control" id="inputstaffMember_sfSeq" th:value="${session.sessSeqXdm}" name="staffMember_sfSeq" placeholder="자동생성" readonly="readonly">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
