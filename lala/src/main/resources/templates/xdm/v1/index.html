@@ -172,8 +172,8 @@
 												<div class="task-info">
 													<h5 class="task-title"
 														th:text="${compStatus.cdSeq == '11' ? '접수중' 
-														: compStatus.cdSeq == '10' ? '처리중'
-														: compStatus.cdSeq == '9' ? '처리완료': ''}">
+														: compStatus.cdSeq == '12' ? '처리중'
+														: compStatus.cdSeq == '13' ? '처리완료': ''}">
 													</h5>
 													<p class="amount-spend"
 														th:text="${@complaintService.getCompStatusCount(compStatus.cdSeq) + '건'}"></p>
