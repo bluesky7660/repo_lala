@@ -15,6 +15,7 @@
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
 			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
 			<if test="shQnaType != null and !shQnaType.equals('')">AND a.qrType = #{shQnaType}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.umseq Like CONCAT('%',#{shStaff},'%')</if>
 			<if test="shValue != null and !shValue.equals('')">
 				<choose>
 					<when test="shOption == null">
@@ -49,8 +50,30 @@
 			,b.umName
 			,c.qaSeq
 		<include refid="ReqSelectCommon"/>
-		ORDER BY a.qrSeq DESC
+		ORDER BY a.qrStatus asc
+			 ,a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="pendingRequestList" resultMap="qnaResultMapObj">
+		SELECT
+			a.qrSeq
+			,a.qrTitle
+			,a.qrContent
+			,a.qrStatus
+			,a.qrDelNy
+			,a.qrRegDate
+			,a.qrType
+			,b.umName
+			,c.qaSeq
+		FROM
+			qnaRequests a
+			join userMember b on b.umSeq = a.userMember_umSeq
+			left join qnaAnswers c on a.qrSeq = c.qnaRequests_qrSeq
+		where 1=1
+			and a.qrDelNy = 0
+			and a.qrStatus = 0
+		ORDER BY a.qrSeq DESC
+		limit 5
 	</select>
 	<select id="listCountR" resultType="int">
 		SELECT COUNT(*) 

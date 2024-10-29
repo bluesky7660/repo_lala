@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lalaping.complaint.ComplaintDao">
-
+	<resultMap type="com.lalaping.complaint.ComplaintDto" id="resultMapObj"></resultMap>
 	<!-- reception 영역 -->
-	<resultMap type="com.lalaping.complaint.ReceptionDto" id="receptionResultMapObj"></resultMap>
 	<sql id="receptionSelectCommon">
 		FROM reception a
 			join userMember b on b.umSeq = a.userMember_umSeq
@@ -48,7 +47,7 @@
 			</if>
 	</sql>
 	
-	<select id="receptionSelectList" resultMap="receptionResultMapObj">
+	<select id="receptionSelectList" resultMap="resultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			a.rcSeq,
@@ -88,7 +87,7 @@
         </selectKey>
 	</insert>
 	
-	<select id="rcSelectOne" resultMap="receptionResultMapObj">
+	<select id="rcSelectOne" resultMap="resultMapObj">
 		SELECT
 			a.rcSeq,
 			a.rcTitle,
@@ -134,21 +133,18 @@
         SELECT COUNT(*)
         <include refid="receptionSelectCommon" />
     </select>
-     <select id="receptionTypeCount" resultMap="receptionResultMapObj">
+     <select id="receptionTypeCount" resultMap="resultMapObj">
         SELECT rcType, COUNT(rcType) AS rcTypeCount
 	    FROM reception
 	    GROUP BY rcType
     </select>
-    <resultMap type="com.lalaping.complaint.ComplaintDto" id="compResultMapObj"></resultMap>
-    <select id="compStatusCount" resultMap="compResultMapObj">
+    <select id="compStatusCount" resultMap="resultMapObj">
         SELECT rcStatus, COUNT(rcStatus) AS rcStatusCount
 		FROM reception
 		GROUP BY rcStatus
     </select>
     
 	<!--answer 영역 -->
-	
-	<resultMap type="com.lalaping.complaint.AnswerDto" id="answerResultMapObj"></resultMap>
 	<sql id="answerSelectCommon">
 		FROM answer b
 		LEFT JOIN reception a
@@ -192,12 +188,12 @@
 			<if test="(shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals(''))">
 				<choose>
 					<when test="shOptionDate == 1"> AND b.awRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<!-- <when test="shOptionDate == 2"> AND b.awModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+					<when test="shOptionDate == 2"> AND b.awModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
 			</if>
 	</sql>
 	
-	<select id="answerSelectList" resultMap="answerResultMapObj">
+	<select id="answerSelectList" resultMap="resultMapObj">
 		<include refid="base.selectListUpperForMysql"/>
 		SELECT
 			b.awSeq,
@@ -205,6 +201,7 @@
 			b.awDept,
 			b.awDelNy,
 			b.awRegDate,
+			b.awModDate,
 			b.staffMember_sfSeq,
 			b.reception_rcSeq,
 			a.rcType,
@@ -238,7 +235,7 @@
         </selectKey>
 	</insert>
 	
-	<select id="awSelectOne" resultMap="answerResultMapObj">
+	<select id="awSelectOne" resultMap="resultMapObj">
 		SELECT
 			b.awSeq,
 			b.awContent,
@@ -294,7 +291,7 @@
         SELECT COUNT(*)
         <include refid="answerSelectCommon" />
     </select>
-	<select id="answerTypeCount" resultMap="answerResultMapObj">
+	<select id="answerTypeCount" resultMap="resultMapObj">
 		SELECT a.awDept, COUNT(a.awDept) AS awDeptCount
 	    FROM answer a
 	    GROUP BY a.awDept

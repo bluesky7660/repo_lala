@@ -7,7 +7,7 @@
     <resultMap type="com.lalaping.infra.member.StaffMemberDto" id="staffResultMapObj"></resultMap>
     <sql id="staffSelectCommon">
         FROM staffMember a
-        LEFT JOIN commonCode c ON a.sfGender = c.cdSeq
+        LEFT JOIN commonCode c ON a.sfGender = c.cdSeq 
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -38,6 +38,9 @@
 	            <when test="shOption == 7">
 	                AND a.sfBirthDay = #{shValue} 
 	            </when>
+	            <when test="shOption == 8">
+            		AND c.cdName LIKE CONCAT('%', #{shValue}, '%')
+				</when>
             </choose>
         </if>
         <if test="shDelNy != null and !shDelNy.equals('')">
@@ -69,6 +72,8 @@
 	        a.sfEmail,
 	        a.sfDept,
 	        a.sfGender
+	        a.sfGender,
+	        a.sfDept
         <include refid="staffSelectCommon" />
         ORDER BY a.sfSeq DESC
         <include refid="base.selectListLowerForMysql"/>
@@ -85,7 +90,9 @@
 	        a.sfModDate,
 	        a.sfEmail,
 	        a.sfDept,
-	        a.sfGender
+	        a.sfGender,
+	        a.sfGender,
+	        a.sfDept
 		FROM
 		staffMember a
 		WHERE 1=1
@@ -114,7 +121,8 @@
 	        sfModDate,
 	        sfDept,
 	        sfEmail,
-	        sfGender
+	        sfGender,
+	        sfDept
         ) VALUES (
 	        #{sfId},
 	        #{sfPasswd},
@@ -126,7 +134,8 @@
 	        now(),
 	        #{sfDept},
 	        #{sfEmail},
-	        #{sfGender}
+	        #{sfGender},
+	        #{sfDept}
         )
         <selectKey resultType="String" keyProperty="sfSeq" order="AFTER">
             SELECT last_insert_id()
@@ -142,7 +151,8 @@
 	        sfBirthDay = #{sfBirthDay},
 	        sfDept = #{sfDept},
 	        sfEmail = #{sfEmail},
-	        sfGender = #{sfGender}
+	        sfGender = #{sfGender},
+	        sfDept = #{sfDept}
         WHERE sfSeq = #{sfSeq}
     </update>
     <delete id="deleteStaffMember">

@@ -20,10 +20,10 @@ public class StaffMemberDto {
 	private String sfGender;
 	private String sfDept;
 //-------------------------------
-	
 	public String getSfSeq() {
 		return sfSeq;
 	}
+	
 	public Boolean getSfUseNy() {
 		return sfUseNy;
 	}
