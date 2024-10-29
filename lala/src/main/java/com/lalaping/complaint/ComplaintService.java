@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class ComplaintService {
-	private static final ReceptionVo ReceptionVo = null;
 	@Autowired
 	ComplaintDao complaintDao;
 	
