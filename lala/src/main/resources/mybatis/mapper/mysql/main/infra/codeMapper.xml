@@ -77,7 +77,6 @@
 		    ,now()
 		    ,#{codeGroup_cgSeq}
 		    )
-		)
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 		select

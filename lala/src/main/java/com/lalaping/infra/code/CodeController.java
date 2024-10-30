@@ -55,8 +55,9 @@ public class CodeController {
 		codeService.uelete(codeDto);
 		return "redirect:/v1/infra/code/codeXdmList";
 	}
-	@RequestMapping(value = "/v1/infra/code/codeXdmDete")
-	public String codeXdmDete(CodeDto codeDto) {
+	@RequestMapping(value = "/v1/infra/code/codeXdmDelt")
+	public String codeXdmDelt(CodeDto codeDto) {
+		codeService.delete(codeDto);
 		return "redirect:/v1/infra/code/codeXdmList";
 	}
 
