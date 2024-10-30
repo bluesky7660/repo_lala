@@ -76,7 +76,7 @@
 		)VALUES(
 			#{rcTitle},
 			#{rcContent},
-			9,
+			11,
 			#{rcType},
 			0,
 			now(),
@@ -223,7 +223,7 @@
 		    ,reception_rcSeq
 		)VALUES(
 			#{awContent},
-			9,
+			11,
 			0,
 			now(),
 			now(),
