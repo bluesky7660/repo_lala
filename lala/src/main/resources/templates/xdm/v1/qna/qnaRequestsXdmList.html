@@ -315,7 +315,15 @@
 														<td th:text="${list.qrSeq}"></td>
 														<td th:text="${@codeService.selectOneCachedCode(list.qrType)}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qrSeq=${list.qrSeq})}" th:text="${list.qrTitle}"></a>
+															<a class="text-red" th:href="@{/v1/qna/qnaAnswersXdmMFom(qrSeq=${list.qrSeq})}" 
+																th:text="${list.qrTitle}"
+																th:if="${list.qrStatus == 0 &&(list.staffMember_sfSeq == session.sessSeqXdm)}">
+															</a>
+															<span class="text-blue" th:text="${list.qrTitle}" th:if="${(list.qrStatus == 0 &&(list.staffMember_sfSeq != session.sessSeqXdm))}"></span>
+															<a class="text-green" th:href="@{/v1/qna/qnaXdmComplete(qrSeq=${list.qrSeq})}" 
+																th:text="${list.qrTitle}"
+																th:if="${list.qrStatus == 1}">
+															</a>
 														</td>
 														<td th:if ="${list.qrStatus eq 0}">접수중</td>
 														<td th:unless ="${list.qrStatus eq 0}">답변완료</td>

@@ -291,7 +291,11 @@
 			,b.umName
 		<include refid="qnaReqSelectCommon"/>
 		ORDER BY a.qrStatus asc
-			 ,a.qrSeq DESC
+			 , CASE 
+            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	ELSE 1
+        	END,
+        	a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	<select id="listCountReg" resultType="int">
@@ -399,7 +403,11 @@
 			,b.sfName
 		<include refid="qnaAnsSelectCommon"/>
 		ORDER BY a.qrStatus asc
-			 ,a.qrSeq DESC
+			 , CASE 
+            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	ELSE 1
+        	END,
+        	a.qrSeq DESC
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	<select id="listCountAns" resultType="int">

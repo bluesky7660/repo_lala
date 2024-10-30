@@ -32,3 +32,12 @@
         </div>
     </div>
 </th:block>
+<th:block th:fragment="complete-link">
+    <div class="btn-toolbar mt-5 ">
+        <div>
+            <a class="btn btn-outline-dark" type="button" th:href="${listLink}"><i class="bi bi-list-ul"></i></a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg"></i></button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ueleteModal"><i class="bi bi-trash"></i></button>
+        </div>
+    </div>
+</th:block>
