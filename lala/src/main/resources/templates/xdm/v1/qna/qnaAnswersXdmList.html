@@ -282,12 +282,12 @@
 															<input type="checkbox">
 														</th>
 														<th><span>#</span></th>
-														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의답변 번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의번호</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">문의제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변여부</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">담당자</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
 													</tr>
 												</thead>
@@ -304,16 +304,16 @@
 														value="" id="flexCheckDefault">
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
-													<td th:text="${list.qaSeq}"></td>
-													<td th:text="${list.qnaRequests_qrSeq}"></td>
+													<td th:text="${list.qrSeq}"></td>
 													<td class="td_spotlight">
-														<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qaSeq=${list.qaSeq})}" th:text="${list.qrTitle}"></a>
+														<a th:href="@{/v1/qna/qnaAnswersXdmMFom(qrSeq=${list.qrSeq})}" th:text="${list.qrTitle}"></a>
 													</td>
 													<td th:if="${list.qrStatus eq 0}">접수중</td>
 													<td th:unless="${list.qrStatus eq 0}">답변완료</td>
 													<td th:if ="${list.qaDelNy eq 0}">N</td>
 													<td th:unless = "${list.qaDelNy eq 0}">Y</td>
 													<td th:text = "${list.sfName}"></td>
+													<td th:text="${#dates.format(list.qaModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 													<td th:text="${#dates.format(list.qaRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 												</tr>
 											</tbody>

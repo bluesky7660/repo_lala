@@ -32,9 +32,8 @@ public class QnaService {
 	public QnaDto selectOneRequest(QnaDto qnaDto) {
 		return qnaDao.selectOneRequest(qnaDto);
 	}
-	public int insertRequest(QnaDto qnaDto){
-		return qnaDao.insertRequest(qnaDto);
-	}
+	
+	
 	public int updateRequest(QnaDto qnaDto){
 		return qnaDao.updateRequest(qnaDto);
 	}
@@ -59,9 +58,7 @@ public class QnaService {
 	public int insertAnswer(QnaAnswerDto qnaAnswerDto){
 		return qnaDao.insertAnswer(qnaAnswerDto);
 	}
-	public int updateAnswer(QnaAnswerDto qnaAnswerDto){
-		return qnaDao.updateAnswer(qnaAnswerDto);
-	}
+	
 	public int ueleteAnswer(QnaAnswerDto qnaAnswerDto){
 		return qnaDao.ueleteAnswer(qnaAnswerDto);
 	}
@@ -69,6 +66,30 @@ public class QnaService {
 		return qnaDao.deleteAnswer(qnaAnswerDto);
 	}
 	
+	//통합
+	public List<QnaDto> selectListQnaReq(QnaVo vo){
+		return qnaDao.selectListQnaReq(vo);
+	}
+	public List<QnaDto> selectListQnaAns(QnaVo vo){
+		return qnaDao.selectListQnaAns(vo);
+	}
+	
+	public QnaDto selectOneQnaReq(QnaDto qnaDto) {
+		return qnaDao.selectOneQnaReq(qnaDto);
+	}
+	public int listCountReg(QnaVo vo) {
+		return qnaDao.listCountReg(vo);
+	}
+	public int listCountAns(QnaVo vo) {
+		return qnaDao.listCountAns(vo);
+	}
+	
+	public int insertRequest(QnaDto qnaDto){
+		return qnaDao.insertRequest(qnaDto);
+	}
+	public int updateQna(QnaDto qnaDto){
+		return qnaDao.updateQna(qnaDto);
+	}
 	
 	//대시보드
 	public int getQnaTypeCountForType(String type) {
