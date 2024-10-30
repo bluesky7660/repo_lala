@@ -240,6 +240,15 @@
 															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
 														</select>
 													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="shAwStatus">
+															<option value="" selected>처리상태</option>
+															<option value="11" th:selected="${vo.shAwStatus == 11}">접수중</option>
+															<option value="12" th:selected="${vo.shAwStatus == 12}">처리중</option>
+															<option value="13" th:selected="${vo.shAwStatus == 13}">답변완료</option>
+														</select>
+													</div>
 													
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
@@ -259,8 +268,7 @@
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
-													<div class="col">      
-													</div>
+													
 													
 												</div>
 											</form>
@@ -293,6 +301,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">처리상태</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -318,6 +327,7 @@
 														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" th:text="${list.rcTitle}"></a>
 													</td>
 													<td th:text="${list.sfName}"></td>
+													<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>
 													<td th:text="${#dates.format(list.awModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>

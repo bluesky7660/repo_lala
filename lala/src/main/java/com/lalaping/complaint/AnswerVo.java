@@ -4,6 +4,7 @@ import com.lalaping.infra.util.BaseVo;
 
 public class AnswerVo extends BaseVo {
 	private Integer shRcType;
+	private Integer shAwStatus;
 	
 //	-----------------------------
 
@@ -14,6 +15,15 @@ public class AnswerVo extends BaseVo {
 	public void setShRcType(Integer shRcType) {
 		this.shRcType = shRcType;
 	}
+
+	public Integer getShAwStatus() {
+		return shAwStatus;
+	}
+
+	public void setShAwStatus(Integer shAwStatus) {
+		this.shAwStatus = shAwStatus;
+	}
+	
 	
 
 

@@ -176,6 +176,9 @@
 					</when>
 				</choose>
 			</if>
+			<if test="shAwStatus != null and !shAwStatus.equals('')">
+				AND a.rcStatus = #{shAwStatus}
+			</if>
 			<if test="shDelNy != null and !shDelNy.equals('')">
 				AND b.awDelNy = #{shDelNy}
 			</if>
@@ -206,6 +209,7 @@
 			b.reception_rcSeq,
 			a.rcType,
 			a.rcTitle,
+			a.rcStatus,
 			c.sfName
 		<include refid="answerSelectCommon"/>
 		ORDER BY b.awSeq DESC
