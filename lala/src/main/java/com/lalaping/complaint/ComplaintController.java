@@ -64,14 +64,14 @@ public class ComplaintController {
 		return "/xdm/v1/complaint/receptionXdmMFom";
 	}
 	
-	@RequestMapping(value = "/v1/complaint/receptionXdmUpdt")
-	public String receptionXdmInst(ComplaintDto receptionDto,ComplaintDto answerDto) {
-		System.out.println("receptionXdmUpdt");
-		complaintService.rcUpdate(receptionDto);
-		System.out.println("awInsert");
-		complaintService.awInsert(answerDto);
-		return "redirect:/v1/complaint/answerXdmList";
-	}
+	/*
+	 * @RequestMapping(value = "/v1/complaint/receptionXdmUpdt") public String
+	 * receptionXdmInst(ComplaintDto receptionDto,ComplaintDto answerDto) {
+	 * System.out.println("receptionXdmUpdt");
+	 * complaintService.rcUpdate(receptionDto); System.out.println("awInsert");
+	 * complaintService.awInsert(answerDto); return
+	 * "redirect:/v1/complaint/answerXdmList"; }
+	 */
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmUete")
 	public String receptionXdmUete(ComplaintDto receptionDto) {
