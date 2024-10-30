@@ -20,7 +20,6 @@ public class AnswerDto {
 	private Integer rcStatus;
 	private Integer awDeptCount;
 	private String cdSeq;
-	
 //	-------------------------------------
 	
 	public String getAwSeq() {

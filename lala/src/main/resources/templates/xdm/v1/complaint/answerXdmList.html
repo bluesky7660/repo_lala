@@ -207,11 +207,11 @@
 														<label class="visually-hidden" for="selectShRcType">민원종류</label>
 														<select class="form-select" id="selectUseNy" name="shRcType">
 															<option value="" selected>민원종류를 선택하세요</option>
-															<option value="1" th:selected="${vo.shRcType == 1}">행정,서류</option>
-															<option value="2" th:selected="${vo.shRcType == 2}">세무</option>
-															<option value="3" th:selected="${vo.shRcType == 3}">교통</option>
-															<option value="4" th:selected="${vo.shRcType == 4}">불편사항신고</option>
-															<option value="5" th:selected="${vo.shRcType == 5}">기타</option>
+															<option value="4" th:selected="${vo.shRcType == 4}">행정,서류</option>
+															<option value="5" th:selected="${vo.shRcType == 5}">세무</option>
+															<option value="6" th:selected="${vo.shRcType == 6}">교통</option>
+															<option value="7" th:selected="${vo.shRcType == 7}">불편사항신고</option>
+															<option value="8" th:selected="${vo.shRcType == 8}">기타</option>
 														</select>
 													</div>
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
@@ -240,6 +240,15 @@
 															<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
 														</select>
 													</div>
+													<div class="col-12 col-md-6 col-lg-4 col-xl">
+														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
+														<select class="form-select" id="selectKeywordType" name="shAwStatus">
+															<option value="" selected>처리상태</option>
+															<option value="11" th:selected="${vo.shAwStatus == 11}">접수중</option>
+															<option value="12" th:selected="${vo.shAwStatus == 12}">처리중</option>
+															<option value="13" th:selected="${vo.shAwStatus == 13}">답변완료</option>
+														</select>
+													</div>
 													
 													<div class="col-12 col-md-6 col-lg-4 col-xl">
 														<label class="visually-hidden" for="selectKeywordType">검색어 종류</label>
@@ -259,8 +268,7 @@
 														<button type="submit" class="btn btn-info "><i class="bi bi-search"></i></button>
 														<button type="button" class="btn btn-info float-md-none float-end"><i class="bi bi-arrow-clockwise"></i></button>
 													</div>
-													<div class="col">      
-													</div>
+													
 													
 												</div>
 											</form>
@@ -293,6 +301,7 @@
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원종류</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">민원제목</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">답변자</span></th>
+														<th class="sorting sorting_asc"><span class="dataTable-sorter">처리상태</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">삭제</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">수정일</span></th>
 														<th class="sorting sorting_asc"><span class="dataTable-sorter">등록일</span></th>
@@ -318,6 +327,7 @@
 														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" th:text="${list.rcTitle}"></a>
 													</td>
 													<td th:text="${list.sfName}"></td>
+													<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
 													<td th:unless="${list.awDelNy eq 0}">Y</td>
 													<td th:text="${#dates.format(list.awModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
