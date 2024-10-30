@@ -313,7 +313,7 @@
 	 	ON b.umSeq = a.userMember_umSeq
 		WHERE 1=1
 		AND a.rcDelNy = 0
-		AND a.rcStatus = 9
+		AND a.rcStatus = 11
 		ORDER BY a.rcStatus,a.rcSeq Desc
     </select>
 	
