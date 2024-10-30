@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.complaint.ComplaintService;
+import com.lalaping.complaint.ComplaintVo;
 import com.lalaping.complaint.ReceptionVo;
 import com.lalaping.qna.QnaRequestVo;
 import com.lalaping.qna.QnaService;
@@ -20,13 +21,13 @@ public class DashboardController {
 	QnaService qnaService;
 	
 	@RequestMapping(value = "/v1/dashboard")
-	public String index(Model model, QnaRequestVo qnaRequestVo, ReceptionVo receptionVo) {
+	public String index(Model model, QnaRequestVo qnaRequestVo, ComplaintVo complaintVo) {
 //		System.out.println("getAwDept:"+complaintService.answerTypeCount().get(0).getCdSeq());
 		qnaRequestVo.setRowNumToShow(5);
-		receptionVo.setRowNumToShow(5);
+		complaintVo.setRowNumToShow(5);
 		model.addAttribute("qnaList", qnaService.pendingRequestList(qnaRequestVo));
 		model.addAttribute("qnaStatus", qnaService.qnaStatusCount());
-		model.addAttribute("comList", complaintService.pendingReceptionList(receptionVo));
+		model.addAttribute("comList", complaintService.pendingReceptionList(complaintVo));
 		model.addAttribute("DeptType", complaintService.answerTypeCount());
 		model.addAttribute("CompType", complaintService.receptionTypeCount());
 		model.addAttribute("qnaType", qnaService.qnaTypeCount());
