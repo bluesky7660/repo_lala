@@ -99,5 +99,7 @@ public class ComplaintService {
 	public List<ComplaintDto> pendingReceptionList(ComplaintVo complaintVo){
 		return complaintDao.pendingReceptionList(complaintVo);
 	}
-
+	public List<ComplaintDto> compReceptionList(){
+		return complaintDao.compReceptionList();
+	}
 }

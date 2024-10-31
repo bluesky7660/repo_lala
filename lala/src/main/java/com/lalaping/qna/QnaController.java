@@ -133,8 +133,10 @@ public class QnaController {
 		return "xdm/v1/qna/qnaRequestsXdmList";
 	}
 	@RequestMapping(value = "/v1/qna/qnaAnswersXdmMFom")
-	public String qnaAnswersXdmMFom(Model model,QnaDto qnaDto) {
-		model.addAttribute("item", qnaService.selectOneQnaReq(qnaDto));
+	public String qnaAnswersXdmMFom(Model model,HttpSession httpSession, QnaDto qnaDto) {
+		System.out.println("httpSession:"+httpSession.getAttribute("sessSeqXdm"));
+		System.out.println("item:"+qnaService.selectOneQnaAns(qnaDto).getStaffMember_sfSeq());
+		model.addAttribute("item", qnaService.selectOneQnaAns(qnaDto));
 		model.addAttribute("listLink", "qnaAnswersXdmList");
 		return "/xdm/v1/qna/qnaAnswersXdmMFom";
 	}

@@ -29,5 +29,9 @@ public interface ComplaintDao {
 //민원 대시보드용
 	public List<ComplaintDto> compStatusCount();
 	public List<ComplaintDto> pendingReceptionList(ComplaintVo complaintVo);
+	
+	//보고서용
+	public List<ComplaintDto> compReceptionList();
+	
 
 }
