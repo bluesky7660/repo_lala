@@ -327,11 +327,15 @@
 														   th:text="${list.rcTitle}"
 														   th:if="${list.rcStatus != 13 &&(list.staffMember_sfSeq == session.sessSeqXdm)}">
 														</a>
+														<a class="text-blue" th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" 
+														   th:text="${list.rcTitle}"
+														   th:if="${list.rcStatus != 13 &&(list.staffMember_sfSeq != session.sessSeqXdm)}">
+														</a>
 														<a class="text-green" th:href="@{/v1/complaint/answerXdmComplete(awSeq=${list.awSeq})}" 
 														   th:text="${list.rcTitle}"
 														   th:if="${list.rcStatus == 13}">
 														</a>
-														<span class="text-blue" th:text="${list.rcTitle}" th:if="${list.rcStatus != 13 &&(list.staffMember_sfSeq != session.sessSeqXdm)}"></span>
+														<!-- <span class="text-blue" th:text="${list.rcTitle}" th:if="${list.rcStatus != 13 &&(list.staffMember_sfSeq != session.sessSeqXdm)}"></span> -->
 													</td>
 													<!-- <td th:text="${list.rcStatus}"></td>
 													<td th:text="${list.staffMember_sfSeq}"></td>
