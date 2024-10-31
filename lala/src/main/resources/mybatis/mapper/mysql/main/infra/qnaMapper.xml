@@ -104,13 +104,14 @@
 		FROM qnaRequests
 		GROUP BY qrType
     </select>
-	<insert id="insertRequest">
+	<!-- <insert id="insertRequest">
         INSERT INTO qnaRequests (
 	        qrTitle
 			,qrContent
 			,qrType
 			,qrStatus
 			,userMember_umSeq
+			,staffMember_sfSeq
 			,qrDelNy
 			,qrRegDate
 			
@@ -120,13 +121,14 @@
 	        ,#{qrType}
 	        ,0
 	        ,#{userMember_umSeq}
+	        ,#{staffMember_sfSeq}
 	        ,0
 	        ,now()
         )
         <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
             SELECT last_insert_id()
         </selectKey>
-    </insert>
+    </insert> -->
     <update id="updateRequest">
     	UPDATE qnaRequests 
 		set
@@ -244,5 +246,191 @@
 		WHERE 1=1
 			AND qaSeq = #{qaSeq}
 	</update>
+	<!-- 통합용 -->
+	<sql id="qnaReqSelectCommon">
+		FROM
+			qnaTable a
+			join userMember b on b.umSeq = a.userMember_umSeq
+		where 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
+			<if test="shQnaType != null and !shQnaType.equals('')">AND a.qrType = #{shQnaType}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.umseq Like CONCAT('%',#{shStaff},'%')</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR a.qrTitle Like CONCAT('%',#{shValue},'%')
+							OR b.umName Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND a.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND b.umName Like CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			</if>
+			<choose>
+				<when test="shOptionDate == 1"> AND a.cdRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2"> AND a.cdModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			
+	</sql>
+	<select id="selectListQnaReq" resultMap="qnaResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.qrSeq
+			,a.qrTitle
+			,a.qrContent
+			,a.qrStatus
+			,a.qrDelNy
+			,a.qrRegDate
+			,a.qrType
+			,a.staffMember_sfSeq
+			,b.umName
+		<include refid="qnaReqSelectCommon"/>
+		ORDER BY a.qrStatus asc
+			 , CASE 
+            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	ELSE 1
+        	END,
+        	a.qrSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="listCountReg" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="qnaReqSelectCommon"/>
+	</select>
+	<select id="selectOneQnaReq" resultMap="qnaResultMapObj">
+		SELECT
+			a.qrSeq,
+			a.qrTitle,
+			a.qrContent,
+			a.qrType,
+			a.userMember_umSeq,
+			b.umName,
+			c.sfName
+		FROM
+			qnaTable a
+			join userMember b on b.umSeq = a.userMember_umSeq
+			join staffMember c on c.sfSeq = a.staffMember_sfSeq
+		WHERE 1=1
+		AND a.qrSeq = #{qrSeq}
+	</select>
+	<insert id="insertRequest">
+        INSERT INTO qnaTable (
+	        qrTitle
+			,qrContent
+			,qrType
+			,qrStatus
+			,userMember_umSeq
+			,staffMember_sfSeq
+			,qrDelNy
+			,qrRegDate
+			,qaDelNy
+			,qaModDate
+			,qaRegDate
+			
+        ) VALUES (
+	        #{qrTitle}
+	        ,#{qrContent}
+	        ,#{qrType}
+	        ,0
+	        ,#{userMember_umSeq}
+	        ,#{staffMember_sfSeq}
+	        ,0
+	        ,now()
+	        ,0
+	        ,now()
+	        ,now()
+        )
+        <selectKey resultType="String" keyProperty="qrSeq" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+    <update id="updateQna">
+    	UPDATE qnaTable 
+		set
+			qaContent = #{qaContent},
+			qrStatus = 1
+		    qaModDate = now()
+		WHERE 1=1
+			AND qrSeq = #{qrSeq}
+	</update>
+	<!-- 통합 aw -->
+	<sql id="qnaAnsSelectCommon">
+		FROM
+			qnaTable a
+			join staffMember b on b.sfSeq = a.staffMember_sfSeq
+		where 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qaDelNy = #{shDelNy}</if>
+			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
+			<if test="shStaff != null and !shStaff.equals('')">AND b.sfseq Like CONCAT('%',#{shStaff},'%')</if>
+			<if test="shValue != null and !shValue.equals('')">
+				<choose>
+					<when test="shOption == null">
+						AND(
+							a.qrSeq Like CONCAT('%',#{shValue},'%')
+							OR a.qrTitle Like CONCAT('%',#{shValue},'%')
+							
+						)
+					</when>
+					<when test="shOption == 1">AND a.qrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.qrTitle Like CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			</if>
+			<if test="((shDateStart != null and !shDateStart.equals('')) and (shDateEnd != null and !shDateEnd.equals('')))">
+				<choose>
+					<when test="shOptionDate == 1"> AND a.qaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2"> AND a.qaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+			</if>
+			
+	</sql>
+	
+	<select id="selectListQnaAns" resultMap="qnaResultMapObj">
+		<include refid="base.selectListUpperForMysql"/>
+		SELECT
+			a.qrSeq
+			,a.qrTitle
+			,a.qrStatus
+			,a.qaDelNy
+			,a.qrType
+			,a.qaRegDate
+			,a.qaModDate
+			,a.staffMember_sfSeq
+			,b.sfName
+		<include refid="qnaAnsSelectCommon"/>
+		ORDER BY a.qrStatus asc
+			 , CASE 
+            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	ELSE 1
+        	END,
+        	a.qrSeq DESC
+		<include refid="base.selectListLowerForMysql"/>
+	</select>
+	<select id="listCountAns" resultType="int">
+		SELECT COUNT(*) 
+		<include refid="qnaAnsSelectCommon"/>
+	</select>
+	<select id="selectOneQnaAns" resultMap="qnaResultMapObj">
+		SELECT
+			a.qaSeq,
+			a.qaContent,
+			a.staffMember_sfSeq,
+			a.userMember_umSeq,
+			a.qrTitle,
+			a.qrContent,
+			a.qrType,
+			b.sfName,
+			c.umName
+		FROM
+			qnaTable a
+			join staffMember b on b.sfSeq = a.staffMember_sfSeq
+			join userMember c on c.umSeq = a.userMember_umSeq
+		WHERE 1=1
+		AND a.qaSeq = #{qaSeq}
+	</select>
 	
 </mapper>

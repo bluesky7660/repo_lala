@@ -7,7 +7,7 @@ public class ComplaintDto {
 	private String rcSeq;
 	private String rcTitle;
 	private String rcContent;
-	private String rcStatus;
+	private Integer rcStatus;
 	private Integer rcType;
 	private Integer rcDelNy;
 	private Date rcRegDate;
@@ -47,10 +47,10 @@ public class ComplaintDto {
 	public void setRcContent(String rcContent) {
 		this.rcContent = rcContent;
 	}
-	public String getRcStatus() {
+	public Integer getRcStatus() {
 		return rcStatus;
 	}
-	public void setRcStatus(String rcStatus) {
+	public void setRcStatus(Integer rcStatus) {
 		this.rcStatus = rcStatus;
 	}
 	public Integer getRcType() {

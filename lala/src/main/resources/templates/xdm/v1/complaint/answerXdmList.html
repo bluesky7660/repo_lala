@@ -324,8 +324,15 @@
 													<td th:text="${list.reception_rcSeq}"></td>
 													<td th:text = "${@codeService.selectOneCachedCode(list.rcType)}"></td>
 													<td class="td_spotlight">
-														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" th:text="${list.rcTitle}"></a>
+														<a th:href="@{/v1/complaint/answerXdmMFom(awSeq=${list.awSeq})}" 
+														   th:text="${list.rcTitle}"
+														   th:if="${list.rcStatus != 13 &&(list.staffMember_sfSeq == session.sessSeqXdm)}">
+														</a>
+														<span th:text="${list.rcTitle}" th:if="${!(list.rcStatus != 13 &&(list.staffMember_sfSeq == session.sessSeqXdm))}"></span>
 													</td>
+													<!-- <td th:text="${list.rcStatus}"></td>
+													<td th:text="${list.staffMember_sfSeq}"></td>
+													<td th:text="${session.sessSeqXdm}"></td> -->
 													<td th:text="${list.sfName}"></td>
 													<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 													<td th:if="${list.awDelNy eq 0}">N</td>
