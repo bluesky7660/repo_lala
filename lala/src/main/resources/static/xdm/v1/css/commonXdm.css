@@ -12,11 +12,12 @@
 }
 .table td{
     text-align: center;
-}
-.table tr th{
-    padding-left:30px;
+}.table tr th{
     text-align: center;
     white-space: nowrap;
+}
+.table.dataTable tr th{
+    padding-left:30px;
 }
 .table tr>* {
     padding: 1rem;

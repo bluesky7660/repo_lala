@@ -31,7 +31,7 @@ public class PdfService {
             System.out.println("보고서 내용: " + data.getArContent());
 
          // BaseFont 생성 (한글 폰트 사용)
-            BaseFont baseFont = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.EMBEDDED);
+            BaseFont baseFont = BaseFont.createFont("xdm/v1/font/NanumGothic-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font font = new Font(baseFont, 12); // 폰트 크기 설정
 //            System.out.println("font: " + font.get);
             // 내용 추가

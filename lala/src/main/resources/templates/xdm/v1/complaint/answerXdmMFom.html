@@ -202,7 +202,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
 														<label for="inputUseNy" class="form-label">처리상태</label>
-														<select class="form-select validate-this" id="inputRcStatus" name="rcStatus" required>
+														<select class="form-select validate-this" id="inputRcStatus" name="rcStatus" required th:disabled="${item.staffMember_sfSeq != session.sessSeqXdm}">
 															<option value="" selected disabled>선택하세요</option>
 															<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.rcStatus}"></option>
 														</select>
@@ -254,14 +254,14 @@
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputName" class="form-label">직원이름</label>
-														<input type="text" class="form-control" id="inputSessNameXdm" th:value="${item.sfName}"  placeholder="자동생성" readonly="readonly">
+														<label for="inputSfName" class="form-label">직원이름</label>
+														<input type="text" class="form-control" id="inputSfName" th:value="${item.sfName}"  readonly="readonly">
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">	
 														<label for="inputUseNy" class="form-label">부서</label>
-														<select class="form-select validate-this" id="inputAwDept" th:value="${item.awDept}" name="awDept" required>
+														<select class="form-select validate-this" id="inputAwDept" th:value="${item.awDept}" name="awDept" required th:disabled="${item.staffMember_sfSeq != session.sessSeqXdm}">
 															<option value="" selected disabled>선택하세요</option>
 															<option th:each="list : ${@codeService.selectListCachedCode(4)}" th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${list.cdSeq} == ${item.awDept}"></option>
 														</select>
@@ -273,7 +273,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<!-- <label for="inputName" class="form-label">직원외래키</label> -->
-														<input type="hidden" class="form-control" id="inputstaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.staffMember_sfSeq}" placeholder="로그인으로받아오기?">
+														<input type="hidden" class="form-control" id="inputstaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.staffMember_sfSeq}">
 														
 														<input type="hidden" class="form-control" id="inputstaffMember_sfSeq" name="rcSeq" th:value="${item.reception_rcSeq}">
 														
@@ -284,14 +284,14 @@
 												<div class="col-xl-6 col-md-8 col-12">
 													<div class="mb-3">
 														<label for="inputCodeDesc" class="form-label">답변내용</label>
-														<textarea class="form-control exclude-validation" id="inputRcContent" name="awContent" th:text="${item.awContent}"  placeholder="민원내용을 입력해주세요" rows="3"></textarea>
+														<textarea class="form-control exclude-validation" id="inputRcContent" name="awContent" th:text="${item.awContent}"  placeholder="민원내용을 입력해주세요" rows="3" th:readonly="${item.staffMember_sfSeq} != ${session.sessSeqXdm}"></textarea>
 													</div>
 												</div>
 											</div>
 											
 											<!-- Row end -->
 											<!-- Form actions footer start -->
-											<div th:replace="~{xdm/v1/infra/include/link :: mform-link}"></div>
+											<div th:replace="~{xdm/v1/infra/include/link :: QnM_mform-link}"></div>
 											<!-- Form actions footer end -->
 										</form>
 										
