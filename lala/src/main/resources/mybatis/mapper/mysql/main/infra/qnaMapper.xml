@@ -432,4 +432,5 @@
 		WHERE 1=1
 		AND a.qaSeq = #{qaSeq}
 	</select>
+	
 </mapper>
