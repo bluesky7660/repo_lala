@@ -7,7 +7,8 @@
     
     <sql id="selectCommon">
         FROM afterReport a
-        LEFT join staffMember b on b.sfSeq = a.staffMember_sfSeq
+        LEFT JOIN staffMember b ON b.sfSeq = a.staffMember_sfSeq
+        LEFT JOIN reception c ON c.rcSeq = a.reception_rcSeq 
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -43,8 +44,18 @@
             a.arRegDate,
             a.arModDate,
             a.staffMember_sfSeq,
-            b.sfName
-        <include refid="selectCommon"/>
+            b.sfSeq,
+            b.sfName,
+            b.sfTel,
+            b.sfEmail,
+            b.sfDept,
+            c.rcSeq,
+            c.rcType,
+            c.rcTitle,
+            c.rcContent,
+            c.rcStatus,
+            c.userMember_umSeq
+	        <include refid="selectCommon"/>
         ORDER BY
             a.arRegDate DESC
         <include refid="base.selectListLowerForMysql"/>
@@ -64,9 +75,20 @@
             a.arRegDate,
             a.arModDate,
             a.staffMember_sfSeq,
-            b.sfName
-        FROM afterReport a 
-        LEFT join staffMember b on b.sfSeq = a.staffMember_sfSeq
+            b.sfName,
+            b.sfDept,
+            b.sfEmail,
+            b.sfTel,
+            c.rcSeq,
+            c.rcType,
+            c.rcTitle,
+            c.rcContent,
+            c.rcStatus,
+            d.umName
+        FROM afterReport a	
+        LEFT JOIN staffMember b ON b.sfSeq = a.staffMember_sfSeq 
+        LEFT JOIN reception c ON c.rcSeq = a.reception_rcSeq 
+        LEFT JOIN userMember d ON d.umSeq = c.userMember_umSeq
         WHERE a.arSeq = #{arSeq}
     </select>
     
@@ -77,14 +99,16 @@
             arDelNy,
             arRegDate,
             arModDate,
-            staffMember_sfSeq
+            staffMember_sfSeq,
+            reception_rcSeq
         ) VALUES (
             #{arTitle},
             #{arContent},
             0, 
             NOW(),
             NOW(),
-            #{staffMember_sfSeq}
+            #{staffMember_sfSeq},
+            #{reception_rcSeq}
         )
     </insert>
     

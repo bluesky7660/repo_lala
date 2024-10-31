@@ -35,7 +35,7 @@ public class CodeController {
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmInst")
 	public String CodeXdmInst(CodeDto codeDto) {
-		codeService.insert(codeDto);
+		codeService.insert(codeDto);	
 		return "redirect:/v1/infra/code/codeXdmList";
 	}
 	@RequestMapping(value = "/v1/infra/code/codeXdmMfom")

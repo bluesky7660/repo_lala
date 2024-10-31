@@ -8,7 +8,6 @@ public class CodeGroupVo extends BaseVo{
 	private String cgSeq;
 	private Date cgRegDate;
 	private Date cgModDate;
-    
 //-------------
 	public String getCgSeq() {
 		return cgSeq;

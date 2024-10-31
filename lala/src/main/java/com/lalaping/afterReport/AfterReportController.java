@@ -29,14 +29,17 @@ public class AfterReportController {
 	}
 	
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmForm")
-	public String afterReportXdmForm(Model model) {
+	public String afterReportXdmForm(Model model, AfterReportVo afterReportVo) {
+		System.out.println("afterReportService.selectList(afterReportVo) : " + afterReportService.selectList(afterReportVo));
+		model.addAttribute("list", afterReportService.selectList(afterReportVo));
 		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmForm";
 	}
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmMfom")
-	public String afterReportXdmMfom(AfterReportDto afterReportDto, Model model) {
-		model.addAttribute("listLink", "afterReportXdmList");
+	public String afterReportXdmMfom(Model model, AfterReportDto afterReportDto) {
+		System.out.println("afterReportService.selectOne(afterReportDto) : " + afterReportService.selectOne(afterReportDto));
 		model.addAttribute("item", afterReportService.selectOne(afterReportDto));
+		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmMfom";
 	}
 

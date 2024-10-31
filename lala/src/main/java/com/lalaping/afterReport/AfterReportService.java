@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AfterReportService {
-	
 	@Autowired
 	AfterReportDao afterReportDao;
 	
