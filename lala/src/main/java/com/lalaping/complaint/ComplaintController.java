@@ -28,7 +28,7 @@ public class ComplaintController {
 //	민원 reception
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmList")
-	public String receptionXdmList(@ModelAttribute("vo") ReceptionVo vo ,Model model) {
+	public String receptionXdmList(@ModelAttribute("vo") ComplaintVo vo ,Model model) {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.receptionListCount(vo));
@@ -42,24 +42,24 @@ public class ComplaintController {
 		return "/xdm/v1/complaint/receptionXdmForm";
 	}
 	@RequestMapping(value = "/v1/complaint/recepitonInst")
-	public String recepitonInst(ComplaintDto receptionDto, ComplaintDto answerDto, StaffMemberVo staffMemberVo) {
-		complaintService.rcInsert(receptionDto);
+	public String recepitonInst(ComplaintDto complaintDto, StaffMemberVo staffMemberVo) {
+		complaintService.rcInsert(complaintDto);
 		//담당자배정
 		List<StaffMemberDto> type = memberService.staffSeqList();
 		
 		Random random = new Random();
 	    StaffMemberDto randomStaff = type.get(random.nextInt(type.size()));
 	    
-	    answerDto.setStaffMember_sfSeq(randomStaff.getSfSeq());
+	    complaintDto.setStaffMember_sfSeq(randomStaff.getSfSeq());
 	    
-	    answerDto.setReception_rcSeq(receptionDto.getRcSeq());
-		complaintService.awInsert(answerDto);
+	    complaintDto.setReception_rcSeq(complaintDto.getRcSeq());
+		complaintService.awInsert(complaintDto);
 		return "redirect:/v1/complaint/receptionXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmMFom")
-	public String receptionXdmMFom(Model model,ComplaintDto receptionDto) {
-		model.addAttribute("item", complaintService.rcSelectOne(receptionDto));
+	public String receptionXdmMFom(Model model,ComplaintDto complaintDto) {
+		model.addAttribute("item", complaintService.rcSelectOne(complaintDto));
 		model.addAttribute("listLink", "receptionXdmList");
 		return "/xdm/v1/complaint/receptionXdmMFom";
 	}
@@ -74,21 +74,21 @@ public class ComplaintController {
 	 */
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmUete")
-	public String receptionXdmUete(ComplaintDto receptionDto) {
-		complaintService.rcUelete(receptionDto);
+	public String receptionXdmUete(ComplaintDto complaintDto) {
+		complaintService.rcUelete(complaintDto);
 		return "redirect:/v1/complaint/receptionXdmList";
 	}
 	
 	@RequestMapping(value = "/v1/complaint/receptionXdmDete")
-	public String receptionXdmDete(ComplaintDto receptionDto) {
-		complaintService.rcDelete(receptionDto);
+	public String receptionXdmDete(ComplaintDto complaintDto) {
+		complaintService.rcDelete(complaintDto);
 		return "redirect:/v1/complaint/receptionXdmList";
 	}
 	
 //	답변 answer
 	
 	@RequestMapping(value = "/v1/complaint/answerXdmList")
-	public String answerXdmList(@ModelAttribute("vo") AnswerVo vo ,Model model) {
+	public String answerXdmList(@ModelAttribute("vo") ComplaintVo vo ,Model model) {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.answerListCount(vo));
@@ -96,24 +96,24 @@ public class ComplaintController {
 		return "/xdm/v1/complaint/answerXdmList";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmMFom")
-	public String answerXdmMFom(Model model,ComplaintDto answerDto) {
-		model.addAttribute("item", complaintService.awSelectOne(answerDto));
+	public String answerXdmMFom(Model model,ComplaintDto complaintDto) {
+		model.addAttribute("item", complaintService.awSelectOne(complaintDto));
 		return "/xdm/v1/complaint/answerXdmMFom";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")
-	public String answerXdmUpdt(ComplaintDto answerDto,ComplaintDto receptionDto) {
-		complaintService.rcUpdate(receptionDto);
-		complaintService.awUpdate(answerDto);
+	public String answerXdmUpdt(ComplaintDto complaintDto) {
+		complaintService.rcUpdate(complaintDto);
+		complaintService.awUpdate(complaintDto);
 		return "redirect:/v1/complaint/answerXdmList";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUete")
-	public String answerXdmUete(ComplaintDto answerDto) {
-		complaintService.awUelete(answerDto);
+	public String answerXdmUete(ComplaintDto complaintDto) {
+		complaintService.awUelete(complaintDto);
 		return "redirect:/v1/complaint/answerXdmList";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmDete")
-	public String answerXdmDete(ComplaintDto answerDto) {
-		complaintService.awDelete(answerDto);
+	public String answerXdmDete(ComplaintDto complaintDto) {
+		complaintService.awDelete(complaintDto);
 		return "redirect:/v1/complaint/answerXdmList";
 	}
 

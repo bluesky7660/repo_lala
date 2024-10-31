@@ -11,57 +11,57 @@ public class ComplaintService {
 	
 //	민원 reception
 	
-	public List<ComplaintDto> receptionSelectList(ReceptionVo vo) {
+	public List<ComplaintDto> receptionSelectList(ComplaintVo vo) {
 		return complaintDao.receptionSelectList(vo);
 	}
 	public List<ComplaintDto> receptionTypeCount(){
 		return complaintDao.receptionTypeCount();
 	}
-	public int rcInsert(ComplaintDto receptionDto) {
-		return complaintDao.rcInsert(receptionDto);
+	public int rcInsert(ComplaintDto complaintDto) {
+		return complaintDao.rcInsert(complaintDto);
 	}
-	public ComplaintDto rcSelectOne(ComplaintDto receptionDto) {
-		return complaintDao.rcSelectOne(receptionDto);
+	public ComplaintDto rcSelectOne(ComplaintDto complaintDto) {
+		return complaintDao.rcSelectOne(complaintDto);
 	}
-	public int rcUpdate(ComplaintDto receptionDto) {
-		return complaintDao.rcUpdate(receptionDto);
+	public int rcUpdate(ComplaintDto complaintDto) {
+		return complaintDao.rcUpdate(complaintDto);
 	}
-	public int rcUelete(ComplaintDto receptionDto) {
-		return complaintDao.rcUelete(receptionDto);
+	public int rcUelete(ComplaintDto complaintDto) {
+		return complaintDao.rcUelete(complaintDto);
 	}
-	public int rcDelete(ComplaintDto receptionDto) {
-		return complaintDao.rcDelete(receptionDto);
+	public int rcDelete(ComplaintDto complaintDto) {
+		return complaintDao.rcDelete(complaintDto);
 	}
-	public int receptionListCount(ReceptionVo vo) {
+	public int receptionListCount(ComplaintVo vo) {
 		return complaintDao.receptionListCount(vo);
 	}
 	
 	
 //	답변 answer
 	
-	public List<ComplaintDto> answerSelectList(AnswerVo vo){
+	public List<ComplaintDto> answerSelectList(ComplaintVo vo){
 		return complaintDao.answerSelectList(vo);
 	}
 	public List<ComplaintDto> answerTypeCount(){
 //		System.out.println("확인:"+answerTypeCount());
 		return complaintDao.answerTypeCount();
 	}
-	public int awInsert(ComplaintDto answerDto) {
-		return complaintDao.awInsert(answerDto);
+	public int awInsert(ComplaintDto complaintDto) {
+		return complaintDao.awInsert(complaintDto);
 	}
-	public ComplaintDto awSelectOne(ComplaintDto answerDto) {
-		return complaintDao.awSelectOne(answerDto);
+	public ComplaintDto awSelectOne(ComplaintDto complaintDto) {
+		return complaintDao.awSelectOne(complaintDto);
 	}
-	public int awUpdate(ComplaintDto answerDto) {
-		return complaintDao.awUpdate(answerDto);
+	public int awUpdate(ComplaintDto complaintDto) {
+		return complaintDao.awUpdate(complaintDto);
 	}
-	public int awUelete(ComplaintDto answerDto) {
-		return complaintDao.awUelete(answerDto);
+	public int awUelete(ComplaintDto complaintDto) {
+		return complaintDao.awUelete(complaintDto);
 	}
-	public int awDelete(ComplaintDto answerDto) {
-		return complaintDao.awDelete(answerDto);
+	public int awDelete(ComplaintDto complaintDto) {
+		return complaintDao.awDelete(complaintDto);
 	}
-	public int answerListCount(AnswerVo vo) {
+	public int answerListCount(ComplaintVo vo) {
 		return complaintDao.answerListCount(vo);
 	}
 	
@@ -96,8 +96,8 @@ public class ComplaintService {
 	    }
 	    return 0; // 일치하는 항목이 없을 경우 0 반환
 	}
-	public List<ComplaintDto> pendingReceptionList(ReceptionVo ReceptionVo){
-		return complaintDao.pendingReceptionList(ReceptionVo);
+	public List<ComplaintDto> pendingReceptionList(ComplaintVo complaintVo){
+		return complaintDao.pendingReceptionList(complaintVo);
 	}
 
 }

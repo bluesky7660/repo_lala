@@ -7,27 +7,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ComplaintDao {
 //	민원 reception
-	public List<ComplaintDto> receptionSelectList(ReceptionVo vo);
+	public List<ComplaintDto> receptionSelectList(ComplaintVo vo);
 	public List<ComplaintDto> receptionTypeCount();
-	public int rcInsert(ComplaintDto receptionDto);
-	public ComplaintDto rcSelectOne(ComplaintDto receptionDto);
-	public int rcUpdate(ComplaintDto receptionDto);
-	public int rcUelete(ComplaintDto receptionDto);
-	public int rcDelete(ComplaintDto receptionDto);
-	public int receptionListCount(ReceptionVo vo);
+	public int rcInsert(ComplaintDto complaintDto);
+	public ComplaintDto rcSelectOne(ComplaintDto complaintDto);
+	public int rcUpdate(ComplaintDto complaintDto);
+	public int rcUelete(ComplaintDto complaintDto);
+	public int rcDelete(ComplaintDto complaintDto);
+	public int receptionListCount(ComplaintVo vo);
 	
 //	답변 answer
-	public List<ComplaintDto> answerSelectList(AnswerVo vo);
+	public List<ComplaintDto> answerSelectList(ComplaintVo vo);
 	public List<ComplaintDto> answerTypeCount();
-	public int awInsert(ComplaintDto answerDto);
-	public ComplaintDto awSelectOne(ComplaintDto answerDto);
-	public int awUpdate(ComplaintDto answerDto);
-	public int awUelete(ComplaintDto answerDto);
-	public int awDelete(ComplaintDto answerDto);
-	public int answerListCount(AnswerVo vo);
+	public int awInsert(ComplaintDto complaintDto);
+	public ComplaintDto awSelectOne(ComplaintDto complaintDto);
+	public int awUpdate(ComplaintDto complaintDto);
+	public int awUelete(ComplaintDto complaintDto);
+	public int awDelete(ComplaintDto complaintDto);
+	public int answerListCount(ComplaintVo vo);
 
 //민원 대시보드용
 	public List<ComplaintDto> compStatusCount();
-	public List<ComplaintDto> pendingReceptionList(ReceptionVo ReceptionVo);
+	public List<ComplaintDto> pendingReceptionList(ComplaintVo complaintVo);
 
 }
