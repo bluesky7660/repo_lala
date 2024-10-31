@@ -199,9 +199,9 @@
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputumBirthDay" class="form-label">생년월일</label>
-														<!-- <input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputumBirthDay" name="sfBirthDay" placeholder="예)1999-01-01" required> -->
-														<input type="date" class="valid-birth-num form-control validate-this" id="inputumBirthDay" name="sfBirthDay" placeholder="예)1999-01-01" required>
+														<label for="inputSfBirthDay" class="form-label">생년월일</label>
+														<input type="text" class="valid-birth-num form-control validate-this" id="inputSfBirthDay" name="sfBirthDay" placeholder="예)1999-01-01" required>
+														<!-- <input type="date" class="valid-birth-num form-control validate-this" id="inputumBirthDay" name="sfBirthDay" placeholder="예)1999-01-01" required> -->
 														<div class="invalid-feedback">
 															생일을 적어주세요.
 														</div>
@@ -277,12 +277,18 @@
 		<!-- Main Js Required -->
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/main.js"></script>
 		<script src="/xdm/v1/template/arise-v1.0/assets/js/validations.js"></script>
-		<script>
-			
-		</script>
 		<!-- by developer -->
 		<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 		<script src="/xdm/v1/js/commonXdm.js"></script>
+		<script>
+			window.addEventListener('load',function() {
+				$.datetimepicker.setLocale('ko');
+				$("#inputSfBirthDay").datetimepicker({
+					timepicker:false,
+					format:'Y-m-d'
+				});
+			})
+		</script>
 	</body>
 
 </html>
