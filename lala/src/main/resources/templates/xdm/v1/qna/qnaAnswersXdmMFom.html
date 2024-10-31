@@ -175,7 +175,7 @@
 												<div class="required col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputQaContent" class="form-label">답변 내용</label>
-														<textarea class="form-control exclude-validation" id="inputQaContent" name="qaContent" th:text="${item.qaContent}" placeholder="답변내용을 입력해주세요" rows="4" required></textarea>
+														<textarea class="form-control exclude-validation" id="inputQaContent" name="qaContent" th:text="${item.qaContent}" placeholder="답변내용을 입력해주세요" rows="4" required th:readonly="${item.staffMember_sfSeq} != ${session.sessSeqXdm}"></textarea>
 													</div>
 												</div>
 											</div>

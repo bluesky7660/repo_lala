@@ -115,7 +115,6 @@
 	        sfDelNy,
 	        sfRegDate,
 	        sfModDate,
-	        sfDept,
 	        sfEmail,
 	        sfGender,
 	        sfDept
@@ -128,7 +127,6 @@
 	        0,
 	        now(),
 	        now(),
-	        #{sfDept},
 	        #{sfEmail},
 	        #{sfGender},
 	        #{sfDept}
