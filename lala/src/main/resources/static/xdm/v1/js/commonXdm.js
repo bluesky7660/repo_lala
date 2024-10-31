@@ -26,7 +26,7 @@ window.addEventListener('load', function() {
     //정규식
     var idRegExp = /^[a-zA-Z0-9]{5,15}$/;
     var passwordRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-    var krAlphaNumRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+    var krAlphaNumRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9\s]+$/;
     var krNameRegExp = /^[가-힣]{2,4}$/;
     var alphaNumRegExp = /^[a-zA-Z0-9]+$/;
     var numericRegExp = /^[0-9]+$/;
