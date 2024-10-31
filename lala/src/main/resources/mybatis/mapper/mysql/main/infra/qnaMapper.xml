@@ -79,11 +79,7 @@
 	    FROM qnaRequests
 	    GROUP BY qrType
     </select> -->
-    <select id="qnaTypeCount" resultMap="qnaResultMapObj">
-        SELECT qrType, COUNT(qrType) AS qrTypeCount
-		FROM qnaRequests
-		GROUP BY qrType
-    </select>
+    
 	<!-- <insert id="insertRequest">
         INSERT INTO qnaRequests (
 	        qrTitle
@@ -297,6 +293,11 @@
 		FROM qnaTable
 		GROUP BY qrStatus
 		order by qrStatus
+    </select>
+    <select id="qnaTypeCount" resultMap="qnaResultMapObj">
+        SELECT qrType, COUNT(qrType) AS qrTypeCount
+		FROM qnaTable
+		GROUP BY qrType
     </select>
 	<select id="listCountReg" resultType="int">
 		SELECT COUNT(*) 
