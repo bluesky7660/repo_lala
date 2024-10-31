@@ -130,17 +130,18 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">민원 번호</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputRrSeq" name="rcSeq" th:value="${item.rcSeq}" readonly>
+														<input type="text" class="form-control" id="inputRrSeq" name="rcSeq" th:value="${item.rcSeq}" readonly>
 														<div class="invalid-feedback">
 															민원 번호가 나오지 않습니다.
 														</div>
 													</div>
 												</div>
+											</div>
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">민원 제목</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputRrTitlte" name="rcTitle" th:value="${item.rcTitle}" readonly>
+														<input type="text" class="form-control" id="inputRrTitlte" name="rcTitle" th:value="${item.rcTitle}" readonly>
 														<div class="invalid-feedback">
 															민원 제목이 나오지 않습니다.
 														</div>
@@ -149,7 +150,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">민원 종류</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputRcType" th:value="${@codeService.selectOneCachedCode(item.rcType)}" readonly>
+														<input type="text" class="form-control" id="inputRcType" th:value="${@codeService.selectOneCachedCode(item.rcType)}" readonly>
 														<div class="invalid-feedback">
 														민원 종류가 나오지 않습니다.
 														</div>
@@ -158,35 +159,38 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">민원 작성자</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputumName" name="umName" th:value="${item.umName}" readonly>
+														<input type="text" class="form-control" id="inputumName" name="umName" th:value="${item.umName}" readonly>
 														<div class="invalid-feedback">
 															민원 작성자가 나오지 않습니다.
 														</div>
 													</div>
 												</div>
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+											</div>
+											<div class="row">
+												<div class=" col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputCodeDesc" class="form-label">민원 내용</label>
-														<textarea class="form-control exclude-validation" id="inputRcContent" name="rcContent" th:text="${item.rcContent}" placeholder="민원 내용입니다." rows="3" readonly></textarea>
+														<textarea class="form-control" id="inputRcContent" name="rcContent" th:text="${item.rcContent}" placeholder="민원 내용입니다." rows="3" readonly></textarea>
 														<div class="invalid-feedback">
 															내용을 적어주세요.
 														</div>
 													</div>
 												</div>
-												<div class="row">
-													<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-														<div class="mb-3">
-															<label for="inputName" class="form-label">보고서 번호</label>
-															<input type="text" class="form-control" id="inputArSeq" name="arSeq" th:value="${item.arSeq}" readonly="readonly">
-														</div>
+											</div>
+											<div class="row">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputName" class="form-label">보고서 번호</label>
+														<input type="text" class="form-control" id="inputArSeq" name="arSeq" th:value="${item.arSeq}" readonly="readonly">
 													</div>
-													<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-														<div class="mb-3">
-															<label for="inputCodeName" class="form-label">보고서 제목</label>
-															<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputArTitle" name="arTitle" th:value="${item.arTitle}" required>
-															<div class="invalid-feedback">
-																제목을 적어주세요.
-															</div>
+												</div>
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+													<div class="mb-3">
+														<label for="inputCodeName" class="form-label">보고서 제목</label>
+														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputArTitle" name="arTitle" th:value="${item.arTitle}" required>
+														<div class="invalid-feedback">
+															제목을 적어주세요.
+														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -196,19 +200,9 @@
 														<input type="hidden" class="form-control" id="inputStaffMember_sfSeq" name="staffMember_sfSeq" th:value="${item.arSeq}" readonly>
 													</div>
 												</div>
-												</div>
-												<!-- <div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCodeOrder" class="form-label">순서</label>
-														<input type="text" class="form-control valid-numeric validate-this" id="inputCodeOrder" name="cdOrder" placeholder="숫자만" required>
-														<div class="invalid-feedback">
-															순서를 적어주세요.
-														</div>
-													</div>
-												</div> -->
 											</div>
 											<div class="row">
-												<div class="col-xl-6 col-md-8 col-12">
+												<div class="col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputCodeDesc" class="form-label">보고서 내용</label>
 														<textarea class="form-control exclude-validation" id="inputArContent" name="arContent" th:text="${item.arContent}" rows="3"></textarea>
