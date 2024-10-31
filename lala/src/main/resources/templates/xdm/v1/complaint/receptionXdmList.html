@@ -310,7 +310,7 @@
 														<td th:text="${list.rcSeq}"></td>
 														<td th:text="${@codeService.selectOneCachedCode(list.rcType)}"></td>
 														<td class="td_spotlight">
-															<a th:href="@{/v1/complaint/receptionXdmMFom(rcSeq=${list.rcSeq})}" th:text="${list.rcTitle}"></a>
+															<a th:href="@{/v1/complaint/answerXdmList}" th:text="${list.rcTitle}"></a>
 														</td>
 														<td th:text = "${@codeService.selectOneCachedCode(list.rcStatus)}"></td>
 														<!-- <td th:text = "${list.usermember_umSeq}"></td> -->

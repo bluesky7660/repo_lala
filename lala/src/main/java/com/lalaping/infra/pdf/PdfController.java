@@ -1,14 +1,13 @@
 package com.lalaping.infra.pdf;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lalaping.afterReport.AfterReportDto;
 import com.lalaping.afterReport.AfterReportService;
@@ -24,12 +22,13 @@ import com.lalaping.afterReport.AfterReportService;
 @Controller
 public class PdfController {
 
-	@Autowired
-	AfterReportService afterReportService;
-	
-	@Autowired
+    @Autowired
+    AfterReportService afterReportService;
+    
+    @Autowired
     PdfService pdfService;
-	// PDF 생성 후 다운로드 처리
+
+    // PDF 생성 후 다운로드 처리
     @GetMapping("/generate-pdf")
     public ResponseEntity<byte[]> generatePdf(@RequestParam("arSeq") String arSeq, AfterReportDto afterReportDto) {
         // arSeq 값을 DTO에 설정
@@ -49,10 +48,13 @@ public class PdfController {
             Path path = Paths.get(filePath);
             byte[] pdfContents = Files.readAllBytes(path);
 
+            // 파일 이름을 URL 인코딩
+            String encodedFileName = URLEncoder.encode(filePath, StandardCharsets.UTF_8.toString());
+
             // HTTP 응답 헤더 설정
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.setContentDispositionFormData("attachment", filePath);
+            headers.setContentDispositionFormData("attachment", encodedFileName); // 인코딩된 파일 이름 사용
 
             // PDF 파일을 응답으로 반환
             return new ResponseEntity<>(pdfContents, headers, HttpStatus.OK);

@@ -637,4 +637,53 @@ window.addEventListener('load', function() {
             // alert("오른쪽 클릭이 방지되었습니다.");
         });
     });
+    document.getElementById('pdfdown').addEventListener('click', function() {
+        // PDF 파일 생성 요청을 보낼 URL
+        const arSeq = $("#inputArSeq").val(); 
+        $.ajax({
+            url: "/generate-pdf", // PDF를 생성하는 서버의 엔드포인트
+            method: "GET",
+            data: {
+                arSeq: arSeq // 요청에 필요한 매개변수 전달
+            },
+            xhrFields: {
+                responseType: 'blob' // 응답 타입을 blob으로 설정
+            },
+            success: function(response) {
+                // PDF 파일 다운로드
+                var url = window.URL.createObjectURL(response);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = "민원_후_처리보고서_" + arSeq + ".pdf"; // 파일 이름 설정
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url); // 메모리 해제
+            },
+            error: function(xhr, status, error) {
+                console.error("PDF 생성 실패:", status, error);
+                alert("PDF 생성 중 오류가 발생했습니다.");
+            }
+        });
+        // $.ajax({
+        //     async : true, 
+        //     cache : false, 
+        //     type : "post", 
+        //     url : "/generate-pdf", 
+        //     data: {arSeq:arSeq},
+        //     success : function(response) {
+        //         if (response.rt === "success") { 
+        //             location.href = response.redirectUrl; 
+        //         } else {
+        //             alert("PDF 생성 실패: " + response.message);
+        //         }
+        //     },
+        //     error : function(jqXHR, textStatus, errorThrown) {
+        //         console.error("PDF 생성 실패: " + textStatus + " - "
+        //                         + errorThrown);
+                                
+        //     }
+        // });
+        
+    });
 });

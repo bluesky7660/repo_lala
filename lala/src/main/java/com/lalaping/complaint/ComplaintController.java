@@ -88,10 +88,12 @@ public class ComplaintController {
 //	답변 answer
 	
 	@RequestMapping(value = "/v1/complaint/answerXdmList")
-	public String answerXdmList(@ModelAttribute("vo") ComplaintVo vo ,Model model) {
+	public String answerXdmList(@ModelAttribute("vo") ComplaintVo vo ,Model model,HttpSession httpSession) {
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		vo.setParamsPaging(complaintService.answerListCount(vo));
+		String sessSeqXdm = String.valueOf(httpSession.getAttribute("sessSeqXdm")) ;
+		vo.setSessSeqXdm(sessSeqXdm);
 		model.addAttribute("list", complaintService.answerSelectList(vo));
 		return "/xdm/v1/complaint/answerXdmList";
 	}
@@ -99,6 +101,12 @@ public class ComplaintController {
 	public String answerXdmMFom(Model model,ComplaintDto complaintDto) {
 		model.addAttribute("item", complaintService.awSelectOne(complaintDto));
 		return "/xdm/v1/complaint/answerXdmMFom";
+	}
+	@RequestMapping(value = "/v1/complaint/answerXdmComplete")
+	public String answerXdmComplete(Model model,ComplaintDto complaintDto) {
+		model.addAttribute("item", complaintService.awSelectOne(complaintDto));
+		model.addAttribute("listLink", "answerXdmList");
+		return "/xdm/v1/complaint/answerXdmComplete";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")
 	public String answerXdmUpdt(ComplaintDto complaintDto) {
