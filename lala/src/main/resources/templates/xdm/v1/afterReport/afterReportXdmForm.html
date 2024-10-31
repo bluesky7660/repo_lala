@@ -128,34 +128,45 @@
 											<!-- Row start -->
 											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+												<div class="mb-3">
+													<label for="inputCodeGroup" class="form-label">민원 선택</label>
+													<select class="form-select validate-this" id="inputCodeGroup" name="reception_rcSeq" required>
+														<option value="" selected disabled>선택하세요</option>
+														<option th:each="list : ${list}" th:value="${list.rcSeq}" th:text="${list.rcTitle}"></option>
+													</select>
+													<div class="invalid-feedback">
+														민원 정보를 선택해주세요.
+													</div>
+												</div>
+											</div>
+											</div>
+											<div class="row">
+												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
-														<label for="inputSfDept" class="form-label">부서</label>
-<!-- 														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputSfDept" name="sfDept" th:value="${@codeService.selectOneCachedCode(item.sfDept)}" required> -->
+														<label for="inputCodeDesc" class="form-label">보고서 제목</label>
+														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputArTitlte" name="arTitle" placeholder="보고서 제목을 적어주세요." required>
 														<div class="invalid-feedback">
-															부서를 적어주세요.
+															보고서 제목을 적어주세요.
 														</div>
 													</div>
 												</div>
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 													<div class="mb-3">
 														<label for="inputCodeName" class="form-label">작성자</label>
-<!-- 														<input type="hidden" class="valid-korean-alpha-num form-control validate-this" id="inputSfName" name="sfName" th:text="${item.sfName}" required> -->
+															<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputSfName"  th:value="${session.sessNameXdm}" readonly>
+														<input type="hidden" name="staffMember_sfSeq" th:value="${session.sessSeqXdm}">
 														<div class="invalid-feedback">
 															작성자를 적어주세요.
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="row">
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-												<div class="mb-3">
-													<label for="inputCodeGroup" class="form-label">민원 선택</label>
-													<select class="form-select validate-this" id="inputCodeGroup" name="codeGroup_cgSeq" required>
-														<option value="" selected disabled>선택하세요</option>
-														<option th:each="list : ${list}" th:value="${list.reception_rcSeq}" th:text="${list.rcTitle}"></option>
-													</select>
-													<div class="invalid-feedback">
-														민원 정보를 선택해주세요.
+													<div class="mb-3"> 
+														<label for="inputSfDept" class="form-label">부서</label> 
+															<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputSfDept" th:value="${@codeService.selectOneCachedCode(session.sessDeptXdm)}" readonly>
+														<div class="invalid-feedback">
+															부서를 적어주세요.
+														</div>
 													</div>
 												</div>
 											</div>
@@ -165,19 +176,18 @@
 <!-- 														<input type="text" class="form-control" id="inputRcTitle" name="rcTitle" th:value="${item.rcTitle}" readonly> -->
 <!-- 													</div> -->
 <!-- 												</div> -->
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">	
-														<label for="inputUseNy" class="form-label">민원 종류</label>
-														<select class="form-select validate-this valid-gender" id="inputSfGender" name="sfGender" required>
-															<option value="" selected disabled>선택하세요</option>
-															<option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.cdSeq}" th:text="${list.cdName}"></option>
-														</select>
-														<div class="invalid-feedback">
-															성별을 선택해주세요.
-														</div>
-													</div>
-												</div>
-											</div>
+<!-- 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"> -->
+<!-- 													<div class="mb-3">	 -->
+<!-- 														<label for="inputUseNy" class="form-label">민원 종류</label> -->
+<!-- 														<select class="form-select validate-this valid-gender" id="inputSfGender" name="sfGender" required> -->
+<!-- 															<option value="" selected disabled>선택하세요</option> -->
+<!-- 															<option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.cdSeq}" th:text="${list.cdName}"></option> -->
+<!-- 														</select> -->
+<!-- 														<div class="invalid-feedback"> -->
+<!-- 															성별을 선택해주세요. -->
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
 <!-- 											<div class="row"> -->
 <!-- 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"> -->
 <!-- 													<div class="mb-3"> -->
@@ -192,18 +202,7 @@
 <!-- 													</div> -->
 <!-- 												</div> -->
 											<div class="row">
-												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-													<div class="mb-3">
-														<label for="inputCodeDesc" class="form-label">보고서 제목</label>
-														<input type="text" class="valid-korean-alpha-num form-control validate-this" id="inputArTitlte" name="arTitle" placeholder="보고서 제목을 적어주세요." required>
-														<div class="invalid-feedback">
-															보고서 제목을 적어주세요.
-														</div>
-													</div>
-												</div>
-											</div> 
-											<div class="row">
-												<div class="col-xl-6 col-md-8 col-12">
+												<div class="col-xxl-9 col-12">
 													<div class="mb-3">
 														<label for="inputCodeDesc" class="form-label">보고서 내용</label>
 														<textarea class="form-control exclude-validation" id="inputArContent" name="arContent" placeholder="보고서 내용을 적어주세요." rows="3"></textarea>
