@@ -32,6 +32,7 @@ public interface QnaDao {
 	public List<QnaDto> selectListQnaReq(QnaVo vo);
 	public List<QnaDto> selectListQnaAns(QnaVo vo);
 	public QnaDto selectOneQnaReq(QnaDto qnaDto);
+	public QnaDto selectOneQnaAns(QnaDto qnaDto);
 	
 	public int listCountReg(QnaVo vo);
 	public int listCountAns(QnaVo vo);

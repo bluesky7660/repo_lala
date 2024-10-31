@@ -417,7 +417,7 @@
 	</select>
 	<select id="selectOneQnaAns" resultMap="qnaResultMapObj">
 		SELECT
-			a.qaSeq,
+			a.qrSeq,
 			a.qaContent,
 			a.staffMember_sfSeq,
 			a.userMember_umSeq,
@@ -431,7 +431,7 @@
 			join staffMember b on b.sfSeq = a.staffMember_sfSeq
 			join userMember c on c.umSeq = a.userMember_umSeq
 		WHERE 1=1
-		AND a.qaSeq = #{qaSeq}
+		AND a.qrSeq = #{qrSeq}
 	</select>
 	
 </mapper>

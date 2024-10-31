@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.common.util.UtilDateTime;
+import com.lalaping.complaint.ComplaintService;
+import com.lalaping.complaint.ComplaintVo;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -14,6 +16,9 @@ import jakarta.servlet.http.HttpSession;
 public class AfterReportController {
 	@Autowired
 	AfterReportService afterReportService;
+	
+	@Autowired
+	ComplaintService complaintService;
 	
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmList")
 	public String afterReportXdmList(@ModelAttribute("vo") AfterReportVo afterReportVo, Model model) {
@@ -31,10 +36,10 @@ public class AfterReportController {
 	}
 	
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmForm")
-	public String afterReportXdmForm(Model model, AfterReportVo afterReportVo, HttpSession httpSession) {
-		System.out.println("afterReportService.selectList(afterReportVo) : " + afterReportService.selectList(afterReportVo));
-		System.out.println("session : " + httpSession.getAttribute("sessDeptXdm"));
-		model.addAttribute("list", afterReportService.selectList(afterReportVo));
+	public String afterReportXdmForm(Model model, AfterReportVo afterReportVo, HttpSession httpSession,ComplaintVo complaintVo) {
+//		System.out.println("afterReportService.selectList(afterReportVo) : " + afterReportService.selectList(afterReportVo));
+//		System.out.println("session : " + httpSession.getAttribute("sessDeptXdm"));
+		model.addAttribute("list", complaintService.compReceptionList());
 		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmForm";
 	}

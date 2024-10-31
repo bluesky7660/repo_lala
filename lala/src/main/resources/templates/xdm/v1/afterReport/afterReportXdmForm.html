@@ -130,7 +130,7 @@
 												<div class="required col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 												<div class="mb-3">
 													<label for="inputCodeGroup" class="form-label">민원 선택</label>
-													<select class="form-select validate-this" id="inputCodeGroup" name="reception_rcSeq" required>
+													<select class="form-select validate-this" id="inputCodeGroup" name="reception_rcSeq" style="max-height: 150px;overflow-y: auto !important;" required>
 														<option value="" selected disabled>선택하세요</option>
 														<option th:each="list : ${list}" th:value="${list.rcSeq}" th:text="${list.rcTitle}"></option>
 													</select>

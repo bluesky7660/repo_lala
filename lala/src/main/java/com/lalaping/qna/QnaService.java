@@ -77,6 +77,9 @@ public class QnaService {
 	public QnaDto selectOneQnaReq(QnaDto qnaDto) {
 		return qnaDao.selectOneQnaReq(qnaDto);
 	}
+	public QnaDto selectOneQnaAns(QnaDto qnaDto){
+		return qnaDao.selectOneQnaAns(qnaDto);
+	}
 	public int listCountReg(QnaVo vo) {
 		return qnaDao.listCountReg(vo);
 	}
