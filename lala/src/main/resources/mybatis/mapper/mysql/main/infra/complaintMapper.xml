@@ -212,7 +212,12 @@
 			a.rcStatus,
 			c.sfName
 		<include refid="answerSelectCommon"/>
-		ORDER BY b.awSeq DESC
+		ORDER BY a.rcStatus asc
+			 , CASE 
+            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	ELSE 1
+        	END,
+        	b.awSeq DESC 
 		<include refid="base.selectListLowerForMysql"/>
 	</select>
 	

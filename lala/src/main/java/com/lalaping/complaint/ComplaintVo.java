@@ -3,6 +3,7 @@ package com.lalaping.complaint;
 import com.lalaping.infra.util.BaseVo;
 
 public class ComplaintVo extends BaseVo{
+	private String sessSeqXdm;
 //	답변 vo
 	private Integer shRcType;
 	private Integer shAwStatus;
@@ -26,6 +27,12 @@ public class ComplaintVo extends BaseVo{
 	}
 	public void setShRcStatus(Integer shRcStatus) {
 		this.shRcStatus = shRcStatus;
+	}
+	public String getSessSeqXdm() {
+		return sessSeqXdm;
+	}
+	public void setSessSeqXdm(String sessSeqXdm) {
+		this.sessSeqXdm = sessSeqXdm;
 	}
 	
 	
