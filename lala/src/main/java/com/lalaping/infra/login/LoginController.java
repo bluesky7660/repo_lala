@@ -45,6 +45,7 @@ public class LoginController {
 			httpSession.setAttribute("sessIdXdm", rtLogin.getSfId()); 
 			httpSession.setAttribute("sessSeqXdm", rtLogin.getSfSeq()); 
 			httpSession.setAttribute("sessNameXdm", rtLogin.getSfName()); 
+			httpSession.setAttribute("sessDeptXdm", rtLogin.getSfDept()); 
 
 			returnMap.put("rt", "success"); 
 		} else { 

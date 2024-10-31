@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lalaping.common.util.UtilDateTime;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class AfterReportController {
 	@Autowired
@@ -29,8 +31,9 @@ public class AfterReportController {
 	}
 	
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmForm")
-	public String afterReportXdmForm(Model model, AfterReportVo afterReportVo) {
+	public String afterReportXdmForm(Model model, AfterReportVo afterReportVo, HttpSession httpSession) {
 		System.out.println("afterReportService.selectList(afterReportVo) : " + afterReportService.selectList(afterReportVo));
+		System.out.println("session : " + httpSession.getAttribute("sessDeptXdm"));
 		model.addAttribute("list", afterReportService.selectList(afterReportVo));
 		model.addAttribute("listLink", "afterReportXdmList");
 		return "/xdm/v1/afterReport/afterReportXdmForm";
