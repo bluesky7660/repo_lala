@@ -308,6 +308,7 @@
 			a.qrTitle,
 			a.qrContent,
 			a.qrType,
+			a.qaContent,
 			a.userMember_umSeq,
 			b.umName,
 			c.sfName
@@ -353,7 +354,7 @@
     	UPDATE qnaTable 
 		set
 			qaContent = #{qaContent},
-			qrStatus = 1
+			qrStatus = 1,
 		    qaModDate = now()
 		WHERE 1=1
 			AND qrSeq = #{qrSeq}

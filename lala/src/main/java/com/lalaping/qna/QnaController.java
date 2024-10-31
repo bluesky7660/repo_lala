@@ -83,7 +83,6 @@ public class QnaController {
 //	}
 	@RequestMapping(value = "/v1/qna/qnaRequestsXdmForm")
 	public String qnaRequestsXdmForm(Model model, QnaDto qnaDto) {
-		model.addAttribute("item", qnaService.selectOneRequest(qnaDto));
 		model.addAttribute("listLink", "qnaRequestsXdmList");
 		return "xdm/v1/qna/qnaRequestsXdmForm";
 	}
