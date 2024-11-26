@@ -15,7 +15,7 @@
 		,a.sfSeq
 		,a.sfDept
 		FROM
-		staffMember a
+		staffmember a
 		WHERE
 		a.sfId = #{sfId} AND a.sfPasswd = #{sfPasswd}
 	</select>

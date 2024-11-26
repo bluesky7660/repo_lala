@@ -41,14 +41,14 @@ public class AfterReportController {
 //		System.out.println("session : " + httpSession.getAttribute("sessDeptXdm"));
 		model.addAttribute("list", complaintService.compReceptionList());
 		model.addAttribute("listLink", "afterReportXdmList");
-		return "/xdm/v1/afterReport/afterReportXdmForm";
+		return "xdm/v1/afterReport/afterReportXdmForm";
 	}
 	@RequestMapping(value = "/v1/afterReport/afterReportXdmMfom")
 	public String afterReportXdmMfom(Model model, AfterReportDto afterReportDto) {
 		System.out.println("afterReportService.selectOne(afterReportDto) : " + afterReportService.selectOne(afterReportDto));
 		model.addAttribute("item", afterReportService.selectOne(afterReportDto));
 		model.addAttribute("listLink", "afterReportXdmList");
-		return "/xdm/v1/afterReport/afterReportXdmMfom";
+		return "xdm/v1/afterReport/afterReportXdmMfom";
 	}
 
 	// CRUD
