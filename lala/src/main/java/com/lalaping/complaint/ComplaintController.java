@@ -39,7 +39,7 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/receptionXdmForm")
 	public String receptionXdmForm(Model model) {
 		model.addAttribute("listLink", "receptionXdmList");
-		return "/xdm/v1/complaint/receptionXdmForm";
+		return "xdm/v1/complaint/receptionXdmForm";
 	}
 	@RequestMapping(value = "/v1/complaint/recepitonInst")
 	public String recepitonInst(ComplaintDto complaintDto, StaffMemberVo staffMemberVo) {
@@ -61,7 +61,7 @@ public class ComplaintController {
 	public String receptionXdmMFom(Model model,ComplaintDto complaintDto) {
 		model.addAttribute("item", complaintService.rcSelectOne(complaintDto));
 		model.addAttribute("listLink", "receptionXdmList");
-		return "/xdm/v1/complaint/receptionXdmMFom";
+		return "xdm/v1/complaint/receptionXdmMFom";
 	}
 	
 	/*
@@ -95,19 +95,19 @@ public class ComplaintController {
 		String sessSeqXdm = String.valueOf(httpSession.getAttribute("sessSeqXdm")) ;
 		vo.setSessSeqXdm(sessSeqXdm);
 		model.addAttribute("list", complaintService.answerSelectList(vo));
-		return "/xdm/v1/complaint/answerXdmList";
+		return "xdm/v1/complaint/answerXdmList";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmMFom")
 	public String answerXdmMFom(Model model,ComplaintDto complaintDto) {
 		model.addAttribute("item", complaintService.awSelectOne(complaintDto));
 		model.addAttribute("listLink", "answerXdmList");
-		return "/xdm/v1/complaint/answerXdmMFom";
+		return "xdm/v1/complaint/answerXdmMFom";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmComplete")
 	public String answerXdmComplete(Model model,ComplaintDto complaintDto) {
 		model.addAttribute("item", complaintService.awSelectOne(complaintDto));
 		model.addAttribute("listLink", "answerXdmList");
-		return "/xdm/v1/complaint/answerXdmComplete";
+		return "xdm/v1/complaint/answerXdmComplete";
 	}
 	@RequestMapping(value = "/v1/complaint/answerXdmUpdt")
 	public String answerXdmUpdt(ComplaintDto complaintDto) {
@@ -123,7 +123,6 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/answerXdmDete")
 	public String answerXdmDete(ComplaintDto complaintDto) {
 		complaintService.awDelete(complaintDto);
-		System.out.println("sdsd");
 		return "redirect:/v1/complaint/answerXdmList";
 	}
 
