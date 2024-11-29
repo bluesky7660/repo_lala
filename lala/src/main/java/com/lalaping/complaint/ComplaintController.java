@@ -123,6 +123,7 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/answerXdmDete")
 	public String answerXdmDete(ComplaintDto complaintDto) {
 		complaintService.awDelete(complaintDto);
+		System.out.println("sdsd");
 		return "redirect:/v1/complaint/answerXdmList";
 	}
 
