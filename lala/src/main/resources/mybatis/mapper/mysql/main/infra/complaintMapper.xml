@@ -98,7 +98,7 @@
 			a.userMember_umSeq,
 			b.umName
 			FROM reception a 
-			LEFT JOIN userMember b on b.umSeq = a.userMember_umSeq
+			LEFT JOIN usermember b on b.umSeq = a.userMember_umSeq
 		WHERE 1=1
 		AND a.rcSeq = #{rcSeq}
 	</select>

@@ -29,19 +29,19 @@ public class MemberController {
 //		System.out.println("패스워드:"+memberService.selectStaffMemberList(staffMemberVo).get(0).getSfPasswd());
 		model.addAttribute("list", memberService.selectStaffMemberList(staffMemberVo));
 		model.addAttribute("formLink", "staffMemberXdmForm");
-		return "/xdm/v1/member/stf/staffMemberXdmList";
+		return "xdm/v1/member/stf/staffMemberXdmList";
 	}
 
 	@RequestMapping(value = "/v1/member/staffMemberXdmForm")
 	public String staffMemberXdmForm(Model model) {
 		model.addAttribute("listLink", "staffMemberXdmList");
-		return "/xdm/v1/member/stf/staffMemberXdmForm";
+		return "xdm/v1/member/stf/staffMemberXdmForm";
 	}
 	@RequestMapping(value = "/v1/member/staffMemberXdmMfom")
 	public String staffMemberXdmMfom(Model model,StaffMemberDto staffMemberDto) {
 		model.addAttribute("item", memberService.staffSelectOne(staffMemberDto));
 		model.addAttribute("listLink", "staffMemberXdmList");
-		return "/xdm/v1/member/stf/staffMemberXdmMfom";
+		return "xdm/v1/member/stf/staffMemberXdmMfom";
 	}
 
 	// CRUD
@@ -89,20 +89,20 @@ public class MemberController {
 	    System.out.println("값없으면 나옴:"+memberService.selectUserMemberList(userMemberVo)+"@@@@@@@@@@@@");
 	    model.addAttribute("list", memberService.selectUserMemberList(userMemberVo));
 	    model.addAttribute("formLink", "userMemberXdmForm");
-	    return "/xdm/v1/member/usr/userMemberXdmList";
+	    return "xdm/v1/member/usr/userMemberXdmList";
 	}
 
 	@RequestMapping(value = "/v1/member/userMemberXdmForm")
 	public String userMemberXdmForm(Model model) {
 //		model.addAttribute("userItem", memberService.selectUserMemberList(userMemberDto));
 		model.addAttribute("listLink", "userMemberXdmList");
-	    return "/xdm/v1/member/usr/userMemberXdmForm";
+	    return "xdm/v1/member/usr/userMemberXdmForm";
 	}
 	@RequestMapping(value = "/v1/member/userMemberXdmMfom")
 	public String userMemberXdmMfom(Model model, UserMemberDto userMemberDto) {
 		model.addAttribute("item", memberService.userSelectOne(userMemberDto));
 		model.addAttribute("listLink", "userMemberXdmList");
-	    return "/xdm/v1/member/usr/userMemberXdmMfom";
+	    return "xdm/v1/member/usr/userMemberXdmMfom";
 	}
 
 	// CRUD
