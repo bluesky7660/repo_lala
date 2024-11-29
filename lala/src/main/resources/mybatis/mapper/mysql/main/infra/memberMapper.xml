@@ -6,8 +6,8 @@
     <!-- StaffMember 영역 -->
     <resultMap type="com.lalaping.infra.member.StaffMemberDto" id="staffResultMapObj"></resultMap>
     <sql id="staffSelectCommon">
-        FROM staffMember a
-        LEFT JOIN commonCode c ON a.sfGender = c.cdSeq 
+        FROM staffmember a
+        LEFT JOIN commoncode c ON a.sfGender = c.cdSeq 
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -90,7 +90,7 @@
 	        a.sfDept,
 	        a.sfGender
 		FROM
-		staffMember a
+		staffmember a
 		WHERE 1=1
 		AND a.sfSeq = #{sfSeq}
 	</select>
@@ -98,7 +98,7 @@
         SELECT
 	        sfSeq
 	        ,sfName
-        FROM staffMember
+        FROM staffmember
         WHERE 1=1
     </select>
     <select id="staffListCount" resultType="int">
@@ -106,7 +106,7 @@
         <include refid="staffSelectCommon" />
     </select>
     <insert id="insertStaffMember">
-        INSERT INTO staffMember (
+        INSERT INTO staffmember (
 	        sfId,
 	        sfPasswd,
 	        sfName,
@@ -136,7 +136,7 @@
         </selectKey>
     </insert>
     <update id="updateStaffMember">
-        UPDATE staffMember
+        UPDATE staffmember
         SET
 	        sfId = #{sfId},
 	        sfName = #{sfName},
@@ -150,11 +150,11 @@
         WHERE sfSeq = #{sfSeq}
     </update>
     <delete id="deleteStaffMember">
-        DELETE FROM staffMember
+        DELETE FROM staffmember
         WHERE sfSeq = #{sfSeq}
     </delete>
     <update id="ueleteStaffMember">
-        UPDATE staffMember
+        UPDATE staffmember
         SET
         	sfDelNy = 1
         WHERE sfSeq = #{sfSeq}
@@ -168,8 +168,8 @@
     <!-- UserMember 영역 -->
     <resultMap type="com.lalaping.infra.member.UserMemberDto" id="userResultMapObj"></resultMap>
     <sql id="userSelectCommon">
-        FROM userMember a
-        LEFT JOIN commonCode c ON a.umGender = c.cdSeq
+        FROM usermember a
+        LEFT JOIN commoncode c ON a.umGender = c.cdSeq
         WHERE 1=1
         <if test="shValue != null and !shValue.equals('')">
             <choose>
@@ -246,7 +246,7 @@
 	        a.umEmail,
 	        a.umGender
 		FROM
-		userMember a
+		usermember a
 		WHERE 1=1
 		AND a.umSeq = #{umSeq}
 	</select>
@@ -254,7 +254,7 @@
         SELECT
 	        umSeq
 	        ,umName
-        FROM userMember
+        FROM usermember
         WHERE 1=1
     </select>
     <select id="userListCount" resultType="int">
@@ -262,7 +262,7 @@
         <include refid="userSelectCommon" />
     </select>
     <insert id="insertUserMember">
-        INSERT INTO userMember (
+        INSERT INTO usermember (
 	        umId,
 	        umPasswd,
 	        umName,
@@ -290,7 +290,7 @@
         </selectKey>
     </insert>
     <update id="updateUserMember">
-        UPDATE userMember
+        UPDATE usermember
         SET
 	        umId = #{umId},
 	        <!-- umPasswd = #{umPasswd}, -->
@@ -302,11 +302,11 @@
         WHERE umSeq = #{umSeq}
     </update>
     <delete id="deleteUserMember">
-        DELETE FROM userMember
+        DELETE FROM usermember
         WHERE umSeq = #{umSeq}
     </delete>
     <update id="ueleteUserMember">
-        UPDATE userMember
+        UPDATE usermember
         SET
         	umDelNy = 1
         WHERE umSeq = #{umSeq}

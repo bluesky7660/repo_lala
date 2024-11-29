@@ -92,12 +92,12 @@
 		    ,a.cgDelNy
 			,a.cgRegDate
 			,a.cgModDate
-		FROM codeGroup a 
+		FROM codegroup a 
 		WHERE 1=1
 		AND a.cgSeq = #{cgSeq}
     </select>
     <update id="update">
-    	UPDATE codeGroup 
+    	UPDATE codegroup 
 		set
 			cgName = #{cgName}
 			,cgUseNy = #{cgUseNy}
@@ -108,14 +108,14 @@
 			AND cgSeq = #{cgSeq}
     </update>
     <update id="uelete">
-		update codeGroup
+		update codegroup
 		set
 			cgDelNy = 1
 		where 1=1
 			and cgSeq = #{cgSeq}
 	</update>
 	<delete id="delete">
-		DELETE FROM codeGroup
+		DELETE FROM codegroup
 		where 1=1
 			and cgSeq = #{cgSeq}
 	</delete>
