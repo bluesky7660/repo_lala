@@ -138,14 +138,14 @@ public class QnaController {
 		System.out.println("item:"+qnaService.selectOneQnaAns(qnaDto).getStaffMember_sfSeq());
 		model.addAttribute("item", qnaService.selectOneQnaAns(qnaDto));
 		model.addAttribute("listLink", "qnaAnswersXdmList");
-		return "/xdm/v1/qna/qnaAnswersXdmMFom";
+		return "xdm/v1/qna/qnaAnswersXdmMFom";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaXdmComplete")
 	public String qnaAnswersXdmComplete(Model model,QnaDto qnaDto) {
 		model.addAttribute("item", qnaService.selectOneQnaReq(qnaDto));
 		model.addAttribute("listLink", "qnaAnswersXdmList");
-		return "/xdm/v1/qna/qnaXdmComplete";
+		return "xdm/v1/qna/qnaXdmComplete";
 	}
 	
 	@RequestMapping(value = "/v1/qna/qnaRequestsInst")

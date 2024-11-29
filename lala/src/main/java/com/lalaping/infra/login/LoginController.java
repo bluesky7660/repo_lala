@@ -20,11 +20,11 @@ public class LoginController {
 
 	@RequestMapping(value = "/v1/loginXdm")
 	public String loginXdm() {
-		return "/xdm/v1/loginXdm";
+		return "xdm/v1/loginXdm";
 	}
 	@RequestMapping(value = "/v1/signupXdm")
 	public String signupXdm() {
-		return "/xdm/v1/signupXdm";
+		return "xdm/v1/signupXdm";
 	}
 
 	@ResponseBody

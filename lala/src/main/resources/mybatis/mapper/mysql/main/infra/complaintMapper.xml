@@ -6,7 +6,7 @@
 	<!-- reception 영역 -->
 	<sql id="receptionSelectCommon">
 		FROM reception a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			join usermember b on b.umSeq = a.usermember_umSeq
 		WHERE 1=1
 			<if test="shValue != null and !shValue.equals('')">
 				<choose>
@@ -57,7 +57,7 @@
 			a.rcType,
 			a.rcDelNy,
 			a.rcRegDate,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName
 		<include refid="receptionSelectCommon"/>
 		ORDER BY a.rcStatus ,a.rcSeq Desc
@@ -72,7 +72,7 @@
 			rcType,
 		    rcDelNy,
 		    rcRegDate,
-		    userMember_umSeq
+		    usermember_umSeq
 		)VALUES(
 			#{rcTitle},
 			#{rcContent},
@@ -80,7 +80,7 @@
 			#{rcType},
 			0,
 			now(),
-			#{userMember_umSeq}
+			#{usermember_umSeq}
 		)
 		<selectKey resultType="String" keyProperty="rcSeq" order="AFTER">
             SELECT last_insert_id()
@@ -95,10 +95,10 @@
 			a.rcStatus,
 			a.rcType,
 			a.rcRegDate,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName
 			FROM reception a 
-			LEFT JOIN userMember b on b.umSeq = a.userMember_umSeq
+			LEFT JOIN usermember b on b.umSeq = a.usermember_umSeq
 		WHERE 1=1
 		AND a.rcSeq = #{rcSeq}
 	</select>
@@ -149,8 +149,8 @@
 		FROM answer b
 		LEFT JOIN reception a
 		ON a.rcSeq = b.reception_rcSeq
-		LEFT JOIN staffMember c
-		ON c.sfSeq = b.staffMember_sfSeq
+		LEFT JOIN staffmember c
+		ON c.sfSeq = b.staffmember_sfSeq
 		WHERE 1=1
 			<if test="shValue != null and !shValue.equals('')">
 				<choose>
@@ -205,7 +205,7 @@
 			b.awDelNy,
 			b.awRegDate,
 			b.awModDate,
-			b.staffMember_sfSeq,
+			b.staffmember_sfSeq,
 			b.reception_rcSeq,
 			a.rcType,
 			a.rcTitle,
@@ -214,7 +214,7 @@
 		<include refid="answerSelectCommon"/>
 		ORDER BY a.rcStatus asc
 			 , CASE 
-            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	WHEN staffmember_sfSeq = #{sessSeqXdm} THEN 0
             	ELSE 1
         	END,
         	b.awSeq DESC 
@@ -228,7 +228,7 @@
 		    ,awDelNy
 		    ,awRegDate
 		    ,awModDate
-		    ,staffMember_sfSeq
+		    ,staffmember_sfSeq
 		    ,reception_rcSeq
 		)VALUES(
 			#{awContent},
@@ -236,7 +236,7 @@
 			0,
 			now(),
 			now(),
-			#{staffMember_sfSeq},
+			#{staffmember_sfSeq},
 			#{reception_rcSeq}
 		)
 		<selectKey resultType="String" keyProperty="awSeq" order="AFTER">
@@ -249,12 +249,12 @@
 			b.awSeq,
 			b.awContent,
 			b.awModDate,
-			b.staffMember_sfSeq,
+			b.staffmember_sfSeq,
 			b.reception_rcSeq,
 			a.rcType,
 			a.rcTitle,
 			a.rcContent,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			a.rcStatus,
 			c.sfName,
 			b.awDept,
@@ -262,10 +262,10 @@
 		FROM answer b
 			LEFT JOIN reception a
 			ON a.rcSeq = b.reception_rcSeq
-			LEFT JOIN staffMember c
-			ON c.sfSeq = b.staffMember_sfSeq
-			LEFT JOIN userMember d
-			ON a.userMember_umSeq = d.umSeq
+			LEFT JOIN staffmember c
+			ON c.sfSeq = b.staffmember_sfSeq
+			LEFT JOIN usermember d
+			ON a.usermember_umSeq = d.umSeq
 		WHERE 1=1
 		AND b.awSeq = #{awSeq}
 	</select>
@@ -276,7 +276,7 @@
 			awContent = #{awContent},
 			awDept = #{awDept},
 		    awModDate = now(),
-		    staffMember_sfSeq = #{staffMember_sfSeq},
+		    staffmember_sfSeq = #{staffmember_sfSeq},
 			reception_rcSeq = #{reception_rcSeq}
 		WHERE 1=1
 			AND awSeq = #{awSeq}
@@ -315,11 +315,11 @@
 			a.rcType,
 			a.rcDelNy,
 			a.rcRegDate,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName
 		FROM reception a
-		LEFT join userMember b
-	 	ON b.umSeq = a.userMember_umSeq
+		LEFT join usermember b
+	 	ON b.umSeq = a.usermember_umSeq
 		WHERE 1=1
 		AND a.rcDelNy = 0
 		AND a.rcStatus = 11
@@ -335,11 +335,11 @@
 			a.rcType,
 			a.rcDelNy,
 			a.rcRegDate,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName
 		FROM reception a
-		LEFT join userMember b
-	 	ON b.umSeq = a.userMember_umSeq
+		LEFT join usermember b
+	 	ON b.umSeq = a.usermember_umSeq
 		WHERE 1=1
 		AND a.rcDelNy = 0
 		AND a.rcStatus = 13

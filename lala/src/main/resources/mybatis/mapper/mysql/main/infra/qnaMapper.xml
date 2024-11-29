@@ -9,7 +9,7 @@
 	<sql id="ReqSelectCommon">
 		FROM
 			qnaRequests a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			join usermember b on b.umSeq = a.usermember_umSeq
 			left join qnaAnswers c on a.qrSeq = c.qnaRequests_qrSeq
 		where 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
@@ -66,11 +66,11 @@
 			a.qrContent,
 			a.qrType,
 			a.qrStatus,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName
 		FROM
 			qnaRequests a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			join usermember b on b.umSeq = a.usermember_umSeq
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
@@ -119,7 +119,7 @@
 	<sql id="AnsSelectCommon">
 		FROM
 			qnaAnswers a
-			join staffMember b on b.sfSeq = a.staffMember_sfSeq
+			join staffmember b on b.sfSeq = a.staffmember_sfSeq
 			join qnaRequests c on c.qrSeq = a.qnaRequests_qrSeq
 		where 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qaDelNy = #{shDelNy}</if>
@@ -173,7 +173,7 @@
 		SELECT
 			a.qaSeq,
 			a.qaContent,
-			a.staffMember_sfSeq,
+			a.staffmember_sfSeq,
 			a.qnaRequests_qrSeq,
 			b.qrTitle,
 			b.qrContent,
@@ -183,15 +183,15 @@
 		FROM
 			qnaAnswers a
 			join qnaRequests b on b.qrSeq = a.qnaRequests_qrSeq
-			join staffMember c on c.sfSeq = a.staffMember_sfSeq
-			join userMember d on d.umSeq = b.userMember_umSeq
+			join staffmember c on c.sfSeq = a.staffmember_sfSeq
+			join usermember d on d.umSeq = b.usermember_umSeq
 		WHERE 1=1
 		AND a.qaSeq = #{qaSeq}
 	</select>
 	<insert id="insertAnswer">
         INSERT INTO qnaAnswers (
 			qaContent
-			,staffMember_sfSeq
+			,staffmember_sfSeq
 			,qnaRequests_qrSeq
 			,qaDelNy
 			,qaRegDate
@@ -199,7 +199,7 @@
 			
         ) VALUES (
 	        #{qaContent}
-	        ,#{staffMember_sfSeq}
+	        ,#{staffmember_sfSeq}
 	        ,#{qnaRequests_qrSeq}
 	        ,0
 	        ,now()
@@ -220,8 +220,8 @@
 	<!-- 통합용 -->
 	<sql id="qnaReqSelectCommon">
 		FROM
-			qnaTable a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			qnatable a
+			join usermember b on b.umSeq = a.usermember_umSeq
 		where 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qrDelNy = #{shDelNy}</if>
 			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
@@ -258,12 +258,12 @@
 			,a.qrDelNy
 			,a.qrRegDate
 			,a.qrType
-			,a.staffMember_sfSeq
+			,a.staffmember_sfSeq
 			,b.umName
 		<include refid="qnaReqSelectCommon"/>
 		ORDER BY a.qrStatus asc
 			 , CASE 
-            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	WHEN staffmember_sfSeq = #{sessSeqXdm} THEN 0
             	ELSE 1
         	END,
         	a.qrSeq DESC
@@ -280,8 +280,8 @@
 			,a.qrType
 			,b.umName
 		FROM
-			qnaTable a
-			join userMember b on b.umSeq = a.userMember_umSeq
+			qnatable a
+			join usermember b on b.umSeq = a.usermember_umSeq
 		where 1=1
 			and a.qrDelNy = 0
 			and a.qrStatus = 0
@@ -290,13 +290,13 @@
 	</select>
 	<select id="qnaStatusCount" resultMap="qnaResultMapObj">
         SELECT qrStatus, COUNT(qrStatus) AS qnaStatusCount
-		FROM qnaTable
+		FROM qnatable
 		GROUP BY qrStatus
 		order by qrStatus
     </select>
     <select id="qnaTypeCount" resultMap="qnaResultMapObj">
         SELECT qrType, COUNT(qrType) AS qrTypeCount
-		FROM qnaTable
+		FROM qnatable
 		GROUP BY qrType
     </select>
 	<select id="listCountReg" resultType="int">
@@ -310,24 +310,24 @@
 			a.qrContent,
 			a.qrType,
 			a.qaContent,
-			a.userMember_umSeq,
+			a.usermember_umSeq,
 			b.umName,
 			c.sfName
 		FROM
-			qnaTable a
-			join userMember b on b.umSeq = a.userMember_umSeq
-			join staffMember c on c.sfSeq = a.staffMember_sfSeq
+			qnatable a
+			join usermember b on b.umSeq = a.usermember_umSeq
+			join staffmember c on c.sfSeq = a.staffmember_sfSeq
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
 	<insert id="insertRequest">
-        INSERT INTO qnaTable (
+        INSERT INTO qnatable (
 	        qrTitle
 			,qrContent
 			,qrType
 			,qrStatus
-			,userMember_umSeq
-			,staffMember_sfSeq
+			,usermember_umSeq
+			,staffmember_sfSeq
 			,qrDelNy
 			,qrRegDate
 			,qaDelNy
@@ -339,8 +339,8 @@
 	        ,#{qrContent}
 	        ,#{qrType}
 	        ,0
-	        ,#{userMember_umSeq}
-	        ,#{staffMember_sfSeq}
+	        ,#{usermember_umSeq}
+	        ,#{staffmember_sfSeq}
 	        ,0
 	        ,now()
 	        ,0
@@ -352,7 +352,7 @@
         </selectKey>
     </insert>
     <update id="updateQna">
-    	UPDATE qnaTable 
+    	UPDATE qnatable 
 		set
 			qaContent = #{qaContent},
 			qrStatus = 1,
@@ -363,8 +363,8 @@
 	<!-- 통합 aw -->
 	<sql id="qnaAnsSelectCommon">
 		FROM
-			qnaTable a
-			join staffMember b on b.sfSeq = a.staffMember_sfSeq
+			qnatable a
+			join staffmember b on b.sfSeq = a.staffmember_sfSeq
 		where 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.qaDelNy = #{shDelNy}</if>
 			<if test="shQrStatus != null and !shQrStatus.equals('')">AND a.qrStatus = #{shQrStatus}</if>
@@ -401,12 +401,12 @@
 			,a.qrType
 			,a.qaRegDate
 			,a.qaModDate
-			,a.staffMember_sfSeq
+			,a.staffmember_sfSeq
 			,b.sfName
 		<include refid="qnaAnsSelectCommon"/>
 		ORDER BY a.qrStatus asc
 			 , CASE 
-            	WHEN staffMember_sfSeq = #{sessSeqXdm} THEN 0
+            	WHEN staffmember_sfSeq = #{sessSeqXdm} THEN 0
             	ELSE 1
         	END,
         	a.qrSeq DESC
@@ -420,17 +420,17 @@
 		SELECT
 			a.qrSeq,
 			a.qaContent,
-			a.staffMember_sfSeq,
-			a.userMember_umSeq,
+			a.staffmember_sfSeq,
+			a.usermember_umSeq,
 			a.qrTitle,
 			a.qrContent,
 			a.qrType,
 			b.sfName,
 			c.umName
 		FROM
-			qnaTable a
-			join staffMember b on b.sfSeq = a.staffMember_sfSeq
-			join userMember c on c.umSeq = a.userMember_umSeq
+			qnatable a
+			join staffmember b on b.sfSeq = a.staffmember_sfSeq
+			join usermember c on c.umSeq = a.usermember_umSeq
 		WHERE 1=1
 		AND a.qrSeq = #{qrSeq}
 	</select>
