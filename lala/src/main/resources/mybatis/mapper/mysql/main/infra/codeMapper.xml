@@ -58,7 +58,7 @@
         <include refid="selectCommon"/>
     </select>
 	<insert id="insert">
-		INSERT INTO commoncode(
+		INSERT INTO commonCode(
 			cdName
 			,cdOrder
 			,cdDesc
@@ -91,14 +91,14 @@
 		    ,b.codeGroup_cgSeq
 		    ,a.cgSeq
 		    ,a.cgName
-	    FROM commoncode b
-	    LEFT JOIN codegroup a
+	    FROM commonCode b
+	    LEFT JOIN codeGroup a
 	    ON b.codeGroup_cgSeq = a.cgSeq
 	    WHERE 1=1
 	    AND b.cdSeq = #{cdSeq}
 	</select>
 	<update id="update">
-		UPDATE commoncode 
+		UPDATE commonCode 
 		set
 			cdName = #{cdName}
 			,cdUseNy = #{cdUseNy}
@@ -110,7 +110,7 @@
 			AND cdSeq = #{cdSeq}
 	</update>
 	<update id="uelete">
-		update commoncode
+		update commonCode
 		set
 			cdDelNy = 1
 		where 1=1
@@ -118,7 +118,7 @@
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM commoncode
+		DELETE FROM commonCode
 		where 1=1
 			and cdSeq = #{cdSeq}
 	</delete>

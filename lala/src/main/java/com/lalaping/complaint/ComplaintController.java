@@ -39,7 +39,7 @@ public class ComplaintController {
 	@RequestMapping(value = "/v1/complaint/receptionXdmForm")
 	public String receptionXdmForm(Model model) {
 		model.addAttribute("listLink", "receptionXdmList");
-		return "xdm/v1/complaint/receptionXdmForm";
+		return "/xdm/v1/complaint/receptionXdmForm";
 	}
 	@RequestMapping(value = "/v1/complaint/recepitonInst")
 	public String recepitonInst(ComplaintDto complaintDto, StaffMemberVo staffMemberVo) {
@@ -61,7 +61,7 @@ public class ComplaintController {
 	public String receptionXdmMFom(Model model,ComplaintDto complaintDto) {
 		model.addAttribute("item", complaintService.rcSelectOne(complaintDto));
 		model.addAttribute("listLink", "receptionXdmList");
-		return "xdm/v1/complaint/receptionXdmMFom";
+		return "/xdm/v1/complaint/receptionXdmMFom";
 	}
 	
 	/*
